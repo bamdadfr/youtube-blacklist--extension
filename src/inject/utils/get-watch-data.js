@@ -1,12 +1,11 @@
 /**
  *
  */
-export function parseData () {
-
-    const { secondaryResults } = window.ytInitialData.contents.twoColumnWatchNextResults.secondaryResults
-    // const resultsOld = secondaryResults[1].itemSectionRenderer.contents
-    const { 'results': sidebarElements } = secondaryResults
+export function getWatchData () {
+    
     let data = {}
+    const { secondaryResults } = window.ytInitialData.contents.twoColumnWatchNextResults.secondaryResults
+    const { 'results': sidebarElements } = secondaryResults
 
     sidebarElements.forEach (({ compactVideoRenderer }) => {
 

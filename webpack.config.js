@@ -10,7 +10,8 @@ module.exports = {
     'devtool': isProduction ? false : 'cheap-source-map',
     'entry': {
         'scripts/content': './src/scripts/content.js',
-        'injected/watch': './src/injected/watch.js',
+        'inject/home': './src/inject/home.js',
+        'inject/watch': './src/inject/watch.js',
     },
     'output': {
         'publicPath': '',
@@ -22,10 +23,6 @@ module.exports = {
                 {
                     'from': './src/manifest.json',
                     'to': 'manifest.json',
-                },
-                {
-                    'from': './src/assets',
-                    'to': 'assets',
                 },
             ],
         }),
