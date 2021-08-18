@@ -10,8 +10,8 @@ import { CHANNELS_BY_VIDEO_ID, INTERVAL } from '../utils/constants'
         // ensure currentPage is `/watch`
         if (!isWatch (window.location.href)) return
 
-        // define data from `ytInitialData`
-        const data = defineData (window.ytInitialData)
+        // define data
+        const data = defineData ()
         const appendedNode = document.getElementById (CHANNELS_BY_VIDEO_ID)
 
         // appendedNode exists?
