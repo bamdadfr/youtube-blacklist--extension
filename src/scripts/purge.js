@@ -1,48 +1,32 @@
-import { DATA_DIV_ID } from './constants'
 import blacklist from './blacklist.json'
-import { isWatch } from './utils/detect-page'
 
 /**
- * @param page
+ * @param channels
  */
-export function purge (page) {
+export function purge (channels) {
 
-    const div = document.getElementById (DATA_DIV_ID)
     const elements = document.getElementsByTagName ('ytd-compact-video-renderer')
 
-    if (!isWatch (window.location.href)) return
+    Array.from (elements).forEach ((element) => {
 
-    if (div === null) return
+        // already hidden
+        if (element.style.display === 'none') return
 
-    if (elements.length === 0) return
+        const href = element.getElementsByTagName ('a')[0].href
+        const id = /v=.*?(?=&|$)/.exec (href)[0].replace ('v=', '')
 
-    if (page === 'watch') {
+        if (typeof channels[id] === 'undefined') {
 
-        const data = div.innerHTML
-        const channels = JSON.parse (data)
+            // console.log ('channel not found', id)
 
-        // console.log ('purge', Object.keys (channels).length)
+        }
 
-        Array.from (elements).forEach ((element) => {
+        if (typeof blacklist[channels[id]] === 'undefined') return
 
-            // already hidden
-            if (element.style.display === 'none') return
+        console.log (id)
 
-            const href = element.getElementsByTagName ('a')[0].href
-            const id = /v=.*?(?=&|$)/.exec (href)[0].replace ('v=', '')
+        element.style.display = 'none'
 
-            if (typeof channels[id] === 'undefined') {
-
-                // console.log ('channel not found', id)
-
-            }
-
-            if (typeof blacklist[channels[id]] === 'undefined') return
-
-            element.style.display = 'none'
-
-        })
-
-    }
+    })
 
 }

@@ -1,4 +1,4 @@
-import { parseData } from './utils/parse-data'
+import { getDataFromProps } from './utils/get-data-from-props'
 import { INTERVAL_FREQUENCY } from '../scripts/constants'
 import { isWatch } from '../scripts/utils/detect-page'
 
@@ -8,7 +8,9 @@ import { isWatch } from '../scripts/utils/detect-page'
 
         if (!isWatch (window.location.href)) return
 
-        parseData ()
+        const data = getDataFromProps (window.ytInitialData)
+
+        console.log (Object.keys (data).length)
 
     }, INTERVAL_FREQUENCY)
 

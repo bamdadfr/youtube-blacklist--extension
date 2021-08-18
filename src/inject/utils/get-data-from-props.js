@@ -1,14 +1,10 @@
-import { createContainer } from './create-container'
-
 /**
- *
+ * @param props
  */
-export function parseData () {
+export function getDataFromProps (props) {
 
-    const body = document.getElementsByTagName ('body')[0]
-    const div = createContainer ()
     let data = {}
-    const { results } = window.ytInitialData.contents.twoColumnWatchNextResults.secondaryResults.secondaryResults
+    const { results } = props.contents.twoColumnWatchNextResults.secondaryResults.secondaryResults
 
     results.forEach (({ compactVideoRenderer }) => {
 
@@ -29,8 +25,6 @@ export function parseData () {
 
     // console.log ('parse', results.length === Object.keys (window.ytInitialData.contents.twoColumnWatchNextResults.secondaryResults.secondaryResults.results).length)
 
-    div.innerHTML = JSON.stringify (data)
-
-    body.appendChild (div)
+    return data
 
 }
