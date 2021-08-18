@@ -1,6 +1,8 @@
 import { getThumbnails } from './get-thumbnails'
 import { CLOSE_BUTTON_ID } from './constants'
-import { getIdFromThumbnail } from './get-id-from-thumbnail'
+import { getChannelFromThumbnail } from './get-channel-from-thumbnail'
+import { setState } from './set-state'
+import { getState } from './get-state'
 
 /**
  *
@@ -20,16 +22,18 @@ export function addCloseButtonToThumbnails () {
 
         closeButton.id = CLOSE_BUTTON_ID
 
-        closeButton.onclick = (e) => {
+        closeButton.onclick = async (e) => {
 
             e.preventDefault ()
 
             e.stopPropagation ()
 
-            const computedThumbnail = e.currentTarget.parentNode.parentNode.parentNode.parentNode
-            const id = getIdFromThumbnail (computedThumbnail)
+            const channel = await getChannelFromThumbnail (thumbnail)
+            const { blacklist } = await getState ()
 
-            console.log (id)
+            await setState ('blacklist', { ...blacklist, ...channel })
+
+            await setState ('shouldReload', true)
 
         }
 

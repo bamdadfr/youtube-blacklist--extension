@@ -1,5 +1,5 @@
 import { appendBody } from './append-body'
-import { ID_DIV } from './constants'
+import { CURRENT_VIDEO_ID } from './constants'
 
 /**
  * @description scope: browser
@@ -11,6 +11,6 @@ export function defineId () {
         ?.videoDetails
         ?.videoId || null
 
-    appendBody (ID_DIV, id)
+    appendBody (CURRENT_VIDEO_ID, id)
 
 }

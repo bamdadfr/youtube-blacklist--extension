@@ -11,6 +11,7 @@ module.exports = {
     'entry': {
         'scripts/content': './src/scripts/content.js',
         'scripts/background': './src/scripts/background.js',
+        'scripts/popup': './src/scripts/popup.js',
         'inject/all': './src/inject/all.js',
         'inject/watch': './src/inject/watch.js',
     },
@@ -26,8 +27,12 @@ module.exports = {
                     'to': 'manifest.json',
                 },
                 {
-                    'from': './src/styles/content.css',
-                    'to': 'styles/content.css',
+                    'from': './src/styles',
+                    'to': 'styles',
+                },
+                {
+                    'from': './src/pages',
+                    'to': 'pages',
                 },
             ],
         }),

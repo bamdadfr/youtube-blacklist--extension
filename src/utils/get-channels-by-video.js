@@ -1,16 +1,16 @@
-import { DATA_DIV } from './constants'
+import { CHANNELS_BY_VIDEO_ID } from './constants'
 
 /**
  * @description scope: extension
  * @returns {object} data {video => channel}
  */
-export async function getDataFromBrowser () {
+export async function getChannelsByVideo () {
 
     const retry = (resolve) => setTimeout (resolve, 500)
 
     const execute = (resolve) => {
 
-        const node = document.getElementById (DATA_DIV)
+        const node = document.getElementById (CHANNELS_BY_VIDEO_ID)
 
         if (node === null) return retry (() => execute (resolve))
 

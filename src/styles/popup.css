@@ -1,0 +1,23 @@
+body {
+    width: 450px;
+    height: 350px;
+    background-color: gainsboro;
+}
+
+section {
+    display: grid;
+    grid-template-rows: 50px 1fr;
+    flex-direction: column;
+    grid-gap: 5px;
+
+    width: 100%;
+    height: 100%;
+}
+
+textarea {
+    font-size: 11px;
+}
+
+button {
+    font-weight: bold;
+}

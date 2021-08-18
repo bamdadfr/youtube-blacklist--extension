@@ -1,7 +1,7 @@
-import blacklist from '../temp/blacklist.json'
-import { getDataFromBrowser } from './get-data-from-browser'
+import { getChannelsByVideo } from './get-channels-by-video'
 import { getThumbnails } from './get-thumbnails'
 import { getIdFromThumbnail } from './get-id-from-thumbnail'
+import { getState } from './get-state'
 
 let savedDataLength = {}
 let savedThumbnailsLength = -1
@@ -11,14 +11,17 @@ let savedThumbnailsLength = -1
  */
 export async function purgeWatch () {
 
-    const data = await getDataFromBrowser ()
+    const channelsByVideo = await getChannelsByVideo ()
     const thumbnails = getThumbnails ()
 
     // return if `data` & `element` have not changed
     if (
-        Object.keys (data).length === savedDataLength
+        Object.keys (channelsByVideo).length === savedDataLength
         && thumbnails.length === savedThumbnailsLength
     ) return
+
+    // fetch blacklist
+    const { blacklist } = await getState ()
 
     // iterate through elements
     // & hide blacklisted channels
@@ -29,16 +32,17 @@ export async function purgeWatch () {
         
         const id = getIdFromThumbnail (thumbnail)
 
-        if (typeof blacklist[data[id]] === 'undefined') return
+        if (typeof blacklist[channelsByVideo[id]] === 'undefined') return
 
-        console.log (id)
+        // eslint-disable-next-line no-console
+        console.log (id) // todo: remove when dev is done
 
         thumbnail.style.display = 'none'
 
     })
 
     // save current parameters
-    savedDataLength = Object.keys (data).length
+    savedDataLength = Object.keys (channelsByVideo).length
 
     savedThumbnailsLength = thumbnails.length
 

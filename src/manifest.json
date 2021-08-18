@@ -4,6 +4,10 @@
     "description": "Blacklist channels on YouTube",
     "version": "0.0.0",
     "manifest_version": 2,
+    "browser_action": {
+        "default_title": "YouTube Blacklist",
+        "default_popup": "pages/popup.html"
+    },
     "content_scripts": [
         {
             "matches": [

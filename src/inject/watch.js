@@ -1,7 +1,7 @@
 import { isWatch } from '../utils/detect-page'
 import { defineData } from '../utils/define-data'
 import { appendBody } from '../utils/append-body'
-import { DATA_DIV, INTERVAL } from '../utils/constants'
+import { CHANNELS_BY_VIDEO_ID, INTERVAL } from '../utils/constants'
 
 (() => {
 
@@ -12,7 +12,7 @@ import { DATA_DIV, INTERVAL } from '../utils/constants'
 
         // define data from `ytInitialData`
         const data = defineData (window.ytInitialData)
-        const appendedNode = document.getElementById (DATA_DIV)
+        const appendedNode = document.getElementById (CHANNELS_BY_VIDEO_ID)
 
         // appendedNode exists?
         // we want to early return if data did not change
@@ -27,7 +27,7 @@ import { DATA_DIV, INTERVAL } from '../utils/constants'
         }
 
         // append to body
-        appendBody (DATA_DIV, JSON.stringify (data))
+        appendBody (CHANNELS_BY_VIDEO_ID, JSON.stringify (data))
 
     }, INTERVAL)
 

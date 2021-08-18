@@ -1,4 +1,4 @@
-import { ID_DIV } from './constants'
+import { CURRENT_VIDEO_ID } from './constants'
 
 /**
  * @description scope: extension
@@ -12,7 +12,7 @@ export function getIdFromData () {
 
         try {
 
-            const node = document.getElementById (ID_DIV)
+            const node = document.getElementById (CURRENT_VIDEO_ID)
 
             if (node === null) return retry (() => execute (resolve))
 

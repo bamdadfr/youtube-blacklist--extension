@@ -22,7 +22,18 @@ export async function getState () {
 
     })
 
-    if (typeof state.shouldReload === 'undefined') await setState ('shouldReload', false)
+    // init
+    if (typeof state.shouldReload === 'undefined') {
+
+        await setState ('shouldReload', false)
+    
+    }
+
+    if (typeof state.blacklist === 'undefined') {
+
+        await setState ('blacklist', {})
+    
+    }
 
     return state
 

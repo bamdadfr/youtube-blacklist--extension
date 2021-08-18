@@ -18,6 +18,13 @@ export async function setState (type, payload) {
 
             break
 
+        case 'blacklist':
+            await browser.storage.local.set ({
+                'blacklist': payload,
+            })
+
+            break
+
         default:
             throw new Error ('state error')
 
