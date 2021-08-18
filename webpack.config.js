@@ -10,6 +10,7 @@ module.exports = {
     'devtool': isProduction ? false : 'cheap-source-map',
     'entry': {
         'scripts/content': './src/scripts/content.js',
+        'scripts/background': './src/scripts/background.js',
         'inject/home': './src/inject/home.js',
         'inject/watch': './src/inject/watch.js',
     },

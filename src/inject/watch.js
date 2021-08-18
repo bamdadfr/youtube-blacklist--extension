@@ -1,3 +1,17 @@
 import { getData } from './utils/get-data'
 
-getData ('watch')
+(() => {
+
+    const sidebar = document.querySelectorAll ('#items')[1]
+
+    sidebar.addEventListener ('DOMNodeInserted', (e) => {
+
+        console.log (e)
+
+        getData ('watch')
+
+    })
+
+    getData ('watch')
+
+}) ()

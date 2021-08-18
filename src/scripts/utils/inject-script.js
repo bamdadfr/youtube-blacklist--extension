@@ -1,16 +1,30 @@
+import { getBrowser } from './get-browser'
+
 /**
  * @param file
- * @param node
+ * @param targetNode
  */
-export function injectScript (file, node) {
+export async function injectScript (file, targetNode = 'body') {
 
-    const th = document.getElementsByTagName (node)[0]
-    const s = document.createElement ('script')
+    return new Promise ((resolve) => {
 
-    s.setAttribute ('type', 'text/javascript')
+        const browser = getBrowser ()
+        const path = browser.runtime.getURL (file)
+        const doesExist = document.querySelector (`script[src*='${file}']`) !== null
 
-    s.setAttribute ('src', file)
+        if (doesExist) return
 
-    th.appendChild (s)
+        const th = document.getElementsByTagName (targetNode)[0]
+        const s = document.createElement ('script')
+
+        s.setAttribute ('type', 'text/javascript')
+
+        s.setAttribute ('src', path)
+
+        th.appendChild (s)
+
+        resolve ()
+
+    })
 
 }

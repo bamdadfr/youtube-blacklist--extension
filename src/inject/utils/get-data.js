@@ -30,8 +30,6 @@ export function getData (page) {
 
     }
 
-    console.log (Object.keys (data).length)
-
     div.innerHTML = JSON.stringify (data)
 
     body.appendChild (div)

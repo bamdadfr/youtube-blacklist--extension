@@ -5,9 +5,9 @@ export function getWatchData () {
     
     let data = {}
     const { secondaryResults } = window.ytInitialData.contents.twoColumnWatchNextResults.secondaryResults
-    const { 'results': sidebarElements } = secondaryResults
+    const { results } = secondaryResults
 
-    sidebarElements.forEach (({ compactVideoRenderer }) => {
+    results.forEach (({ compactVideoRenderer }) => {
 
         if (typeof compactVideoRenderer === 'undefined') return
 

@@ -3,14 +3,31 @@ import blacklist from './blacklist.json'
 
 /**
  * @param page
+ * @param retryDelay
  */
-export function purge (page) {
+export function purge (page, retryDelay = 1000) {
+
+    const retry = () => {
+
+        setTimeout (() => {
+
+            purge (page)
+
+        }, retryDelay)
+
+    }
+
+    const div = document.getElementById (DATA_DIV_ID)
+    const elements = document.getElementsByTagName ('ytd-compact-video-renderer')
+
+    if (div === null) return retry (page, retryDelay)
+
+    if (elements.length === 0) return retry (page, retryDelay)
 
     if (page === 'watch') {
 
-        const data = document.getElementById (DATA_DIV_ID).innerHTML
+        const data = div.innerHTML
         const channels = JSON.parse (data)
-        const elements = document.getElementsByTagName ('ytd-compact-video-renderer')
 
         Array.from (elements).forEach ((element) => {
 
@@ -23,6 +40,8 @@ export function purge (page) {
             element.remove ()
 
         })
+
+        retry ()
 
     }
 

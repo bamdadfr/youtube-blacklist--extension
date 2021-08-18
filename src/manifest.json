@@ -16,11 +16,17 @@
             "all_frames": false
         }
     ],
+    "background": {
+        "scripts": [
+            "scripts/background.js"
+        ]
+    },
     "web_accessible_resources": [
         "inject/home.js",
         "inject/watch.js"
     ],
     "permissions": [
-        "*://*.youtube.com/*"
+        "*://*.youtube.com/*",
+        "webRequest"
     ]
 }
