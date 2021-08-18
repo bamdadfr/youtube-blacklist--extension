@@ -3,7 +3,7 @@ import { DATA_DIV_ID } from '../../scripts/constants'
 /**
  *
  */
-export function getDataContainer () {
+export function createContainer () {
 
     const targetDiv = document.getElementById (DATA_DIV_ID)
 

@@ -1,17 +1,15 @@
-import { getData } from './utils/get-data'
+import { parseData } from './utils/parse-data'
+import { INTERVAL_FREQUENCY } from '../scripts/constants'
+import { isWatch } from '../scripts/utils/detect-page'
 
 (() => {
 
-    const sidebar = document.querySelectorAll ('#items')[1]
+    setInterval (() => {
 
-    sidebar.addEventListener ('DOMNodeInserted', (e) => {
+        if (!isWatch (window.location.href)) return
 
-        console.log (e)
+        parseData ()
 
-        getData ('watch')
-
-    })
-
-    getData ('watch')
+    }, INTERVAL_FREQUENCY)
 
 }) ()

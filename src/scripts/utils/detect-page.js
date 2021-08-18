@@ -1,16 +1,17 @@
+export const isHome = (url) => /youtube(\.com)?\/?$/.exec (url) !== null
+
+export const isWatch = (url) => /youtube(\.com)?\/watch\?v=/.exec (url) !== null
+
 /**
  *
  */
 export function detectPage () {
 
     const { href } = window.location
-    const isHome = /youtube(\.com)?\/?$/.exec (href) !== null
 
-    if (isHome) return 'home'
+    if (isHome (href)) return 'home'
 
-    const isWatch = /youtube(\.com)?\/watch\?v=/.exec (href) !== null
-
-    if (isWatch) return 'watch'
+    if (isWatch (href)) return 'watch'
 
     return null
 
