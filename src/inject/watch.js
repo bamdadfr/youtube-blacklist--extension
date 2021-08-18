@@ -1,5 +1,5 @@
 import { isWatch } from '../utils/detect-page'
-import { parseData } from '../utils/parse-data'
+import { defineData } from '../utils/define-data'
 import { appendBody } from '../utils/append-body'
 import { DATA_DIV, INTERVAL } from '../utils/constants'
 
@@ -11,7 +11,7 @@ import { DATA_DIV, INTERVAL } from '../utils/constants'
         if (!isWatch (window.location.href)) return
 
         // define data from `ytInitialData`
-        const data = parseData (window.ytInitialData)
+        const data = defineData (window.ytInitialData)
         const appendedNode = document.getElementById (DATA_DIV)
 
         // appendedNode exists?

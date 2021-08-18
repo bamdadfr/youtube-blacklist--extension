@@ -3,7 +3,7 @@
  * @param {object} props `ytInitialData`
  * @returns {object} containing videoIds mapped to channelIds
  */
-export function parseData (props) {
+export function defineData (props) {
 
     let data = {}
     const { results } = props.contents.twoColumnWatchNextResults.secondaryResults.secondaryResults
