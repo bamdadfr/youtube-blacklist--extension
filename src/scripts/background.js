@@ -1,38 +1,20 @@
-import { getBrowser } from './utils/get-browser'
+import { getBrowser } from '../utils/get-browser'
+import { setState } from '../utils/set-state'
 
-const browser = getBrowser ()
+(async () => {
 
-const targets = [
-    'https://www.youtube.com/youtubei/v1/next*',
-    'https://www.youtube.com/youtubei/v1/browse*',
-]
+    const browser = await getBrowser ()
 
-/**
- * @param requestDetails
- */
-function logURL (requestDetails) {
+    browser.storage.onChanged.addListener (async (changes) => {
 
-    const { url } = requestDetails
+        if (changes.shouldReload?.newValue === true) {
 
-    if (!url.includes ('youtube.com')) return
+            await setState ('shouldReload', false)
 
-    if (url.includes ('/v1/next')) {
+            await browser.tabs.reload ()
 
-        console.log ('next')
+        }
 
-        return
+    })
 
-    }
-
-    if (url.includes ('/v1/browse')) {
-
-        console.log ('browse')
-
-    }
-
-}
-
-browser.webRequest.onBeforeRequest.addListener (
-    logURL,
-    { 'urls': targets },
-)
+}) ()

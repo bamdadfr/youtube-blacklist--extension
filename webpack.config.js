@@ -11,6 +11,7 @@ module.exports = {
     'entry': {
         'scripts/content': './src/scripts/content.js',
         'scripts/background': './src/scripts/background.js',
+        'inject/all': './src/inject/all.js',
         'inject/watch': './src/inject/watch.js',
     },
     'output': {

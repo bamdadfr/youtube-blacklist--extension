@@ -22,10 +22,12 @@
         ]
     },
     "web_accessible_resources": [
+        "inject/all.js",
         "inject/watch.js"
     ],
     "permissions": [
-        "*://*.youtube.com/*",
-        "webRequest"
+        "storage",
+        "tabs",
+        "*://*.youtube.com/*"
     ]
 }

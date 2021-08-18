@@ -1,7 +1,9 @@
 /**
- * @param props
+ * @description scope: browser
+ * @param {object} props `ytInitialData`
+ * @returns {object} containing videoIds mapped to channelIds
  */
-export function getDataFromProps (props) {
+export function parseData (props) {
 
     let data = {}
     const { results } = props.contents.twoColumnWatchNextResults.secondaryResults.secondaryResults
@@ -22,8 +24,6 @@ export function getDataFromProps (props) {
         }
 
     })
-
-    // console.log ('parse', results.length === Object.keys (window.ytInitialData.contents.twoColumnWatchNextResults.secondaryResults.secondaryResults.results).length)
 
     return data
 

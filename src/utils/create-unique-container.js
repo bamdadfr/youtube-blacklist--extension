@@ -1,18 +1,17 @@
-import { DATA_DIV_ID } from '../../scripts/constants'
-
 /**
- *
+ * @param {string} id div id
+ * @returns {HTMLDivElement} unique div
  */
-export function createContainer () {
+export function createUniqueContainer (id) {
 
-    const targetDiv = document.getElementById (DATA_DIV_ID)
+    const targetDiv = document.getElementById (id)
 
     // target already exists
     if (targetDiv !== null) return targetDiv
 
     const div = document.createElement ('div')
 
-    div.setAttribute ('id', DATA_DIV_ID)
+    div.setAttribute ('id', id)
 
     div.setAttribute ('style', 'display: none;')
 

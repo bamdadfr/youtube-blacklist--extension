@@ -1,75 +1,58 @@
-import { injectScript } from './utils/inject-script'
-import { detectPage } from './utils/detect-page'
-import { purge } from './purge'
-import { onHrefChange } from './utils/on-href-change'
-import { INTERVAL_FREQUENCY } from './constants'
-import { getDataFromProps } from '../inject/utils/get-data-from-props'
+import { getIdFromHref } from '../utils/get-id-from-href'
+import { getIdFromData } from '../utils/get-id-from-data'
+import { injectScript } from '../utils/inject-script'
+import { onHrefChange } from '../utils/on-href-change'
+import { getState } from '../utils/get-state'
+import { setState } from '../utils/set-state'
+import { detectPage } from '../utils/detect-page'
+import { INTERVAL } from '../utils/constants'
+import { purgeWatch } from '../utils/purge-watch'
 
-const test = async () => {
+const initializeContent = async () => {
 
-    const response = await fetch ('https://www.youtube.com/watch?v=fjugzZXnO4g')
-    const data = await response.text ()
-    const regex = /var ytInitialData = {(.*)}(?=;<)/
-    const string = `{${regex.exec (data)[1]}}`
+    // inject `all` script
+    injectScript ('inject/all.js')
 
-    console.log (JSON.parse (string))
+    // init state
+    await getState ()
+
+    const [currentPage] = detectPage ()
+
+    if (currentPage === 'watch') {
+
+        // inject `watch` script
+        injectScript ('inject/watch.js')
+
+        // purge on interval
+        setInterval (async () => {
+
+            await purgeWatch ()
+
+        }, INTERVAL)
+    
+    }
 
 }
 
-// https://www.youtube.com/watch?v=6G-hZV2RfhM
-const run = () => {
+const watchContent = async () => {
 
-    const page = detectPage ()
+    const idFromHref = await getIdFromHref ()
+    const idFromData = await getIdFromData ()
+    const shouldReload = idFromHref !== idFromData
+    const state = await getState ()
 
-    if (page === 'watch') {
+    if (state.shouldReload !== shouldReload) {
 
-        injectScript (`inject/${page}.js`)
-
-        setInterval (() => {
-
-            purge (page)
-        
-        }, INTERVAL_FREQUENCY)
+        await setState ('shouldReload', shouldReload)
 
     }
 
 }
 
-const algo = async () => {
+window.addEventListener ('load', async () => {
 
-    const href = window.location.href
-    const page = detectPage ()
+    await initializeContent ()
 
-    if (page === 'watch') {
-
-        injectScript (`inject/${page}.js`)
-
-        const response = await fetch (href)
-        const responseText = await response.text ()
-        const regex = /var ytInitialData = {(.*)}(?=;<)/
-        const string = `{${regex.exec (responseText)[1]}}`
-        const props = JSON.parse (string)
-        const data = getDataFromProps (props)
-
-        setInterval (() => {
-
-            purge (data)
-
-        }, INTERVAL_FREQUENCY)
-
-    }
-
-}
-
-window.addEventListener ('load', () => {
-
-    // test ()
-    //
-    // run ()
-    //
-    // onHrefChange (run)
-    onHrefChange (algo)
-
-    algo ()
+    onHrefChange (watchContent)
 
 })

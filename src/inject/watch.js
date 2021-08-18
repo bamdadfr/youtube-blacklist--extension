@@ -1,17 +1,34 @@
-import { getDataFromProps } from './utils/get-data-from-props'
-import { INTERVAL_FREQUENCY } from '../scripts/constants'
-import { isWatch } from '../scripts/utils/detect-page'
+import { isWatch } from '../utils/detect-page'
+import { parseData } from '../utils/parse-data'
+import { appendBody } from '../utils/append-body'
+import { DATA_DIV, INTERVAL } from '../utils/constants'
 
 (() => {
 
     setInterval (() => {
 
+        // ensure currentPage is `/watch`
         if (!isWatch (window.location.href)) return
 
-        const data = getDataFromProps (window.ytInitialData)
+        // define data from `ytInitialData`
+        const data = parseData (window.ytInitialData)
+        const appendedNode = document.getElementById (DATA_DIV)
 
-        console.log (Object.keys (data).length)
+        // appendedNode exists?
+        // we want to early return if data did not change
+        if (appendedNode) {
 
-    }, INTERVAL_FREQUENCY)
+            const dataLength = Object.keys (data).length
+            const appendedData = JSON.parse (appendedNode.innerHTML)
+            const appendedDataLength = Object.keys (appendedData).length
+
+            if (dataLength === appendedDataLength) return
+
+        }
+
+        // append to body
+        appendBody (DATA_DIV, JSON.stringify (data))
+
+    }, INTERVAL)
 
 }) ()

@@ -1,17 +1,17 @@
 import { getBrowser } from './get-browser'
 
 /**
- * @param file
- * @param targetNode
+ * @param {string} file filename
+ * @param {string} targetNode html target
  */
 export function injectScript (file, targetNode = 'body') {
 
-    const browser = getBrowser ()
-    const path = browser.runtime.getURL (file)
     const doesExist = document.querySelector (`script[src*='${file}']`) !== null
 
     if (doesExist) return
 
+    const browser = getBrowser ()
+    const path = browser.runtime.getURL (file)
     const th = document.getElementsByTagName (targetNode)[0]
     const s = document.createElement ('script')
 
