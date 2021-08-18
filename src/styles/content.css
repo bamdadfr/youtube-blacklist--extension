@@ -1,0 +1,10 @@
+#youtube-blacklist--extension__close_button {
+    z-index: 1;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+
+#youtube-blacklist--extension__close_button button:hover {
+    cursor: pointer;
+}

@@ -1,8 +1,10 @@
 import blacklist from '../temp/blacklist.json'
 import { getDataFromBrowser } from './get-data-from-browser'
+import { getThumbnails } from './get-thumbnails'
+import { getIdFromThumbnail } from './get-id-from-thumbnail'
 
 let savedDataLength = {}
-let savedElementsLength = -1
+let savedThumbnailsLength = -1
 
 /**
  * @description purge `/watch` page
@@ -10,35 +12,34 @@ let savedElementsLength = -1
 export async function purgeWatch () {
 
     const data = await getDataFromBrowser ()
-    const elements = document.getElementsByTagName ('ytd-compact-video-renderer')
+    const thumbnails = getThumbnails ()
 
     // return if `data` & `element` have not changed
     if (
         Object.keys (data).length === savedDataLength
-        && elements.length === savedElementsLength
+        && thumbnails.length === savedThumbnailsLength
     ) return
 
     // iterate through elements
     // & hide blacklisted channels
-    Array.from (elements).forEach ((element) => {
+    Array.from (thumbnails).forEach ((thumbnail) => {
 
         // already hidden
-        if (element.style.display === 'none') return
-
-        const href = element.getElementsByTagName ('a')[0].href
-        const id = /v=.*?(?=&|$)/.exec (href)[0].replace ('v=', '')
+        if (thumbnail.style.display === 'none') return
+        
+        const id = getIdFromThumbnail (thumbnail)
 
         if (typeof blacklist[data[id]] === 'undefined') return
 
         console.log (id)
 
-        element.style.display = 'none'
+        thumbnail.style.display = 'none'
 
     })
 
     // save current parameters
     savedDataLength = Object.keys (data).length
 
-    savedElementsLength = elements.length
+    savedThumbnailsLength = thumbnails.length
 
 }

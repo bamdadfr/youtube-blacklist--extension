@@ -7,6 +7,7 @@ import { setState } from '../utils/set-state'
 import { detectPage } from '../utils/detect-page'
 import { INTERVAL } from '../utils/constants'
 import { purgeWatch } from '../utils/purge-watch'
+import { addCloseButtonToThumbnails } from '../utils/add-close-button-to-thumbnails'
 
 const initializeContent = async () => {
 
@@ -25,6 +26,8 @@ const initializeContent = async () => {
 
         // purge on interval
         setInterval (async () => {
+
+            addCloseButtonToThumbnails ()
 
             await purgeWatch ()
 
