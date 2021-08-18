@@ -1,17 +1,34 @@
-import { getData } from './utils/get-data'
+import { isWatch } from '../utils/detect-page'
+import { parseData } from '../utils/parse-data'
+import { appendBody } from '../utils/append-body'
+import { DATA_DIV, INTERVAL } from '../utils/constants'
 
 (() => {
 
-    const sidebar = document.querySelectorAll ('#items')[1]
+    setInterval (() => {
 
-    sidebar.addEventListener ('DOMNodeInserted', (e) => {
+        // ensure currentPage is `/watch`
+        if (!isWatch (window.location.href)) return
 
-        console.log (e)
+        // define data from `ytInitialData`
+        const data = parseData (window.ytInitialData)
+        const appendedNode = document.getElementById (DATA_DIV)
 
-        getData ('watch')
+        // appendedNode exists?
+        // we want to early return if data did not change
+        if (appendedNode) {
 
-    })
+            const dataLength = Object.keys (data).length
+            const appendedData = JSON.parse (appendedNode.innerHTML)
+            const appendedDataLength = Object.keys (appendedData).length
 
-    getData ('watch')
+            if (dataLength === appendedDataLength) return
+
+        }
+
+        // append to body
+        appendBody (DATA_DIV, JSON.stringify (data))
+
+    }, INTERVAL)
 
 }) ()

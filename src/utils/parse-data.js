@@ -1,11 +1,12 @@
 /**
- *
+ * @description scope: browser
+ * @param {object} props `ytInitialData`
+ * @returns {object} containing videoIds mapped to channelIds
  */
-export function getWatchData () {
-    
+export function parseData (props) {
+
     let data = {}
-    const { secondaryResults } = window.ytInitialData.contents.twoColumnWatchNextResults.secondaryResults
-    const { results } = secondaryResults
+    const { results } = props.contents.twoColumnWatchNextResults.secondaryResults.secondaryResults
 
     results.forEach (({ compactVideoRenderer }) => {
 
