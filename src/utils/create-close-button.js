@@ -1,5 +1,5 @@
 import { CLOSE_BUTTON_ID } from './constants'
-import { getChannelFromThumbnail } from './get-channel-from-thumbnail'
+import { getChannelFromElement } from './get-channel-from-element'
 import { getState } from './get-state'
 import { setState } from './set-state'
 
@@ -27,12 +27,13 @@ export function createCloseButton ({ parentNode }) {
 
         e.stopPropagation ()
 
-        const channel = await getChannelFromThumbnail (parentNode)
+        const channel = await getChannelFromElement (parentNode)
         const { blacklist } = await getState ()
 
         await setState ('blacklist', { ...blacklist, ...channel })
 
-        await setState ('shouldReload', true)
+        // todo
+        // await setState ('shouldReload', true)
 
     }
 

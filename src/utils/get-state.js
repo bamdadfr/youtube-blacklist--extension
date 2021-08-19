@@ -1,5 +1,4 @@
 import { getBrowser } from './get-browser'
-import { setState } from './set-state'
 
 /**
  * @typedef {boolean} ShouldReload
@@ -9,7 +8,7 @@ export async function getState () {
 
     const browser = getBrowser ()
 
-    const state = await new Promise ((resolve) => {
+    return await new Promise ((resolve) => {
 
         browser.storage.local.get (
             null,
@@ -21,20 +20,5 @@ export async function getState () {
         )
 
     })
-
-    // init
-    if (typeof state.shouldReload === 'undefined') {
-
-        await setState ('shouldReload', false)
-    
-    }
-
-    if (typeof state.blacklist === 'undefined') {
-
-        await setState ('blacklist', {})
-    
-    }
-
-    return state
 
 }

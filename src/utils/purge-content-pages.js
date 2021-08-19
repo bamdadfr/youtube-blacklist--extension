@@ -1,6 +1,6 @@
 import { detectPage } from './detect-page'
-import { addCloseButtonToThumbnails } from './add-close-button-to-thumbnails'
-import { purgeWatch } from './purge-watch'
+import { appendCloseButton } from './append-close-button'
+import { purgePage } from './purge-page'
 import { INTERVAL } from './constants'
 
 /**
@@ -10,13 +10,17 @@ export function purgeContentPages () {
 
     const [currentPage] = detectPage ()
 
-    if (currentPage === 'watch') {
+    if (
+        currentPage === 'watch'
+        || currentPage === 'results'
+        || currentPage === 'home'
+    ) {
 
         setInterval (async () => {
 
-            addCloseButtonToThumbnails ()
+            await appendCloseButton ()
 
-            await purgeWatch ()
+            await purgePage ()
 
         }, INTERVAL)
 
