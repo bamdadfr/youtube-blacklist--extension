@@ -9,7 +9,7 @@ export function appendBody (id, payload) {
     const body = document.getElementsByTagName ('body')[0]
     const div = createUniqueContainer (id)
 
-    div.innerHTML = payload
+    div.innerHTML = typeof payload === 'object' ? JSON.stringify (payload) : payload
 
     body.appendChild (div)
 

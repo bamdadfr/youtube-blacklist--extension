@@ -11,7 +11,7 @@ import { setState } from '../utils/set-state'
 
             await setState ('shouldReload', false)
 
-            await browser.tabs.reload ()
+            // await browser.tabs.reload ()
 
         }
 
