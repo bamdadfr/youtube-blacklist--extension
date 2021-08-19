@@ -2,7 +2,7 @@ import { createUniqueContainer } from './create-unique-container'
 
 /**
  * @param {string} id div unique id
- * @param {string} payload div innerHTML
+ * @param {string|object} payload div innerHTML
  */
 export function appendBody (id, payload) {
 

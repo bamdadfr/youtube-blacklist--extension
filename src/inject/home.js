@@ -1,15 +1,15 @@
-import { isWatch } from '../utils/detect-page'
-import { parseYoutubeDataStaticWatch } from '../utils/parse-youtube-data-static-watch'
+import { isHome } from '../utils/detect-page'
 import { CHANNELS_BY_VIDEO_ID, INTERVAL } from '../utils/constants'
+import { parseYoutubeDataStaticHome } from '../utils/parse-youtube-data-static-home'
 import { appendData } from '../utils/append-data'
 
 (() => {
 
     setInterval (() => {
 
-        if (!isWatch (window.location.href)) return
+        if (!isHome (window.location.href)) return
 
-        const data = parseYoutubeDataStaticWatch ()
+        const data = parseYoutubeDataStaticHome ()
 
         appendData ({
             data,

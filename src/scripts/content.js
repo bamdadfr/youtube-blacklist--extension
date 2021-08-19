@@ -1,43 +1,13 @@
 import { getIdFromHref } from '../utils/get-id-from-href'
 import { getIdFromData } from '../utils/get-id-from-data'
-import { injectScript } from '../utils/inject-script'
 import { onHrefChange } from '../utils/on-href-change'
 import { getState } from '../utils/get-state'
 import { setState } from '../utils/set-state'
-import { detectPage } from '../utils/detect-page'
-import { INTERVAL } from '../utils/constants'
-import { purgeWatch } from '../utils/purge-watch'
-import { addCloseButtonToThumbnails } from '../utils/add-close-button-to-thumbnails'
+import { injectContentPages } from '../utils/inject-content-pages'
+import { purgeContentPages } from '../utils/purge-content-pages'
+import { initializeState } from '../utils/initialize-state'
 
-const initializeContent = async () => {
-
-    // inject `all` script
-    injectScript ('inject/all.js')
-
-    // init state
-    await getState ()
-
-    const [currentPage] = detectPage ()
-
-    if (currentPage === 'watch') {
-
-        // inject `watch` script
-        injectScript ('inject/watch.js')
-
-        // purge on interval
-        setInterval (async () => {
-
-            addCloseButtonToThumbnails ()
-
-            await purgeWatch ()
-
-        }, INTERVAL)
-    
-    }
-
-}
-
-const watchContent = async () => {
+const watchForIdChange = async () => {
 
     const idFromHref = await getIdFromHref ()
     const idFromData = await getIdFromData ()
@@ -54,8 +24,12 @@ const watchContent = async () => {
 
 window.addEventListener ('load', async () => {
 
-    await initializeContent ()
+    await initializeState ()
 
-    onHrefChange (watchContent)
+    injectContentPages ()
+
+    purgeContentPages ()
+
+    onHrefChange (watchForIdChange)
 
 })

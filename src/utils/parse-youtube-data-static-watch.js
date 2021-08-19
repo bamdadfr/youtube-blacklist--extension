@@ -1,33 +1,31 @@
+import { parseYoutubeVideoRenderer } from './parse-youtube-video-renderer'
+
 /**
  * @description scope: browser
  * @returns {object} containing videoIds mapped to channelIds
  */
-export function defineData () {
+export function parseYoutubeDataStaticWatch () {
 
     let data = {}
     const results = window.ytInitialData.contents.twoColumnWatchNextResults.secondaryResults.secondaryResults.results
-    let contents = results // data structure for un-authenticated user
+    let contents = results // data structure for logged out user
 
     if (Object.keys (results[1])[0] === 'itemSectionRenderer') {
 
-        // data structure for authenticated user
+        // data structure for logged in user
         contents = window.ytInitialData.contents.twoColumnWatchNextResults.secondaryResults.secondaryResults.results[1].itemSectionRenderer.contents
 
     }
 
-    contents.forEach (({ compactVideoRenderer }) => {
+    contents.forEach ((content) => {
 
-        if (typeof compactVideoRenderer === 'undefined') return
+        const { compactVideoRenderer } = content
 
-        const { videoId } = compactVideoRenderer
-        const channelId = compactVideoRenderer.longBylineText.runs[0].navigationEndpoint.browseEndpoint.browseId
-        const object = {}
-
-        object[videoId] = channelId
+        if (compactVideoRenderer === undefined) return
 
         data = {
             ...data,
-            ...object,
+            ...parseYoutubeVideoRenderer (compactVideoRenderer),
         }
 
     })
