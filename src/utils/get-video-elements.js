@@ -1,23 +1,38 @@
 import { RETRY } from './constants'
 
 /**
+ * @param {string} currentPage current page
  * @returns {Promise<HTMLCollection>} collection of thumbnails (youtube videoCompactRenderer)
  */
-export async function getVideoElements () {
+export async function getVideoElements (currentPage) {
 
     const retry = (fn) => setTimeout (fn, RETRY)
 
     const execute = (resolve) => {
 
-        const homeElements = document.getElementsByTagName ('ytd-rich-item-renderer')
-        const resultsElements = document.getElementsByTagName ('ytd-video-renderer')
-        const watchElements = document.getElementsByTagName ('ytd-compact-video-renderer')
+        if (currentPage === 'home') {
 
-        if (homeElements.length !== 0) return resolve (homeElements)
+            const homeElements = document.getElementsByTagName ('ytd-rich-item-renderer')
 
-        if (resultsElements.length !== 0) return resolve (resultsElements)
+            return resolve (homeElements)
+        
+        }
 
-        if (watchElements.length !== 0) return resolve (watchElements)
+        if (currentPage === 'results') {
+
+            const resultsElements = document.getElementsByTagName ('ytd-video-renderer')
+
+            return resolve (resultsElements)
+        
+        }
+
+        if (currentPage === 'watch') {
+
+            const watchElements = document.getElementsByTagName ('ytd-compact-video-renderer')
+
+            return resolve (watchElements)
+        
+        }
 
         return retry (() => execute (resolve))
     
