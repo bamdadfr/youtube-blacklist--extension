@@ -1,10 +1,10 @@
-import { parseYoutubeRichItemRenderer } from './parse-youtube-rich-item-renderer'
+import { parseRendererRichItem } from './parse-renderer-rich-item'
 
 /**
  * @param {object} renderer richSectionRenderer
  * @returns {object} mapping {video => channel}
  */
-export function parseYoutubeRichSectionRenderer (renderer) {
+export function parseRendererRichSection (renderer) {
 
     let data = {}
     const { richShelfRenderer } = renderer.content
@@ -21,7 +21,7 @@ export function parseYoutubeRichSectionRenderer (renderer) {
 
         data = {
             ...data,
-            ...parseYoutubeRichItemRenderer (richItemRenderer),
+            ...parseRendererRichItem (richItemRenderer),
         }
 
     })

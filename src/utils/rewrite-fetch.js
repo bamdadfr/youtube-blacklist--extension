@@ -1,8 +1,7 @@
 /* eslint-disable func-names,prefer-rest-params */
 
-import { appendBody } from './append-body'
-import { AJAX_URL_ID, AJAX_RESPONSE_ID } from './constants'
-import { parseYoutubeDataAjax } from './parse-youtube-data-ajax'
+import { setAjaxUrl } from './set-ajax-url'
+import { setAjaxData } from './set-ajax-data'
 
 /**
  * @description add an interceptor to fetch `fetch`
@@ -19,9 +18,7 @@ export function rewriteFetch () {
 
                 const { url } = response
 
-                console.log (url)
-
-                appendBody (AJAX_URL_ID, url)
+                setAjaxUrl (url)
 
                 return response
 
@@ -31,9 +28,7 @@ export function rewriteFetch () {
                 const data = d.clone ()
                 const json = await data.json ()
 
-                appendBody (AJAX_RESPONSE_ID, json)
-
-                parseYoutubeDataAjax (json)
+                setAjaxData (json)
 
                 return d
 

@@ -1,5 +1,5 @@
 import { isPageWatch } from '../utils/is-page-watch'
-import { parseYoutubeDataStaticWatch } from '../utils/parse-youtube-data-static-watch'
+import { parseStaticDataWatch } from '../utils/parse-static-data-watch'
 import { CHANNELS_BY_VIDEO_ID, INTERVAL } from '../utils/constants'
 import { appendData } from '../utils/append-data'
 
@@ -9,7 +9,7 @@ import { appendData } from '../utils/append-data'
 
         if (!isPageWatch (window.location.href)) return
 
-        const data = parseYoutubeDataStaticWatch ()
+        const data = parseStaticDataWatch ()
 
         appendData ({
             data,

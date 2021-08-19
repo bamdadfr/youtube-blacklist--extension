@@ -1,12 +1,12 @@
-import { parseYoutubeRichItemRenderer } from './parse-youtube-rich-item-renderer'
-import { parseYoutubeRichSectionRenderer } from './parse-youtube-rich-section-renderer'
+import { parseRendererRichItem } from './parse-renderer-rich-item'
+import { parseRendererRichSection } from './parse-renderer-rich-section'
 
 /**
  * @description static data for /
  *      scope: browser
  * @returns {object} home static data
  */
-export function parseYoutubeDataStaticHome () {
+export function parseStaticDataHome () {
 
     let data = {}
     const contents = window.ytInitialData.contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.richGridRenderer.contents
@@ -27,7 +27,7 @@ export function parseYoutubeDataStaticHome () {
 
             data = {
                 ...data,
-                ...parseYoutubeRichItemRenderer (richItemRenderer),
+                ...parseRendererRichItem (richItemRenderer),
             }
 
         }
@@ -36,7 +36,7 @@ export function parseYoutubeDataStaticHome () {
 
             data = {
                 ...data,
-                ...parseYoutubeRichSectionRenderer (richSectionRenderer),
+                ...parseRendererRichSection (richSectionRenderer),
             }
 
         }

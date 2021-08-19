@@ -1,7 +1,7 @@
 import { isPageResults } from '../utils/is-page-results'
 import { appendData } from '../utils/append-data'
 import { CHANNELS_BY_VIDEO_ID, INTERVAL } from '../utils/constants'
-import { parseYoutubeDataStaticResults } from '../utils/parse-youtube-data-static-results'
+import { parseStaticDataResults } from '../utils/parse-static-data-results'
 
 (() => {
 
@@ -9,7 +9,7 @@ import { parseYoutubeDataStaticResults } from '../utils/parse-youtube-data-stati
 
         if (!isPageResults (window.location.href)) return
 
-        const data = parseYoutubeDataStaticResults ()
+        const data = parseStaticDataResults ()
 
         appendData ({
             data,

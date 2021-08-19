@@ -4,7 +4,7 @@ import { CURRENT_VIDEO_ID } from './constants'
 /**
  * @description scope: browser
  */
-export function defineId () {
+export function setCurrentVideoId () {
 
     const id = window
         ?.ytInitialPlayerResponse

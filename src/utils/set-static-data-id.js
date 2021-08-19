@@ -5,7 +5,7 @@ import { SCRIPT_ID } from './constants'
  *      find <script> defining `ytInitialData`
  *      & attach an id to it
  */
-export function defineInitialDataScript () {
+export function setStaticDataId () {
 
     const scripts = document.getElementsByTagName ('script')
 

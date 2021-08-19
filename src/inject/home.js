@@ -1,6 +1,6 @@
 import { isPageHome } from '../utils/is-page-home'
 import { CHANNELS_BY_VIDEO_ID, INTERVAL } from '../utils/constants'
-import { parseYoutubeDataStaticHome } from '../utils/parse-youtube-data-static-home'
+import { parseStaticDataHome } from '../utils/parse-static-data-home'
 import { appendData } from '../utils/append-data'
 
 (() => {
@@ -9,7 +9,7 @@ import { appendData } from '../utils/append-data'
 
         if (!isPageHome (window.location.href)) return
 
-        const data = parseYoutubeDataStaticHome ()
+        const data = parseStaticDataHome ()
 
         appendData ({
             data,

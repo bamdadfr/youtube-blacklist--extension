@@ -1,11 +1,11 @@
-import { parseYoutubeVideoRenderer } from './parse-youtube-video-renderer'
+import { parseRendererVideo } from './parse-renderer-video'
 
 /**
  * @description static data for /watch
  *      scope: browser
  * @returns {object} mapping {video => channel}
  */
-export function parseYoutubeDataStaticWatch () {
+export function parseStaticDataWatch () {
 
     let data = {}
     const results = window.ytInitialData.contents.twoColumnWatchNextResults.secondaryResults.secondaryResults.results
@@ -26,7 +26,7 @@ export function parseYoutubeDataStaticWatch () {
 
         data = {
             ...data,
-            ...parseYoutubeVideoRenderer (compactVideoRenderer),
+            ...parseRendererVideo (compactVideoRenderer),
         }
 
     })

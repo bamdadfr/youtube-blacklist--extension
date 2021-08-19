@@ -1,12 +1,12 @@
-import { parseYoutubeVideoRenderer } from './parse-youtube-video-renderer'
-import { parseYoutubeShelfRenderer } from './parse-youtube-shelf-renderer'
+import { parseRendererVideo } from './parse-renderer-video'
+import { parseRendererShelf } from './parse-renderer-shelf'
 
 /**
  * @description static data for /results
  *      scope: browser
  * @returns {object} mapping {video => channel}
  */
-export function parseYoutubeDataStaticResults () {
+export function parseStaticDataResults () {
 
     const { itemSectionRenderer } = window.ytInitialData.contents.twoColumnSearchResultsRenderer.primaryContents.sectionListRenderer.contents[0]
 
@@ -31,7 +31,7 @@ export function parseYoutubeDataStaticResults () {
 
             data = {
                 ...data,
-                ...parseYoutubeVideoRenderer (videoRenderer),
+                ...parseRendererVideo (videoRenderer),
             }
 
         }
@@ -40,7 +40,7 @@ export function parseYoutubeDataStaticResults () {
 
             data = {
                 ...data,
-                ...parseYoutubeShelfRenderer (shelfRenderer),
+                ...parseRendererShelf (shelfRenderer),
             }
 
         }

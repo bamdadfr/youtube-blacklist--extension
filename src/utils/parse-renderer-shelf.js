@@ -1,10 +1,10 @@
-import { parseYoutubeVideoRenderer } from './parse-youtube-video-renderer'
+import { parseRendererVideo } from './parse-renderer-video'
 
 /**
  * @param {object} renderer shelfRenderer
  * @returns {object} mapping {video => channel}
  */
-export function parseYoutubeShelfRenderer (renderer) {
+export function parseRendererShelf (renderer) {
 
     let data = {}
     const { verticalListRenderer } = renderer.content
@@ -21,7 +21,7 @@ export function parseYoutubeShelfRenderer (renderer) {
 
         data = {
             ...data,
-            ...parseYoutubeVideoRenderer (videoRenderer),
+            ...parseRendererVideo (videoRenderer),
         }
 
     })
