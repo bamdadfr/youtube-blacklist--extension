@@ -2,8 +2,8 @@ import { getIdFromHref } from '../utils/get-id-from-href'
 import { getIdFromData } from '../utils/get-id-from-data'
 import { executeOnHrefChange } from '../utils/execute-on-href-change'
 import { getState } from '../utils/get-state'
-import { injectContentPages } from '../utils/inject-content-pages'
-import { purgeContentPages } from '../utils/purge-content-pages'
+import { setPageInjects } from '../utils/set-page-injects'
+import { setPageActions } from '../utils/set-page-actions'
 import { initializeState } from '../utils/initialize-state'
 // import { setState } from '../utils/set-state'
 
@@ -26,9 +26,9 @@ window.addEventListener ('load', async () => {
 
     await initializeState ()
 
-    injectContentPages ()
+    setPageInjects ()
     
-    executeOnHrefChange (purgeContentPages)
+    executeOnHrefChange (setPageActions)
 
     executeOnHrefChange (watchForIdChange)
 
