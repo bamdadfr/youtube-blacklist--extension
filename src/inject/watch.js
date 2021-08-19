@@ -27,7 +27,7 @@ import { CHANNELS_BY_VIDEO_ID, INTERVAL } from '../utils/constants'
         }
 
         // append to body
-        appendBody (CHANNELS_BY_VIDEO_ID, JSON.stringify (data))
+        appendBody (CHANNELS_BY_VIDEO_ID, data)
 
     }, INTERVAL)
 
