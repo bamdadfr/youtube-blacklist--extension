@@ -22,4 +22,10 @@ export function injectContentPages () {
 
     }
 
+    if (currentPage === 'results') {
+
+        injectScript ('inject/results.js')
+    
+    }
+
 }

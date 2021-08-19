@@ -10,7 +10,7 @@ import { appendBody } from './append-body'
 export function appendData ({
     data,
     id,
-    expand = false,
+    expand = true,
 }) {
 
     const appendedNode = document.getElementById (id)

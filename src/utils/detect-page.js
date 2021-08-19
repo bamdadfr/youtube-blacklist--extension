@@ -1,6 +1,8 @@
-export const isHome = (url) => /youtube(\.com)?\/?$/.exec (url) !== null
+export const isPageHome = (url) => /youtube(\.com)?\/?$/.exec (url) !== null
 
-export const isWatch = (url) => /youtube(\.com)?\/watch\?v=/.exec (url) !== null
+export const isPageWatch = (url) => /youtube(\.com)?\/watch\?v=/.exec (url) !== null
+
+export const isPageResults = (url) => /youtube(\.com)?\/results/.exec (url) !== null
 
 let currentPage = null
 let previousPage = null
@@ -14,7 +16,7 @@ export function detectPage () {
 
     const { href } = window.location
 
-    if (isHome (href)) {
+    if (isPageHome (href)) {
 
         previousPage = currentPage
 
@@ -24,11 +26,21 @@ export function detectPage () {
     
     }
 
-    if (isWatch (href)) {
+    if (isPageWatch (href)) {
 
         previousPage = currentPage
 
         currentPage = 'watch'
+
+        return [currentPage, previousPage]
+
+    }
+
+    if (isPageResults (href)) {
+
+        previousPage = currentPage
+
+        currentPage = 'results'
 
         return [currentPage, previousPage]
 

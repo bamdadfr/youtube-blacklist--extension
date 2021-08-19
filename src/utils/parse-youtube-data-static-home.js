@@ -2,7 +2,8 @@ import { parseYoutubeRichItemRenderer } from './parse-youtube-rich-item-renderer
 import { parseYoutubeRichSectionRenderer } from './parse-youtube-rich-section-renderer'
 
 /**
- * @description scope: browser
+ * @description static data for /
+ *      scope: browser
  * @returns {object} home static data
  */
 export function parseYoutubeDataStaticHome () {

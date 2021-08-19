@@ -1,8 +1,9 @@
 import { parseYoutubeVideoRenderer } from './parse-youtube-video-renderer'
 
 /**
- * @description scope: browser
- * @returns {object} containing videoIds mapped to channelIds
+ * @description static data for /watch
+ *      scope: browser
+ * @returns {object} mapping {video => channel}
  */
 export function parseYoutubeDataStaticWatch () {
 

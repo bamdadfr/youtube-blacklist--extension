@@ -15,6 +15,7 @@ module.exports = {
         'inject/all': './src/inject/all.js',
         'inject/watch': './src/inject/watch.js',
         'inject/home': './src/inject/home.js',
+        'inject/results': './src/inject/results.js',
     },
     'output': {
         'publicPath': '',
