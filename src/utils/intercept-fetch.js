@@ -6,7 +6,7 @@ import { setAjaxData } from './set-ajax-data'
 /**
  * @description add an interceptor to fetch `fetch`
  */
-export function rewriteFetch () {
+export function interceptFetch () {
 
     const originalFetch = window.fetch
 
