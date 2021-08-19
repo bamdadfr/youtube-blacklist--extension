@@ -10,21 +10,13 @@ export function injectContentPages () {
 
     injectScript ('inject/all.js')
 
-    if (currentPage === 'watch') {
+    if (
+        currentPage === 'watch'
+        || currentPage === 'home'
+        || currentPage === 'results'
+    ) {
 
-        injectScript ('inject/watch.js')
-
-    }
-
-    if (currentPage === 'home') {
-
-        injectScript ('inject/home.js')
-
-    }
-
-    if (currentPage === 'results') {
-
-        injectScript ('inject/results.js')
+        injectScript (`inject/${currentPage}.js`)
     
     }
 
