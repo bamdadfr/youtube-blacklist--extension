@@ -1,10 +1,12 @@
+import { RETRY } from './constants'
+
 /**
  * @description scope: extension
  * @returns {Promise<string>} video id
  */
 export async function getIdFromHref () {
 
-    const retry = (fn) => setTimeout (fn, 500)
+    const retry = (fn) => setTimeout (fn, RETRY)
 
     const execute = (resolve) => {
 

@@ -1,4 +1,4 @@
-import { CURRENT_VIDEO_ID } from './constants'
+import { CURRENT_VIDEO_ID, RETRY } from './constants'
 
 /**
  * @description scope: extension
@@ -6,7 +6,7 @@ import { CURRENT_VIDEO_ID } from './constants'
  */
 export function getIdFromData () {
 
-    const retry = (fn) => setTimeout (fn, 500)
+    const retry = (fn) => setTimeout (fn, RETRY)
 
     const execute = (resolve) => {
 

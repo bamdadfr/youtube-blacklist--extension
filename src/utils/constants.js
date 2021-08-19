@@ -13,3 +13,5 @@ export const AJAX_URL_ID = `${BASE}__ajax_url`
 export const AJAX_RESPONSE_ID = `${BASE}__ajax_response`
 
 export const INTERVAL = 200
+
+export const RETRY = 500

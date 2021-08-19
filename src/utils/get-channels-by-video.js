@@ -1,4 +1,4 @@
-import { CHANNELS_BY_VIDEO_ID } from './constants'
+import { CHANNELS_BY_VIDEO_ID, RETRY } from './constants'
 
 /**
  * @description scope: extension
@@ -6,7 +6,7 @@ import { CHANNELS_BY_VIDEO_ID } from './constants'
  */
 export async function getChannelsByVideo () {
 
-    const retry = (resolve) => setTimeout (resolve, 500)
+    const retry = (fn) => setTimeout (fn, RETRY)
 
     const execute = (resolve) => {
 
