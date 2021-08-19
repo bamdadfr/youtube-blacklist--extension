@@ -1,8 +1,6 @@
-export const isPageHome = (url) => /youtube(\.com)?\/?$/.exec (url) !== null
-
-export const isPageWatch = (url) => /youtube(\.com)?\/watch\?v=/.exec (url) !== null
-
-export const isPageResults = (url) => /youtube(\.com)?\/results/.exec (url) !== null
+import { isPageHome } from './is-page-home'
+import { isPageWatch } from './is-page-watch'
+import { isPageResults } from './is-page-results'
 
 let currentPage = null
 let previousPage = null
