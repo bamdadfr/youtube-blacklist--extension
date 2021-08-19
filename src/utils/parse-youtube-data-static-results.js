@@ -1,4 +1,5 @@
 import { parseYoutubeVideoRenderer } from './parse-youtube-video-renderer'
+import { parseYoutubeShelfRenderer } from './parse-youtube-shelf-renderer'
 
 /**
  * @description static data for /results
@@ -37,24 +38,10 @@ export function parseYoutubeDataStaticResults () {
 
         if (shelfRenderer) {
 
-            const { verticalListRenderer } = shelfRenderer.content
-
-            if (verticalListRenderer === undefined) return
-
-            const { items } = verticalListRenderer
-
-            items.forEach ((item) => {
-
-                const { videoRenderer } = item
-
-                if (videoRenderer === undefined) return
-                
-                data = {
-                    ...data,
-                    ...parseYoutubeVideoRenderer (videoRenderer),
-                }
-
-            })
+            data = {
+                ...data,
+                ...parseYoutubeShelfRenderer (shelfRenderer),
+            }
 
         }
 
