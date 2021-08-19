@@ -6,7 +6,8 @@ import { INTERVAL } from './constants'
 let interval = undefined
 
 /**
- *
+ * @description append close buttons & purge blacklisted videos
+ *      this function gets re-executed when href changes
  */
 export function setPageActions () {
 
@@ -24,7 +25,7 @@ export function setPageActions () {
 
             await appendCloseButtons (currentPage)
 
-            await purgePage ()
+            await purgePage (currentPage)
 
         }, INTERVAL)
 

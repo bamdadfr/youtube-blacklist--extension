@@ -27,11 +27,11 @@ const setLengths = ({ elements, channelsByVideo, blacklist }) => {
 }
 
 /**
- * @description purge `/watch` page
+ * @param {string} currentPage current page
  */
-export async function purgePage () {
+export async function purgePage (currentPage) {
 
-    const elements = await getVideoElements ()
+    const elements = await getVideoElements (currentPage)
     const channelsByVideo = await getChannelsByVideo ()
     const { blacklist } = await getState ()
 
