@@ -1,5 +1,6 @@
+import { INTERVAL } from './constants'
+
 const defaultOptions = {
-    'interval': 200,
     'executeOnLoad': true,
 }
 
@@ -8,13 +9,11 @@ const defaultOptions = {
  *      only when `window.location.href` has changed
  * @param {Function} callback callback function
  * @param {object} [options] optional parameters
- * @param {number} [options.interval] repeat frequency
  * @param {boolean} [options.executeOnLoad] execute callback on load?
  */
 export function executeOnHrefChange (
     callback,
     {
-        interval,
         executeOnLoad,
     } = defaultOptions,
 ) {
@@ -31,7 +30,7 @@ export function executeOnHrefChange (
 
         callback (href)
 
-    }, interval)
+    }, INTERVAL)
 
     if (executeOnLoad) callback (href)
 
