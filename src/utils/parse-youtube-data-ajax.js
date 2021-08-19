@@ -7,5 +7,6 @@
 export function parseYoutubeDataAjax (ajaxData) {
        
     // wip
+    console.log ('ajax parser', ajaxData)
 
 }
