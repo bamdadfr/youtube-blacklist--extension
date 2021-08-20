@@ -11,6 +11,7 @@ import { parseAjaxDataNext } from './parse-ajax-data-next'
  */
 export function parseAjaxData (url, data) {
 
+    // client navigates to /
     if (url.includes ('/v1/browse')) {
 
         const newData = parseAjaxDataHome (data)
@@ -22,6 +23,7 @@ export function parseAjaxData (url, data) {
 
     }
 
+    // client navigates to /results
     if (url.includes ('/v1/search')) {
 
         const newData = parseAjaxDataSearch (data)
@@ -33,6 +35,7 @@ export function parseAjaxData (url, data) {
 
     }
 
+    // client navigates to /watch
     if (url.includes ('/v1/next')) {
 
         const newData = parseAjaxDataNext (data)
