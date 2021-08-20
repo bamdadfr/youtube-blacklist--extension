@@ -2,16 +2,14 @@ import { parseRendererRichItem } from './parse-renderer-rich-item'
 import { parseRendererRichSection } from './parse-renderer-rich-section'
 
 /**
- * @description static data for /
- *      scope: browser
+ * @param {object} ajaxData from API
  * @returns {object} {video => channel}
  */
-export function parseStaticDataHome () {
-
+export function parseAjaxDataHome (ajaxData) {
+    
     let data = {}
 
-    const { contents } = window
-        ?.ytInitialData
+    const { contents } = ajaxData
         ?.contents
         ?.twoColumnBrowseResultsRenderer
         ?.tabs[0]
@@ -39,7 +37,7 @@ export function parseStaticDataHome () {
                 ...data,
                 ...parseRendererRichItem (richItemRenderer),
             }
-
+        
         }
 
         if (richSectionRenderer) {
@@ -48,11 +46,11 @@ export function parseStaticDataHome () {
                 ...data,
                 ...parseRendererRichSection (richSectionRenderer),
             }
-
+        
         }
     
     })
-
+    
     return data
 
 }

@@ -9,7 +9,7 @@ export function parseRendererShelf (renderer) {
     let data = {}
     const { verticalListRenderer } = renderer.content
 
-    if (verticalListRenderer === undefined) return data
+    if (!verticalListRenderer) return data
 
     const { items } = verticalListRenderer
 

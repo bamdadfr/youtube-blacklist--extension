@@ -2,16 +2,10 @@ const BASE = 'youtube-blacklist--extension'
 
 export const SCRIPT_ID = `${BASE}__script`
 
-export const CURRENT_VIDEO_ID = `${BASE}__current_video`
-
-export const CHANNELS_BY_VIDEO_ID = `${BASE}__channels_by_video`
+export const CHANNEL_BY_VIDEO_ID = `${BASE}__channel_by_video`
 
 export const CLOSE_BUTTON_ID = `${BASE}__close_button`
 
-export const AJAX_URL_ID = `${BASE}__ajax_url`
-
-export const AJAX_DATA_ID = `${BASE}__ajax_data`
-
-export const INTERVAL = 200
+export const INTERVAL = 250
 
 export const RETRY = 500

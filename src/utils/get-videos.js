@@ -4,7 +4,7 @@ import { getState } from './get-state'
 /**
  * @returns {Promise<HTMLCollection>} collection of thumbnails (youtube videoCompactRenderer)
  */
-export async function getVideoElements () {
+export async function getVideos () {
 
     const retry = (fn) => setTimeout (fn, RETRY)
 

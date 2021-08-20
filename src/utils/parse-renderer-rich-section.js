@@ -9,13 +9,13 @@ export function parseRendererRichSection (renderer) {
     let data = {}
     const { richShelfRenderer } = renderer.content
 
-    if (richShelfRenderer === undefined) return data
+    if (!richShelfRenderer) return data
 
     const { contents } = richShelfRenderer
 
-    contents.forEach ((content) => {
+    contents.forEach ((item) => {
 
-        const { richItemRenderer } = content
+        const { richItemRenderer } = item
 
         if (richItemRenderer === undefined) return
 

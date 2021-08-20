@@ -1,7 +1,6 @@
 /* eslint-disable func-names,prefer-rest-params */
 
-import { setAjaxUrl } from './set-ajax-url'
-import { setAjaxData } from './set-ajax-data'
+import { parseAjaxData } from './parse-ajax-data'
 
 /**
  * @description add an interceptor to fetch `fetch`
@@ -14,23 +13,17 @@ export function interceptFetch () {
 
         return originalFetch
             .apply (this, arguments)
-            .then ((response) => {
+            .then ((r) => r)
+            .then (async (response) => {
 
-                const { url } = response
+                const clonedResponse = response.clone ()
+                const { url } = clonedResponse
+                const data = await clonedResponse.json ()
 
-                setAjaxUrl (url)
+                // todo response is stalled when parsing, causing client to not load on scroll
+                parseAjaxData (url, data)
 
                 return response
-
-            })
-            .then (async (d) => {
-
-                const data = d.clone ()
-                const json = await data.json ()
-
-                setAjaxData (json)
-
-                return d
 
             })
 

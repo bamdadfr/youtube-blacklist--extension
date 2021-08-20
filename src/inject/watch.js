@@ -1,6 +1,6 @@
 import { isPageWatch } from '../utils/is-page-watch'
 import { parseStaticDataWatch } from '../utils/parse-static-data-watch'
-import { CHANNELS_BY_VIDEO_ID, INTERVAL } from '../utils/constants'
+import { CHANNEL_BY_VIDEO_ID, INTERVAL } from '../utils/constants'
 import { appendData } from '../utils/append-data'
 
 (() => {
@@ -13,7 +13,7 @@ import { appendData } from '../utils/append-data'
 
         appendData ({
             data,
-            'id': CHANNELS_BY_VIDEO_ID,
+            'id': CHANNEL_BY_VIDEO_ID,
         })
 
     }, INTERVAL)

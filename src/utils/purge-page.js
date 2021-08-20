@@ -1,5 +1,5 @@
-import { getIdFromElement } from './get-id-from-element'
-import { getVideoElements } from './get-video-elements'
+import { getVideo } from './get-video'
+import { getVideos } from './get-videos'
 import { getState } from './get-state'
 import { isBlacklisted } from './is-blacklisted'
 
@@ -13,9 +13,11 @@ let savedLength = undefined
  * @param {object} params parameters
  * @param {boolean} params.force force purge
  */
-export async function purgePage ({ force } = defaultOptions) {
+export async function purgePage ({
+    force,
+} = defaultOptions) {
 
-    const videos = await getVideoElements ()
+    const videos = await getVideos ()
     const { blacklist, channelsByVideo } = await getState ()
     
     if (!force && videos.length === savedLength) return
@@ -24,7 +26,7 @@ export async function purgePage ({ force } = defaultOptions) {
 
         if (video.style.display === 'none') return
         
-        const id = getIdFromElement (video)
+        const id = getVideo (video)
 
         if (
             isBlacklisted ({ id, blacklist, channelsByVideo })

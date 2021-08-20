@@ -2,16 +2,14 @@ import { parseRendererVideo } from './parse-renderer-video'
 import { parseRendererShelf } from './parse-renderer-shelf'
 
 /**
- * @description static data for /results
- *      scope: browser
- * @returns {object} mapping {video => channel}
+ * @param {object} ajaxData from API
+ * @returns {object} {video => channel}
  */
-export function parseStaticDataResults () {
+export function parseAjaxDataSearch (ajaxData) {
 
     let data = {}
 
-    const { contents } = window
-        ?.ytInitialData
+    const { contents } = ajaxData
         ?.contents
         ?.twoColumnSearchResultsRenderer
         ?.primaryContents
@@ -39,7 +37,7 @@ export function parseStaticDataResults () {
                 ...data,
                 ...parseRendererVideo (videoRenderer),
             }
-
+        
         }
 
         if (shelfRenderer) {
@@ -48,7 +46,7 @@ export function parseStaticDataResults () {
                 ...data,
                 ...parseRendererShelf (shelfRenderer),
             }
-
+        
         }
 
     })

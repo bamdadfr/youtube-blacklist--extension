@@ -1,16 +1,16 @@
-import { CHANNELS_BY_VIDEO_ID, RETRY } from './constants'
+import { CHANNEL_BY_VIDEO_ID, RETRY } from './constants'
 
 /**
  * @description scope: extension
  * @returns {object} data {video => channel}
  */
-export async function getChannelsByVideo () {
+export async function getChannelByVideo () {
 
     const retry = (fn) => setTimeout (fn, RETRY)
 
     const execute = (resolve) => {
 
-        const node = document.getElementById (CHANNELS_BY_VIDEO_ID)
+        const node = document.getElementById (CHANNEL_BY_VIDEO_ID)
 
         if (node === null) return retry (() => execute (resolve))
 

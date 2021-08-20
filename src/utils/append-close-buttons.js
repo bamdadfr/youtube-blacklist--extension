@@ -1,4 +1,4 @@
-import { getVideoElements } from './get-video-elements'
+import { getVideos } from './get-videos'
 import { CLOSE_BUTTON_ID } from './constants'
 import { createCloseButton } from './create-close-button'
 
@@ -6,7 +6,7 @@ import { createCloseButton } from './create-close-button'
  */
 export async function appendCloseButtons () {
 
-    const elements = await getVideoElements ()
+    const elements = await getVideos ()
 
     Array.from (elements).forEach ((element) => {
 

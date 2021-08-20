@@ -1,6 +1,6 @@
 import { isPageResults } from '../utils/is-page-results'
 import { appendData } from '../utils/append-data'
-import { CHANNELS_BY_VIDEO_ID, INTERVAL } from '../utils/constants'
+import { CHANNEL_BY_VIDEO_ID, INTERVAL } from '../utils/constants'
 import { parseStaticDataResults } from '../utils/parse-static-data-results'
 
 (() => {
@@ -13,7 +13,7 @@ import { parseStaticDataResults } from '../utils/parse-static-data-results'
 
         appendData ({
             data,
-            'id': CHANNELS_BY_VIDEO_ID,
+            'id': CHANNEL_BY_VIDEO_ID,
         })
 
     }, INTERVAL)
