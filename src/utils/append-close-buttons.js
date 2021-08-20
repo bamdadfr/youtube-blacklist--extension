@@ -6,17 +6,15 @@ import { createCloseButton } from './create-close-button'
  */
 export async function appendCloseButtons () {
 
-    const elements = await getVideos ()
+    const videos = await getVideos ()
 
-    Array.from (elements).forEach ((element) => {
+    Array.from (videos).forEach ((video) => {
 
-        const alreadyExists = element.querySelector (`#${CLOSE_BUTTON_ID}`) !== null
+        const buttonExists = video.querySelector (`#${CLOSE_BUTTON_ID}`) !== null
 
-        if (alreadyExists) return
+        if (buttonExists) return
 
-        createCloseButton ({
-            'parentNode': element,
-        })
+        createCloseButton ({ 'parentNode': video })
     
     })
 
