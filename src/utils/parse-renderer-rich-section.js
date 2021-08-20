@@ -7,17 +7,18 @@ import { parseRendererRichItem } from './parse-renderer-rich-item'
 export function parseRendererRichSection (renderer) {
 
     let data = {}
-    const { richShelfRenderer } = renderer.content
 
-    if (!richShelfRenderer) return data
+    const { contents } = renderer
+        ?.content
+        ?.richShelfRenderer
 
-    const { contents } = richShelfRenderer
+    if (!contents) return data
 
     contents.forEach ((item) => {
 
         const { richItemRenderer } = item
 
-        if (richItemRenderer === undefined) return
+        if (!richItemRenderer) return
 
         data = {
             ...data,

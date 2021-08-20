@@ -7,17 +7,18 @@ import { parseRendererVideo } from './parse-renderer-video'
 export function parseRendererShelf (renderer) {
 
     let data = {}
-    const { verticalListRenderer } = renderer.content
 
-    if (!verticalListRenderer) return data
+    const { items } = renderer
+        ?.content
+        ?.verticalListRenderer
 
-    const { items } = verticalListRenderer
+    if (!items) return data
 
     items.forEach ((item) => {
 
         const { videoRenderer } = item
 
-        if (videoRenderer === undefined) return
+        if (!videoRenderer) return
 
         data = {
             ...data,
