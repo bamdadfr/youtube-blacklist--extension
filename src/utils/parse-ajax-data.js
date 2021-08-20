@@ -11,6 +11,9 @@ import { parseAjaxDataNext } from './parse-ajax-data-next'
  */
 export function parseAjaxData (url, data) {
 
+    // todo remove after dev
+    console.log (url)
+
     // client navigates to /
     if (url.includes ('/v1/browse')) {
 
