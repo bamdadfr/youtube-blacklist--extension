@@ -26,4 +26,10 @@ export async function initializeState () {
     
     }
 
+    if (typeof state.channelsByVideo === 'undefined') {
+
+        await setState ('channelsByVideo', {})
+    
+    }
+
 }

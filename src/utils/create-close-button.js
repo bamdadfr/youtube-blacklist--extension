@@ -30,12 +30,9 @@ export function createCloseButton ({ parentNode }) {
         const channel = await getChannelFromElement (parentNode)
         const { blacklist } = await getState ()
 
-        if (channel === undefined) return
+        if (Object.keys (channel)[0] === 'undefined') return
 
         await setState ('blacklist', { ...blacklist, ...channel })
-
-        // todo
-        // await setState ('shouldReload', true)
 
     }
 

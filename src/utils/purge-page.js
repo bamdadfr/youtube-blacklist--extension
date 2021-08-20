@@ -1,57 +1,44 @@
-import { getChannelsByVideo } from './get-channels-by-video'
 import { getIdFromElement } from './get-id-from-element'
 import { getVideoElements } from './get-video-elements'
 import { getState } from './get-state'
 import { isBlacklisted } from './is-blacklisted'
 
-const lengths = {
-    'elements': undefined,
-    'channelsByVideo': undefined,
-    'blacklist': undefined,
+const defaultOptions = {
+    'force': false,
 }
 
-const getLengths = {
-    'areUnchanged': ({ elements, channelsByVideo, blacklist }) => elements.length === lengths.elements
-        && Object.keys (channelsByVideo).length === lengths.channelsByVideo
-        && Object.keys (blacklist).length === lengths.blacklist,
-}
-
-const setLengths = ({ elements, channelsByVideo, blacklist }) => {
-
-    lengths.elements = elements.length
-
-    lengths.channelsByVideo = Object.keys (channelsByVideo).length
-
-    lengths.blacklist = Object.keys (blacklist).length
-
-}
+let savedLength = undefined
 
 /**
+ * @param {object} params parameters
+ * @param {boolean} params.force force purge
  */
-export async function purgePage () {
+export async function purgePage ({ force } = defaultOptions) {
 
-    const elements = await getVideoElements ()
-    const channelsByVideo = await getChannelsByVideo ()
-    const { blacklist } = await getState ()
+    const videos = await getVideoElements ()
+    const { blacklist, channelsByVideo } = await getState ()
+    
+    if (!force && videos.length === savedLength) return
 
-    if (getLengths.areUnchanged ({ elements, channelsByVideo, blacklist })) return
+    Array.from (videos).map (async (video) => {
 
-    Array.from (elements).map (async (element) => {
-
-        if (element.style.display === 'none') return
+        if (video.style.display === 'none') return
         
-        const id = getIdFromElement (element)
+        const id = getIdFromElement (video)
 
         if (
             isBlacklisted ({ id, blacklist, channelsByVideo })
         ) {
 
-            element.style.display = 'none'
+            // todo remove after dev
+            console.log (id)
+
+            video.style.display = 'none'
         
         }
 
     })
 
-    setLengths ({ elements, channelsByVideo, blacklist })
+    savedLength = videos.length
 
 }

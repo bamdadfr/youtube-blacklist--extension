@@ -1,6 +1,6 @@
-import { getChannelsByVideo } from './get-channels-by-video'
 import { getIdFromElement } from './get-id-from-element'
 import { getDeepestChildContent } from './get-deepest-child-content'
+import { getState } from './get-state'
 
 /**
  * @param {HTMLDivElement} element youtube compactVideoRenderer
@@ -11,7 +11,7 @@ import { getDeepestChildContent } from './get-deepest-child-content'
 export async function getChannelFromElement (element) {
 
     const id = getIdFromElement (element)
-    const channelsByVideo = await getChannelsByVideo ()
+    const { channelsByVideo } = await getState ()
     const channelId = channelsByVideo[id]
     const parent = element.getElementsByTagName ('ytd-channel-name')[0]
     const name = getDeepestChildContent (parent)

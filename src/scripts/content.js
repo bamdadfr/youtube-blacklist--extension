@@ -29,9 +29,9 @@ window.addEventListener ('load', async () => {
 
     setPageInjects ()
 
+    await setPageActions ()
+
     executeOnHrefChange (setCurrentPage)
-    
-    executeOnHrefChange (setPageActions)
 
     executeOnHrefChange (watchForIdChange)
 

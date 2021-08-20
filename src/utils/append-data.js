@@ -1,4 +1,5 @@
 import { appendBody } from './append-body'
+import { compareObjects } from './compare-objects'
 
 /**
  * @description safely append parsed data to body
@@ -16,25 +17,19 @@ export function appendData ({
     const appendedNode = document.getElementById (id)
     let appendedData = undefined
 
-    // we want to early return if data did not change
-    // todo: traverse comparison or keep length based?
     if (appendedNode) {
-
-        const dataLength = Object.keys (data).length
 
         appendedData = JSON.parse (appendedNode.innerHTML)
 
-        const appendedDataLength = Object.keys (appendedData).length
-
-        if (dataLength === appendedDataLength) return
+        // return if objects are equal
+        if (compareObjects (data, appendedData)) return
 
     }
 
-    const dataToInject = expand && appendedData
+    const dataToAppend = expand && appendedData
         ? { ...appendedData, ...data }
         : data
 
-    // append to body
-    appendBody (id, dataToInject)
+    appendBody (id, dataToAppend)
 
 }
