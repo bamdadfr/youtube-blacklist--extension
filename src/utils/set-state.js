@@ -8,7 +8,6 @@ export async function setState (type, payload) {
 
     const browser = getBrowser ()
 
-    // reducer
     switch (type) {
 
         case 'shouldReload':
@@ -21,6 +20,13 @@ export async function setState (type, payload) {
         case 'blacklist':
             await browser.storage.local.set ({
                 'blacklist': payload,
+            })
+
+            break
+
+        case 'currentPage':
+            await browser.storage.local.set ({
+                'currentPage': payload,
             })
 
             break

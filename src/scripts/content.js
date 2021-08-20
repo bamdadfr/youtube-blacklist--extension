@@ -5,6 +5,7 @@ import { getState } from '../utils/get-state'
 import { setPageInjects } from '../utils/set-page-injects'
 import { setPageActions } from '../utils/set-page-actions'
 import { initializeState } from '../utils/initialize-state'
+import { setCurrentPage } from '../utils/set-current-page'
 // import { setState } from '../utils/set-state'
 
 const watchForIdChange = async () => {
@@ -27,6 +28,8 @@ window.addEventListener ('load', async () => {
     await initializeState ()
 
     setPageInjects ()
+
+    executeOnHrefChange (setCurrentPage)
     
     executeOnHrefChange (setPageActions)
 

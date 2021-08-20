@@ -20,4 +20,10 @@ export async function initializeState () {
 
     }
 
+    if (typeof state.currentPage === 'undefined') {
+
+        await setState ('currentPage', null)
+    
+    }
+
 }

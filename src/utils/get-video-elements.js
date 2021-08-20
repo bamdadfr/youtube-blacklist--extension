@@ -1,14 +1,16 @@
 import { RETRY } from './constants'
+import { getState } from './get-state'
 
 /**
- * @param {string} currentPage current page
  * @returns {Promise<HTMLCollection>} collection of thumbnails (youtube videoCompactRenderer)
  */
-export async function getVideoElements (currentPage) {
+export async function getVideoElements () {
 
     const retry = (fn) => setTimeout (fn, RETRY)
 
-    const execute = (resolve) => {
+    const execute = async (resolve) => {
+
+        const { currentPage } = await getState ()
 
         if (currentPage === 'home') {
 

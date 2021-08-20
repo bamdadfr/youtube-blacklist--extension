@@ -1,4 +1,3 @@
-import { detectPage } from './detect-page'
 import { appendCloseButtons } from './append-close-buttons'
 import { purgePage } from './purge-page'
 import { INTERVAL } from './constants'
@@ -11,24 +10,14 @@ let interval = undefined
  */
 export function setPageActions () {
 
-    const [currentPage] = detectPage ()
+    if (interval) clearTimeout (interval)
 
-    if (
-        currentPage === 'watch'
-        || currentPage === 'results'
-        || currentPage === 'home'
-    ) {
+    interval = setInterval (async () => {
 
-        if (interval) clearTimeout (interval)
+        await appendCloseButtons ()
 
-        interval = setInterval (async () => {
+        await purgePage ()
 
-            await appendCloseButtons (currentPage)
-
-            await purgePage (currentPage)
-
-        }, INTERVAL)
-
-    }
+    }, INTERVAL)
 
 }

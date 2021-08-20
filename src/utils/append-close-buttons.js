@@ -3,11 +3,10 @@ import { CLOSE_BUTTON_ID } from './constants'
 import { createCloseButton } from './create-close-button'
 
 /**
- * @param {string} currentPage current page
  */
-export async function appendCloseButtons (currentPage) {
+export async function appendCloseButtons () {
 
-    const elements = await getVideoElements (currentPage)
+    const elements = await getVideoElements ()
 
     Array.from (elements).forEach ((element) => {
 

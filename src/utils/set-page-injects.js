@@ -1,5 +1,5 @@
-import { detectPage } from './detect-page'
 import { injectScript } from './inject-script'
+import { detectPage } from './detect-page'
 
 /**
  * @description injects are only used to retrieve static data
@@ -7,9 +7,9 @@ import { injectScript } from './inject-script'
  */
 export function setPageInjects () {
 
-    const [currentPage] = detectPage ()
-
     injectScript ('inject/all.js')
+
+    const [currentPage] = detectPage ()
 
     if (
         currentPage === 'watch'
