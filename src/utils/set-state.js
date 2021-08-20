@@ -37,7 +37,10 @@ export async function setState (type, payload) {
         case 'channelsByVideo':
 
             // return if equal
-            if (compareObjects (payload, state.channelsByVideo)) return
+            if (
+                state.channelsByVideo
+                && compareObjects (payload, state.channelsByVideo)
+            ) return
 
             await browser.storage.local.set ({
                 'channelsByVideo': payload,
