@@ -3,7 +3,7 @@ import { getBrowser } from './get-browser'
 /**
  * @param {Function} listener with passed `newState`
  */
-export function executeOnStateUpdate (listener) {
+export function onNewState (listener) {
 
     const browser = getBrowser ()
 

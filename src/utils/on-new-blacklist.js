@@ -1,9 +1,9 @@
-import { executeOnStateUpdate } from './execute-on-state-update'
+import { onNewState } from './on-new-state'
 
 /**
  * @param {Function} fn callback
  */
-export function executeOnBlacklistUpdate (fn) {
+export function onNewBlacklist (fn) {
 
     const listener = (newState) => {
 
@@ -19,6 +19,6 @@ export function executeOnBlacklistUpdate (fn) {
 
     }
 
-    executeOnStateUpdate (listener)
+    onNewState (listener)
 
 }

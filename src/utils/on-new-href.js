@@ -11,7 +11,7 @@ const defaultOptions = {
  * @param {object} [options] optional parameters
  * @param {boolean} [options.executeOnLoad] execute callback on load?
  */
-export function executeOnHrefChange (
+export function onNewHref (
     callback,
     {
         executeOnLoad,

@@ -1,6 +1,6 @@
 import { getIdFromHref } from '../utils/get-id-from-href'
 import { getIdFromData } from '../utils/get-id-from-data'
-import { executeOnHrefChange } from '../utils/execute-on-href-change'
+import { onNewHref } from '../utils/on-new-href'
 import { getState } from '../utils/get-state'
 import { setPageInjects } from '../utils/set-page-injects'
 import { setPageActions } from '../utils/set-page-actions'
@@ -31,8 +31,8 @@ window.addEventListener ('load', async () => {
 
     await setPageActions ()
 
-    executeOnHrefChange (setCurrentPage)
+    onNewHref (setCurrentPage)
 
-    executeOnHrefChange (watchForIdChange)
+    onNewHref (watchForIdChange)
 
 })

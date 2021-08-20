@@ -2,7 +2,7 @@ import { appendCloseButtons } from './append-close-buttons'
 import { purgePage } from './purge-page'
 import { INTERVAL } from './constants'
 import { setChannelsByVideoState } from './set-channels-by-video-state'
-import { executeOnBlacklistUpdate } from './execute-on-blacklist-update'
+import { onNewBlacklist } from './on-new-blacklist'
 
 let interval = undefined
 
@@ -24,7 +24,7 @@ export async function setPageActions () {
 
     }, INTERVAL)
 
-    executeOnBlacklistUpdate (async () => {
+    onNewBlacklist (async () => {
 
         await purgePage ({ 'force': true })
     
