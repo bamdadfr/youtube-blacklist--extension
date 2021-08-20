@@ -1,7 +1,5 @@
 const BASE = 'youtube-blacklist--extension'
 
-export const SCRIPT_ID = `${BASE}__script`
-
 export const CHANNEL_BY_VIDEO_ID = `${BASE}__channel_by_video`
 
 export const CLOSE_BUTTON_ID = `${BASE}__close_button`
