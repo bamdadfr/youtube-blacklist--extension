@@ -5,7 +5,7 @@ import { parseRendererRichSection } from './parse-renderer-rich-section'
  * @param {object} ajaxData from API
  * @returns {object} {video => channel}
  */
-export function parseAjaxDataHome (ajaxData) {
+export function parseAjaxDataBrowse (ajaxData) {
     
     let data = {}
 

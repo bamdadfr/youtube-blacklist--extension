@@ -1,4 +1,4 @@
-import { parseAjaxDataHome } from './parse-ajax-data-home'
+import { parseAjaxDataBrowse } from './parse-ajax-data-browse'
 import { appendData } from './append-data'
 import { CHANNEL_BY_VIDEO_ID } from './constants'
 import { parseAjaxDataSearch } from './parse-ajax-data-search'
@@ -14,8 +14,8 @@ export function parseAjaxData (url, data) {
     let newData = undefined
 
     // client navigates to /
-    if (url.includes ('/v1/browse')) newData = parseAjaxDataHome (data)
-
+    if (url.includes ('/v1/browse')) newData = parseAjaxDataBrowse (data)
+    
     // client navigates to /results
     if (url.includes ('/v1/search')) newData = parseAjaxDataSearch (data)
 
