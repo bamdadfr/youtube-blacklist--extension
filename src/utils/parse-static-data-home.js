@@ -17,7 +17,7 @@ export function parseStaticDataHome () {
         ?.tabs[0]
         ?.tabRenderer
         ?.content
-        ?.richGridRenderer
+        ?.richGridRenderer || {}
 
     if (!contents) return data
 

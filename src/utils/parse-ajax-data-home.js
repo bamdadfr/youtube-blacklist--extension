@@ -15,7 +15,7 @@ export function parseAjaxDataHome (ajaxData) {
         ?.tabs[0]
         ?.tabRenderer
         ?.content
-        ?.richGridRenderer
+        ?.richGridRenderer || {}
 
     if (!contents) return data
 

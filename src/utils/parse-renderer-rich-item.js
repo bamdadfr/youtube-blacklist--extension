@@ -6,7 +6,8 @@ import { parseRendererVideo } from './parse-renderer-video'
  */
 export function parseRendererRichItem (renderer) {
 
-    const { videoRenderer } = renderer.content
+    const { videoRenderer } = renderer
+        ?.content || {}
 
     return parseRendererVideo (videoRenderer)
 

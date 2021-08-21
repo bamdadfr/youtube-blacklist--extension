@@ -14,7 +14,7 @@ export function parseStaticDataWatch () {
         ?.contents
         ?.twoColumnWatchNextResults
         ?.secondaryResults
-        ?.secondaryResults
+        ?.secondaryResults || {}
 
     if (!results) return data
 

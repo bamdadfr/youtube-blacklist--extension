@@ -10,7 +10,7 @@ export function parseRendererRichSection (renderer) {
 
     const { contents } = renderer
         ?.content
-        ?.richShelfRenderer
+        ?.richShelfRenderer || {}
 
     if (!contents) return data
 

@@ -12,7 +12,7 @@ export function parseAjaxDataNext (ajaxData) {
         ?.contents
         ?.twoColumnWatchNextResults
         ?.secondaryResults
-        ?.secondaryResults
+        ?.secondaryResults || {}
 
     if (!results) return data
 

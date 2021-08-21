@@ -15,7 +15,7 @@ export function parseAjaxDataSearch (ajaxData) {
         ?.primaryContents
         ?.sectionListRenderer
         ?.contents[0]
-        ?.itemSectionRenderer
+        ?.itemSectionRenderer || {}
 
     if (!contents) return data
 

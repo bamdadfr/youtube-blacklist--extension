@@ -11,7 +11,7 @@ export function parseRendererVideo (renderer) {
         ?.runs[0]
         ?.navigationEndpoint
         ?.browseEndpoint
-        ?.browseId
+        ?.browseId || {}
 
     const object = {}
 
