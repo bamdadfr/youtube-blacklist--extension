@@ -27,7 +27,7 @@
 
 <p align="center">
     <img src="https://img.shields.io/github/v/release/bamdadsabbagh/youtube-blacklist--extension">
-    <img src="https://api.codeclimate.com/v1/badges/839f03d7c7af8c7b4efc/maintainability">
+    <img src="https://api.codeclimate.com/v1/badges/16e87c20e9e00562ff52/maintainability">
 </p>
 
 <p align="center">
