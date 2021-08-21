@@ -15,7 +15,7 @@ export function parseAjaxData (url, data) {
     let newData = {}
 
     // todo remove after dev
-    console.log (url)
+    console.log (url, data)
 
     // client navigates to /
     if (url.includes ('/v1/browse')) newData = parseAjaxDataBrowse (data)
