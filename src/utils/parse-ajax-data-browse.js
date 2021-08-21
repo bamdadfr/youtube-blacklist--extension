@@ -18,40 +18,64 @@ export function parseAjaxDataBrowse (ajaxData) {
         ?.content
         ?.richGridRenderer || {}
 
-    if (!contents) return data
+    if (contents) {
 
-    contents.forEach ((item) => {
+        contents.forEach ((item) => {
 
-        const {
-            richItemRenderer,
-            richSectionRenderer,
-        } = item
+            const {
+                richItemRenderer,
+                richSectionRenderer,
+            } = item
 
-        if (
-            !richItemRenderer
-            && !richSectionRenderer
-        ) return
+            if (
+                !richItemRenderer
+                && !richSectionRenderer
+            ) return
 
-        if (richItemRenderer) {
+            if (richItemRenderer) {
+
+                data = {
+                    ...data,
+                    ...parseRendererRichItem (richItemRenderer),
+                }
+
+            }
+
+            if (richSectionRenderer) {
+
+                data = {
+                    ...data,
+                    ...parseRendererRichSection (richSectionRenderer),
+                }
+
+            }
+
+        })
+    
+    }
+
+    const { continuationItems } = ajaxData
+        ?.onResponseReceivedActions
+        ?.[0]
+        ?.appendContinuationItemsAction || {}
+
+    if (continuationItems) {
+
+        continuationItems.forEach ((item) => {
+
+            const { richItemRenderer } = item
+
+            if (!richItemRenderer) return
 
             data = {
                 ...data,
                 ...parseRendererRichItem (richItemRenderer),
             }
         
-        }
-
-        if (richSectionRenderer) {
-
-            data = {
-                ...data,
-                ...parseRendererRichSection (richSectionRenderer),
-            }
-        
-        }
+        })
     
-    })
-    
+    }
+
     return data
 
 }
