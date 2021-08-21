@@ -12,7 +12,8 @@ export function parseAjaxDataHome (ajaxData) {
     const { contents } = ajaxData
         ?.contents
         ?.twoColumnBrowseResultsRenderer
-        ?.tabs[0]
+        ?.tabs
+        ?.[0]
         ?.tabRenderer
         ?.content
         ?.richGridRenderer || {}
