@@ -13,21 +13,45 @@ export function parseAjaxDataNext (ajaxData) {
         ?.twoColumnWatchNextResults
         ?.secondaryResults
         ?.secondaryResults || {}
+    
+    if (results) {
 
-    if (!results) return data
+        results.forEach ((item) => {
 
-    results.forEach ((item) => {
+            const { compactVideoRenderer } = item
 
-        const { compactVideoRenderer } = item
+            if (!compactVideoRenderer) return
 
-        if (!compactVideoRenderer) return
+            data = {
+                ...data,
+                ...parseRendererVideo (compactVideoRenderer),
+            }
 
-        data = {
-            ...data,
-            ...parseRendererVideo (compactVideoRenderer),
-        }
+        })
+    
+    }
 
-    })
+    const { continuationItems } = ajaxData
+        ?.onResponseReceivedEndpoints
+        ?.[0]
+        ?.appendContinuationItemsAction || {}
+
+    if (continuationItems) {
+
+        continuationItems.forEach ((item) => {
+
+            const { compactVideoRenderer } = item
+
+            if (!compactVideoRenderer) return
+
+            data = {
+                ...data,
+                ...parseRendererVideo (compactVideoRenderer),
+            }
+        
+        })
+    
+    }
 
     return data
 
