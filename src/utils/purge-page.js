@@ -35,7 +35,7 @@ export async function purgePage ({
         ) {
 
             // todo remove after dev
-            console.log (id)
+            console.log (id + ' removed')
 
             video.style.display = 'none'
         
