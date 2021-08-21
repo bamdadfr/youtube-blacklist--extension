@@ -29,6 +29,10 @@ module.exports = {
                     'to': 'manifest.json',
                 },
                 {
+                    'from': './src/assets',
+                    'to': 'assets',
+                },
+                {
                     'from': './src/styles',
                     'to': 'styles',
                 },
