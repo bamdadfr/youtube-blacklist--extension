@@ -19,13 +19,42 @@ export function parseAjaxDataNext (ajaxData) {
 
         results.forEach ((item) => {
 
-            const { compactVideoRenderer } = item
+            const {
+                compactVideoRenderer,
+                itemSectionRenderer,
+            } = item
 
-            if (!compactVideoRenderer) return
+            if (
+                !compactVideoRenderer
+                && !itemSectionRenderer
+            ) return
 
-            data = {
-                ...data,
-                ...parseRendererVideo (compactVideoRenderer),
+            if (compactVideoRenderer) {
+
+                data = {
+                    ...data,
+                    ...parseRendererVideo (compactVideoRenderer),
+                }
+            
+            }
+
+            if (itemSectionRenderer) {
+
+                const { contents } = itemSectionRenderer
+
+                contents.forEach ((item) => {
+
+                    const { compactVideoRenderer } = item
+
+                    if (!compactVideoRenderer) return
+
+                    data = {
+                        ...data,
+                        ...parseRendererVideo (compactVideoRenderer),
+                    }
+                
+                })
+            
             }
 
         })
