@@ -11,43 +11,22 @@ import { parseAjaxDataNext } from './parse-ajax-data-next'
  */
 export function parseAjaxData (url, data) {
 
-    // todo remove after dev
-    console.log (url)
+    let newData = undefined
 
     // client navigates to /
-    if (url.includes ('/v1/browse')) {
-
-        const newData = parseAjaxDataHome (data)
-
-        appendData ({
-            'data': newData,
-            'id': CHANNEL_BY_VIDEO_ID,
-        })
-
-    }
+    if (url.includes ('/v1/browse')) newData = parseAjaxDataHome (data)
 
     // client navigates to /results
-    if (url.includes ('/v1/search')) {
-
-        const newData = parseAjaxDataSearch (data)
-
-        appendData ({
-            'data': newData,
-            'id': CHANNEL_BY_VIDEO_ID,
-        })
-
-    }
+    if (url.includes ('/v1/search')) newData = parseAjaxDataSearch (data)
 
     // client navigates to /watch
-    if (url.includes ('/v1/next')) {
+    if (url.includes ('/v1/next')) newData = parseAjaxDataNext (data)
 
-        const newData = parseAjaxDataNext (data)
+    console.log (Object.keys (newData).length, newData, url)
 
-        appendData ({
-            'data': newData,
-            'id': CHANNEL_BY_VIDEO_ID,
-        })
-
-    }
+    appendData ({
+        'data': newData,
+        'id': CHANNEL_BY_VIDEO_ID,
+    })
 
 }
