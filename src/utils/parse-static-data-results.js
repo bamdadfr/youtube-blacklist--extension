@@ -16,7 +16,8 @@ export function parseStaticDataResults () {
         ?.twoColumnSearchResultsRenderer
         ?.primaryContents
         ?.sectionListRenderer
-        ?.contents[0]
+        ?.contents
+        ?.[0]
         ?.itemSectionRenderer || {}
 
     if (!contents) return data

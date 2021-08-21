@@ -14,7 +14,8 @@ export function parseStaticDataHome () {
         ?.ytInitialData
         ?.contents
         ?.twoColumnBrowseResultsRenderer
-        ?.tabs[0]
+        ?.tabs
+        ?.[0]
         ?.tabRenderer
         ?.content
         ?.richGridRenderer || {}

@@ -8,7 +8,8 @@ export function parseRendererVideo (renderer) {
 
     const channelId = renderer
         ?.longBylineText
-        ?.runs[0]
+        ?.runs
+        ?.[0]
         ?.navigationEndpoint
         ?.browseEndpoint
         ?.browseId || {}

@@ -29,7 +29,8 @@ export function parseStaticDataWatch () {
             ?.twoColumnWatchNextResults
             ?.secondaryResults
             ?.secondaryResults
-            ?.results[1]
+            ?.results
+            ?.[1]
             ?.itemSectionRenderer
             ?.contents
 
