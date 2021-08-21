@@ -1,4 +1,5 @@
 import { parseRendererVideo } from './parse-renderer-video'
+import { parseRendererEndScreen } from './parse-renderer-end-screen'
 
 /**
  * @param {object} ajaxData from API
@@ -47,6 +48,29 @@ export function parseAjaxDataNext (ajaxData) {
             data = {
                 ...data,
                 ...parseRendererVideo (compactVideoRenderer),
+            }
+        
+        })
+    
+    }
+
+    const { 'results': endScreenVideoRendererResults } = ajaxData
+        ?.playerOverlays
+        ?.playerOverlayRenderer
+        ?.endScreen
+        ?.watchNextEndScreenRenderer
+
+    if (endScreenVideoRendererResults) {
+
+        endScreenVideoRendererResults.forEach ((item) => {
+
+            const { endScreenVideoRenderer } = item
+
+            if (!endScreenVideoRenderer) return
+
+            data = {
+                ...data,
+                ...parseRendererEndScreen (endScreenVideoRenderer),
             }
         
         })

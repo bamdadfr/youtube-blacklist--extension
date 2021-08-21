@@ -1,13 +1,13 @@
 /**
- * @param {object} renderer either `videoRenderer` or `compactVideoRenderer`
- * @returns {object} mapping {video => channel}
+ * @param {object} renderer `endScreenVideoRenderer`
+ * @returns {object} {video => channel}
  */
-export function parseRendererVideo (renderer) {
+export function parseRendererEndScreen (renderer) {
 
     const { videoId } = renderer
 
     const { 'browseId': channelId } = renderer
-        ?.longBylineText
+        ?.shortBylineText
         ?.runs
         ?.[0]
         ?.navigationEndpoint
