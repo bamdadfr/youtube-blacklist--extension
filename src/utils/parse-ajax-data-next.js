@@ -58,7 +58,7 @@ export function parseAjaxDataNext (ajaxData) {
         ?.playerOverlays
         ?.playerOverlayRenderer
         ?.endScreen
-        ?.watchNextEndScreenRenderer
+        ?.watchNextEndScreenRenderer || {}
 
     if (endScreenVideoRendererResults) {
 
