@@ -1,48 +1,48 @@
 {
-    "name": "YouTube Blacklist",
-    "short_name": "youtube-blacklist",
-    "description": "Blacklist channels on YouTube",
-    "version": "0.0.0",
-    "manifest_version": 2,
-    "icons": {
-        "512": "assets/youtube-blacklist-icon-512.png"
-    },
-    "browser_action": {
-        "default_title": "YouTube Blacklist",
-        "default_popup": "pages/popup.html",
-        "default_icon": {
-            "512": "assets/youtube-blacklist-icon-512.png"
-        }
-    },
-    "content_scripts": [
-        {
-            "matches": [
-                "*://*.youtube.com/*"
-            ],
-            "js": [
-                "scripts/content.js"
-            ],
-            "css": [
-                "styles/content.css"
-            ],
-            "run_at": "document_start",
-            "all_frames": false
-        }
-    ],
-    "background": {
-        "scripts": [
-            "scripts/background.js"
-        ]
-    },
-    "web_accessible_resources": [
-        "inject/all.js",
-        "inject/watch.js",
-        "inject/home.js",
-        "inject/results.js"
-    ],
-    "permissions": [
-        "storage",
-        "tabs",
+  "name": "YouTube Blacklist",
+  "short_name": "youtube-blacklist",
+  "description": "Blacklist channels on YouTube",
+  "version": "1.0.0",
+  "manifest_version": 2,
+  "icons": {
+    "512": "assets/youtube-blacklist-icon-512.png"
+  },
+  "browser_action": {
+    "default_title": "YouTube Blacklist",
+    "default_popup": "pages/popup.html",
+    "default_icon": {
+      "512": "assets/youtube-blacklist-icon-512.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
         "*://*.youtube.com/*"
+      ],
+      "js": [
+        "scripts/content.js"
+      ],
+      "css": [
+        "styles/content.css"
+      ],
+      "run_at": "document_start",
+      "all_frames": false
+    }
+  ],
+  "background": {
+    "scripts": [
+      "scripts/background.js"
     ]
+  },
+  "web_accessible_resources": [
+    "inject/all.js",
+    "inject/watch.js",
+    "inject/home.js",
+    "inject/results.js"
+  ],
+  "permissions": [
+    "storage",
+    "tabs",
+    "*://*.youtube.com/*"
+  ]
 }
