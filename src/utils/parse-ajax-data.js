@@ -3,6 +3,7 @@ import { appendData } from './append-data'
 import { CHANNEL_BY_VIDEO_ID } from './constants'
 import { parseAjaxDataSearch } from './parse-ajax-data-search'
 import { parseAjaxDataNext } from './parse-ajax-data-next'
+import { compareObjects } from './compare-objects'
 
 /**
  * @description entry point for ajax requests
@@ -11,7 +12,10 @@ import { parseAjaxDataNext } from './parse-ajax-data-next'
  */
 export function parseAjaxData (url, data) {
 
-    let newData = undefined
+    let newData = {}
+
+    // todo remove after dev
+    console.log (url)
 
     // client navigates to /
     if (url.includes ('/v1/browse')) newData = parseAjaxDataBrowse (data)
@@ -22,7 +26,10 @@ export function parseAjaxData (url, data) {
     // client navigates to /watch
     if (url.includes ('/v1/next')) newData = parseAjaxDataNext (data)
 
-    console.log (Object.keys (newData).length, newData, url)
+    if (compareObjects (newData, {})) return
+
+    // todo remove after dev
+    console.log (Object.keys (newData).length + ' added')
 
     appendData ({
         'data': newData,
