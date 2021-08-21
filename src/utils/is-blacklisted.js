@@ -2,15 +2,15 @@
  * @param {object} params parameters
  * @param {string} params.id video id
  * @param {object} params.blacklist blacklist map {channelId => channelName}
- * @param {object} params.channelsByVideo channels by video map {videoId => channelId}
+ * @param {object} params.channelByVideo {videoId => channelId}
  * @returns {boolean} is video id blacklisted?
  */
 export function isBlacklisted ({
     id,
     blacklist,
-    channelsByVideo,
+    channelByVideo,
 }) {
 
-    return typeof blacklist[channelsByVideo[id]] !== 'undefined'
+    return typeof blacklist[channelByVideo[id]] !== 'undefined'
 
 }

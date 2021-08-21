@@ -2,6 +2,7 @@ import { getVideo } from './get-video'
 import { getVideos } from './get-videos'
 import { getState } from './get-state'
 import { isBlacklisted } from './is-blacklisted'
+import { getChannelByVideo } from './get-channel-by-video'
 
 const defaultOptions = {
     'force': false,
@@ -18,8 +19,9 @@ export async function purgePage ({
 } = defaultOptions) {
 
     const videos = await getVideos ()
-    const { blacklist, channelsByVideo } = await getState ()
-    
+    const channelByVideo = await getChannelByVideo ()
+    const { blacklist } = await getState ()
+
     if (!force && videos.length === savedLength) return
 
     Array.from (videos).map (async (video) => {
@@ -29,7 +31,7 @@ export async function purgePage ({
         const id = getVideo (video)
 
         if (
-            isBlacklisted ({ id, blacklist, channelsByVideo })
+            isBlacklisted ({ id, blacklist, channelByVideo })
         ) {
 
             // todo remove after dev
