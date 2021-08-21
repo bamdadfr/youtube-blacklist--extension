@@ -20,7 +20,6 @@ export function interceptFetch () {
                 const { url } = clonedResponse
                 const data = await clonedResponse.json ()
 
-                // todo response is stalled when parsing, causing client to not load on scroll
                 parseAjaxData (url, data)
 
                 return response
