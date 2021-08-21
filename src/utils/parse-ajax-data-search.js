@@ -14,42 +14,70 @@ export function parseAjaxDataSearch (ajaxData) {
         ?.twoColumnSearchResultsRenderer
         ?.primaryContents
         ?.sectionListRenderer
-        ?.contents[0]
+        ?.contents
+        ?.[0]
         ?.itemSectionRenderer || {}
 
-    if (!contents) return data
+    if (contents) {
 
-    contents.forEach ((item) => {
+        contents.forEach ((item) => {
 
-        const {
-            videoRenderer,
-            shelfRenderer,
-        } = item
+            const {
+                videoRenderer,
+                shelfRenderer,
+            } = item
 
-        if (
-            !videoRenderer
+            if (
+                !videoRenderer
             && !shelfRenderer
-        ) return
+            ) return
 
-        if (videoRenderer) {
+            if (videoRenderer) {
+
+                data = {
+                    ...data,
+                    ...parseRendererVideo (videoRenderer),
+                }
+
+            }
+
+            if (shelfRenderer) {
+
+                data = {
+                    ...data,
+                    ...parseRendererShelf (shelfRenderer),
+                }
+
+            }
+
+        })
+    
+    }
+
+    const { 'contents': contentsSecond } = ajaxData
+        ?.onResponseReceivedCommands
+        ?.[0]
+        ?.appendContinuationItemsAction
+        ?.continuationItems
+        ?.[0]
+        ?.itemSectionRenderer || {}
+
+    if (contentsSecond) {
+
+        contentsSecond.forEach ((item) => {
+
+            const { videoRenderer } = item
+
+            if (!videoRenderer) return
 
             data = {
                 ...data,
                 ...parseRendererVideo (videoRenderer),
             }
-        
-        }
 
-        if (shelfRenderer) {
-
-            data = {
-                ...data,
-                ...parseRendererShelf (shelfRenderer),
-            }
-        
-        }
-
-    })
+        })
+    
+    }
 
     return data
 
