@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/bamdadsabbagh/youtube-blacklist--extension/compare/v1.0.1...v1.0.2) (2021-08-22)
+
+
+### Performance Improvements
+
+* **bundling:** add HTML and CSS minification ([d0fe7ec](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/d0fe7ece6e66a6d7f368f0dcb730560dc783bc9f))
+
 ## [1.0.1](https://github.com/bamdadsabbagh/youtube-blacklist--extension/compare/v1.0.0...v1.0.1) (2021-08-22)
 
 
