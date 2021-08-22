@@ -4,7 +4,10 @@
  */
 export function parseRendererVideo (renderer) {
 
+    const object = {}
     const { videoId } = renderer
+
+    if (!videoId) return object
 
     const { 'browseId': channelId } = renderer
         ?.longBylineText
@@ -13,7 +16,7 @@ export function parseRendererVideo (renderer) {
         ?.navigationEndpoint
         ?.browseEndpoint || {}
 
-    const object = {}
+    if (!channelId) return object
 
     object[videoId] = channelId
 
