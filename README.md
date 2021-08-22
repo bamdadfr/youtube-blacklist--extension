@@ -50,4 +50,4 @@ Import and export with JSON.
 
 ## 🚀 Download
 
-`wip`
+[<img height=30 src="https://icons.iconarchive.com/icons/cornmanthe3rd/plex/256/Internet-firefox-icon.png"> **Firefox**](https://addons.mozilla.org/en-US/firefox/addon/youtube-blacklist/)
