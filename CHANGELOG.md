@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/bamdadsabbagh/youtube-blacklist--extension/compare/v1.0.0...v1.0.1) (2021-08-22)
+
+
+### Bug Fixes
+
+* **parsers:** add safety checks ([8cec6ab](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/8cec6ab96d5cbca3e46694767415f4a24c69fe75))
+
 # 1.0.0 (2021-08-21)
 
 
