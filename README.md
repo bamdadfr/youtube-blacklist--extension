@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-    Youtube Blacklist
+    YouTube Blacklist
 </p>
 
 <p align="center">
