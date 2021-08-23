@@ -13,12 +13,14 @@ export function interceptFetch () {
 
         return originalFetch
             .apply (this, arguments)
-            .then ((r) => r)
             .then (async (response) => {
 
                 const clonedResponse = response.clone ()
                 const { url } = clonedResponse
                 const data = await clonedResponse.json ()
+
+                // todo remove after dev
+                console.log (url, data)
 
                 parseAjaxData (url, data)
 
