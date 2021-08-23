@@ -1,3 +1,18 @@
+## [1.0.5](https://github.com/bamdadsabbagh/youtube-blacklist--extension/compare/v1.0.4...v1.0.5) (2021-08-23)
+
+
+### Bug Fixes
+
+* **#8:** check element before prepending ([466d72c](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/466d72c3176e2a8473cbb6685c589f544498098e)), closes [#8](https://github.com/bamdadsabbagh/youtube-blacklist--extension/issues/8)
+* **#9:** sanitize argument ([c695637](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/c69563704cf879cdcceb3e687c3dd26c20773f4b)), closes [#9](https://github.com/bamdadsabbagh/youtube-blacklist--extension/issues/9)
+* add lighter static data parser logic ([2344234](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/23442347defdeb31a1a9586aa451f1861384775c))
+
+
+### Performance Improvements
+
+* add `promisify` utility wrapper ([808ae42](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/808ae421454d4cb05b5ccfd7cab0dd653118ef57))
+* move debug output closer to source ([aeda54e](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/aeda54e1ef2f657f268b05816ce0af6535ba1229))
+
 ## [1.0.4](https://github.com/bamdadsabbagh/youtube-blacklist--extension/compare/v1.0.3...v1.0.4) (2021-08-23)
 
 
