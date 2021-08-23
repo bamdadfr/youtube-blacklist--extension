@@ -35,10 +35,7 @@
     ]
   },
   "web_accessible_resources": [
-    "inject/all.js",
-    "inject/watch.js",
-    "inject/home.js",
-    "inject/results.js"
+    "inject/all.js"
   ],
   "permissions": [
     "storage",

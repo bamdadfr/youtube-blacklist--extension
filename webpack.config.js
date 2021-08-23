@@ -16,9 +16,6 @@ module.exports = {
         'scripts/background': './src/scripts/background.js',
         'scripts/popup': './src/scripts/popup.js',
         'inject/all': './src/inject/all.js',
-        'inject/watch': './src/inject/watch.js',
-        'inject/home': './src/inject/home.js',
-        'inject/results': './src/inject/results.js',
     },
     'output': {
         'publicPath': '',

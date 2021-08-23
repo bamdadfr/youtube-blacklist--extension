@@ -7,6 +7,9 @@ import { getBrowser } from './get-browser'
 export async function getState () {
 
     const browser = getBrowser ()
+    const { get } = browser?.storage?.local
+
+    if (!get) return
 
     return await new Promise ((resolve) => {
 
