@@ -40,6 +40,8 @@
     <img src="https://img.shields.io/badge/ci-github--actions-yellowgreen">
 </p>
 
+![](https://raw.githubusercontent.com/bamdadsabbagh/youtube-blacklist--extension/master/assets/screenshots/screenshot-01.png)
+
 ## 📖 Context
 
 Add YouTube channels to your blacklist.
