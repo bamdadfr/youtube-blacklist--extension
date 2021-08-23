@@ -38,6 +38,6 @@ export function createCloseButton ({ parentNode }) {
 
     const thumbnailElement = parentNode.querySelector ('#thumbnail')
 
-    thumbnailElement.prepend (button)
+    if (thumbnailElement) thumbnailElement.prepend (button)
 
 }
