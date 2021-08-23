@@ -30,6 +30,8 @@ export async function purgePage ({
         
         const id = getVideo (video)
 
+        if (!id) return
+
         if (
             isBlacklisted ({ id, blacklist, channelByVideo })
         ) {
