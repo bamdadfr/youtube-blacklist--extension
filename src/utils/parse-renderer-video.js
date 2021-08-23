@@ -5,6 +5,9 @@
 export function parseRendererVideo (renderer) {
 
     const object = {}
+
+    if (!renderer) return
+
     const { videoId } = renderer
 
     if (!videoId) return object
@@ -14,7 +17,8 @@ export function parseRendererVideo (renderer) {
         ?.runs
         ?.[0]
         ?.navigationEndpoint
-        ?.browseEndpoint || {}
+        ?.browseEndpoint
+    || {}
 
     if (!channelId) return object
 
