@@ -1,3 +1,11 @@
+## [1.0.6](https://github.com/bamdadsabbagh/youtube-blacklist--extension/compare/v1.0.5...v1.0.6) (2021-08-23)
+
+
+### Performance Improvements
+
+* **getVideo:** ensure variables are defined ([6135753](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/61357537c5cc7002af2bae01a002f266038c244f))
+* **purgePage:** ensure `id` is defined ([3681045](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/3681045873d434fbcc23354514b3c162d09d1e84))
+
 ## [1.0.5](https://github.com/bamdadsabbagh/youtube-blacklist--extension/compare/v1.0.4...v1.0.5) (2021-08-23)
 
 
