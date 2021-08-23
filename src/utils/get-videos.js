@@ -1,45 +1,26 @@
-import { RETRY } from './constants'
 import { getState } from './get-state'
+import { promisify } from './promisify'
 
 /**
  * @returns {Promise<HTMLCollection>} collection of thumbnails (youtube videoCompactRenderer)
  */
 export async function getVideos () {
 
-    const retry = (fn) => setTimeout (fn, RETRY)
-
-    const execute = async (resolve) => {
+    return promisify (async ({ resolve, retry }) => {
 
         const { currentPage } = await getState ()
+        let elements = undefined
 
-        if (currentPage === 'home') {
+        if (currentPage === 'home') elements = document.getElementsByTagName ('ytd-rich-item-renderer')
 
-            const homeElements = document.getElementsByTagName ('ytd-rich-item-renderer')
+        if (currentPage === 'results') elements = document.getElementsByTagName ('ytd-video-renderer')
 
-            return resolve (homeElements)
-        
-        }
+        if (currentPage === 'watch') elements = document.getElementsByTagName ('ytd-compact-video-renderer')
 
-        if (currentPage === 'results') {
+        if (elements) return resolve (elements)
 
-            const resultsElements = document.getElementsByTagName ('ytd-video-renderer')
+        return retry ()
 
-            return resolve (resultsElements)
-        
-        }
-
-        if (currentPage === 'watch') {
-
-            const watchElements = document.getElementsByTagName ('ytd-compact-video-renderer')
-
-            return resolve (watchElements)
-        
-        }
-
-        return retry (() => execute (resolve))
-    
-    }
-
-    return new Promise ((resolve) => execute (resolve))
+    })
 
 }

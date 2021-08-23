@@ -1,4 +1,5 @@
-import { CHANNEL_BY_VIDEO_ID, RETRY } from './constants'
+import { CHANNEL_BY_VIDEO_ID } from './constants'
+import { promisify } from './promisify'
 
 /**
  * @description scope: extension
@@ -6,18 +7,14 @@ import { CHANNEL_BY_VIDEO_ID, RETRY } from './constants'
  */
 export async function getChannelByVideo () {
 
-    const retry = (fn) => setTimeout (fn, RETRY)
-
-    const execute = (resolve) => {
+    return promisify (({ resolve, retry }) => {
 
         const node = document.getElementById (CHANNEL_BY_VIDEO_ID)
 
-        if (node === null) return retry (() => execute (resolve))
+        if (node === null) return retry ()
 
         return resolve (JSON.parse (node.innerHTML))
-    
-    }
 
-    return new Promise ((resolve) => execute (resolve))
+    })
 
 }
