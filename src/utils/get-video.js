@@ -1,14 +1,18 @@
 /**
  * @param {HTMLDivElement} element youtube video element
- * @returns {string} video id
+ * @returns {string|undefined} video id
  */
 export function getVideo (element) {
 
     const href = element.getElementsByTagName ('a')[0].href
-    const regex = /v=.*?(?=&|$)/
 
-    return regex
-        .exec (href)[0]
-        .replace ('v=', '')
+    if (!href) return
+
+    const regex = /v=.*?(?=&|$)/
+    const match = regex.exec (href)[0]
+
+    if (!match) return
+
+    return match.replace ('v=', '')
 
 }
