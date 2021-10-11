@@ -37,6 +37,12 @@
 </p>
 
 <p align="center">
+    <img src="https://img.shields.io/amo/v/youtube-blacklist">
+    <img src="https://img.shields.io/amo/stars/youtube-blacklist">
+    <img src="https://img.shields.io/amo/users/youtube-blacklist">
+</p>
+
+<p align="center">
     <img src="https://img.shields.io/badge/ci-github--actions-yellowgreen">
 </p>
 
