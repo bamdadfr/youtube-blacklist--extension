@@ -1,3 +1,10 @@
+## [1.0.16](https://github.com/bamdadsabbagh/youtube-blacklist--extension/compare/v1.0.15...v1.0.16) (2021-10-31)
+
+
+### Performance Improvements
+
+* **release:** adding automatic chrome release ([42747d1](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/42747d1d92a44d9f1ade495986edbf25e3d77619))
+
 ## [1.0.15](https://github.com/bamdadsabbagh/youtube-blacklist--extension/compare/v1.0.14...v1.0.15) (2021-10-25)
 
 
