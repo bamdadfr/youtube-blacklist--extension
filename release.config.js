@@ -15,10 +15,10 @@ module.exports = {
             'artifactsDir': 'packages',
             'channel': 'listed',
         }],
-        // ['semantic-release-chrome', {
-        //     'extensionId': '',
-        //     'asset': 'youtube-blacklist--extension-${nextRelease.version}.zip',
-        // }],
+        ['semantic-release-chrome', {
+            'extensionId': 'okkcgfnnaecenbnggbmdmfhpkibmpilp',
+            'asset': 'youtube-blacklist--extension-${nextRelease.version}.zip',
+        }],
         ['@semantic-release/github', {
             'assets': [
                 'packages/youtube-blacklist--extension-${nextRelease.version}.xpi',
