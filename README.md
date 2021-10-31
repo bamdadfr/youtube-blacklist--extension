@@ -36,6 +36,12 @@
     <img src="https://img.shields.io/snyk/vulnerabilities/github/bamdadsabbagh/youtube-blacklist--extension">
 </p>
 
+<p align=center>
+  <img src="https://img.shields.io/chrome-web-store/v/okkcgfnnaecenbnggbmdmfhpkibmpilp">
+  <img src="https://img.shields.io/chrome-web-store/stars/okkcgfnnaecenbnggbmdmfhpkibmpilp">
+  <img src="https://img.shields.io/chrome-web-store/users/okkcgfnnaecenbnggbmdmfhpkibmpilp">
+</p>
+
 <p align="center">
     <img src="https://img.shields.io/amo/v/youtube-blacklist">
     <img src="https://img.shields.io/amo/stars/youtube-blacklist">
@@ -59,3 +65,5 @@ Import and export with JSON.
 ## 🚀 Download
 
 [<img height=30 src="https://icons.iconarchive.com/icons/cornmanthe3rd/plex/256/Internet-firefox-icon.png"> **Firefox**](https://addons.mozilla.org/en-US/firefox/addon/youtube-blacklist/)
+
+[<img height=30 src="https://icons.iconarchive.com/icons/cornmanthe3rd/plex/256/Internet-chrome-icon.png"> **Chrome**](https://chrome.google.com/webstore/detail/youtube-blacklist/okkcgfnnaecenbnggbmdmfhpkibmpilp)
