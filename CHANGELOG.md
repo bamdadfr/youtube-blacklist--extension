@@ -1,3 +1,11 @@
+## [1.0.18](https://github.com/bamdadsabbagh/youtube-blacklist--extension/compare/v1.0.17...v1.0.18) (2021-11-06)
+
+
+### Performance Improvements
+
+* apply new code style to configuration and set up code editor settings ([7ff3214](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/7ff321431fb21085560e58945aaded95cba16f1a))
+* update dependencies ([37aceec](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/37aceec28e0adea3cae7933c44d51638b686632b))
+
 ## [1.0.17](https://github.com/bamdadsabbagh/youtube-blacklist--extension/compare/v1.0.16...v1.0.17) (2021-11-01)
 
 
