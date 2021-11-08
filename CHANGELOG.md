@@ -1,3 +1,10 @@
+## [1.0.19](https://github.com/bamdadsabbagh/youtube-blacklist--extension/compare/v1.0.18...v1.0.19) (2021-11-08)
+
+
+### Performance Improvements
+
+* **asfalte:** ⚙ yarn-upgrade--onMondays-1000 ([b6f6b0e](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/b6f6b0e760266893642e22d03c4a31ba9502ba79))
+
 ## [1.0.18](https://github.com/bamdadsabbagh/youtube-blacklist--extension/compare/v1.0.17...v1.0.18) (2021-11-06)
 
 
