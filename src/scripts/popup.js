@@ -2,8 +2,8 @@ import {getState} from '../utils/get-state';
 import {setState} from '../utils/set-state';
 
 window.addEventListener('load', async () => {
-  const apply = document.querySelector('button');
-  const textarea = document.querySelector('textarea');
+  const apply = document.querySelector('#blacklist-submit');
+  const textarea = document.querySelector('#blacklist-content');
   const {blacklist} = await getState();
 
   textarea.value = JSON.stringify(blacklist, undefined, 2);

@@ -1,28 +1,38 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="../styles/popup.css">
+  <meta charset="UTF-8">
+  <meta
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    name="viewport"
+  >
+  <meta content="ie=edge" http-equiv="X-UA-Compatible">
+  <title>YouTube Blacklist Extension Popup Window</title>
+  <link href="../styles/popup.css" rel="stylesheet">
 </head>
 <body>
 
 <section>
+  <span>Sync</span>
+  <!--suppress HtmlFormInputWithoutLabel -->
+  <input id="gist-auth" placeholder="gist-auth" type="text" />
+  <!--suppress HtmlFormInputWithoutLabel -->
+  <input id="gist-url" placeholder="gist-url" type="text" />
+  <button type="button">
+    apply
+  </button>
 
-    <button
-            type="button"
-    >
-        apply
-    </button>
+  <hr>
 
-    <textarea
-            aria-label="blacklist"
-            placeholder=""
-    ></textarea>
-
+  <span>Blacklist</span>
+  <textarea
+    aria-label="blacklist"
+    id="blacklist-content"
+    placeholder=""
+  ></textarea>
+  <button id="blacklist-submit" type="button">
+    apply
+  </button>
 </section>
 
 <script src="../scripts/popup.js"></script>

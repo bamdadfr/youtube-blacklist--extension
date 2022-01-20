@@ -1,25 +1,34 @@
 body {
-    width: 40em;
-    height: 30em;
-    background-color: gainsboro;
-    overflow: hidden;
+  width: 40em;
+  height: 40em;
+  background-color: gainsboro;
+  overflow: hidden;
 }
 
 section {
-    display: grid;
-    grid-template-rows: 3em 1fr;
-    flex-direction: column;
-    grid-gap: 0.5em;
+  display: grid;
+  grid-template-rows: 1em 2em 2em 3em 1em 1em 1fr 3em;
+  flex-direction: column;
+  grid-gap: 0.5em;
 
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 textarea {
-    font-size: 1em;
-    resize: none;
+  font-size: 1em;
+  resize: none;
 }
 
 button {
-    font-weight: bold;
+  font-weight: bold;
+}
+
+hr {
+  width: 100%;
+  height: 1px;
+}
+
+span {
+  user-select: none;
 }
