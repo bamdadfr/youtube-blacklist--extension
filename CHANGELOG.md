@@ -1,3 +1,10 @@
+## [1.0.30](https://github.com/bamdadsabbagh/youtube-blacklist--extension/compare/v1.0.29...v1.0.30) (2022-01-20)
+
+
+### Performance Improvements
+
+* update dependencies ([2cd29ea](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/2cd29ea55e920fd34790acc959403460adc0adb7))
+
 ## [1.0.29](https://github.com/bamdadsabbagh/youtube-blacklist--extension/compare/v1.0.28...v1.0.29) (2022-01-17)
 
 
