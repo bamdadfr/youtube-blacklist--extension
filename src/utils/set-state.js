@@ -1,15 +1,18 @@
 import {getBrowser} from './get-browser';
+import {updateGist} from './update-gist';
+import {isSyncEnabled} from './is-sync-enabled';
 
 export const BLACKLIST = 'blacklist';
 export const SHOULD_RELOAD = 'shouldReload';
 export const CURRENT_PAGE = 'currentPage';
-export const GIST_AUTH = 'gistAuth';
-export const GIST_URL = 'gistUrl';
+export const GIST_TOKEN = 'gistToken';
+export const GIST_ID = 'gistId';
+export const GIST_DATE = 'gistDate';
 
 /**
  * @param {string} type action type
  * @param {*} payload action payload
- * @returns {*} browser storage local set action
+ * @returns {void}
  */
 export async function setState(type, payload) {
   const browser = getBrowser();
@@ -18,35 +21,50 @@ export async function setState(type, payload) {
     case BLACKLIST: {
       const obj = Object.create(null);
       obj[BLACKLIST] = payload;
-      return await browser.storage.local.set(obj);
+      await browser.storage.local.set(obj);
+      if (isSyncEnabled()) {
+        await updateGist();
+      }
+      return;
     }
 
     case SHOULD_RELOAD: {
       const obj = Object.create(null);
       obj[SHOULD_RELOAD] = payload;
-      return await browser.storage.local.set(obj);
+      await browser.storage.local.set(obj);
+      return;
     }
 
     case CURRENT_PAGE: {
       const obj = Object.create(null);
       obj[CURRENT_PAGE] = payload;
-      return await browser.storage.local.set(obj);
+      await browser.storage.local.set(obj);
+      return;
     }
 
-    case GIST_AUTH: {
+    case GIST_TOKEN: {
       const obj = Object.create(null);
-      obj[GIST_AUTH] = payload;
-      return await browser.storage.local.set(obj);
+      obj[GIST_TOKEN] = payload;
+      await browser.storage.local.set(obj);
+      return;
     }
 
-    case GIST_URL: {
+    case GIST_ID: {
       const obj = Object.create(null);
-      obj[GIST_URL] = payload;
-      return await browser.storage.local.set(obj);
+      obj[GIST_ID] = payload;
+      await browser.storage.local.set(obj);
+      return;
+    }
+
+    case GIST_DATE: {
+      const obj = Object.create(null);
+      obj[GIST_DATE] = payload;
+      await browser.storage.local.set(obj);
+      return;
     }
 
     default: {
-      throw new Error('state error');
+      throw new Error('Invalid action type');
     }
   }
 }

@@ -1,4 +1,5 @@
 <!doctype html>
+<!--suppress HtmlFormInputWithoutLabel -->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -7,19 +8,26 @@
     name="viewport"
   >
   <meta content="ie=edge" http-equiv="X-UA-Compatible">
-  <title>YouTube Blacklist Extension Popup Window</title>
+  <title>YouTube Blacklist Extension Settings</title>
   <link href="../styles/popup.css" rel="stylesheet">
 </head>
 <body>
 
 <section>
-  <span>Sync</span>
-  <!--suppress HtmlFormInputWithoutLabel -->
-  <input id="gist-auth" placeholder="gist-auth" type="text" />
-  <!--suppress HtmlFormInputWithoutLabel -->
-  <input id="gist-url" placeholder="gist-url" type="text" />
+    <span>
+      Gist (<a
+      href="https://github.com/settings/tokens/new"
+      target="_blank"
+    >create a Token with `gist` scope here</a>)
+    </span>
+  <input id="gist-token" placeholder="Provide your token here." type="text" />
+  <input
+    id="gist-id"
+    placeholder="Provide an existing Gist ID here. If blank, a new one will be created"
+    type="text"
+  />
   <button id="gist-submit" type="button">
-    apply
+    Install sync
   </button>
 
   <hr>
@@ -31,7 +39,7 @@
     placeholder=""
   ></textarea>
   <button id="blacklist-submit" type="button">
-    apply
+    Apply blacklist
   </button>
 </section>
 

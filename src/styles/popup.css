@@ -7,12 +7,15 @@ body {
 
 section {
   display: grid;
-  grid-template-rows: 1em 2em 2em 3em 1em 1em 1fr 3em;
+  grid-template-rows: 2em 2em 2em 3em 1em 1em 1fr 3em;
   flex-direction: column;
   grid-gap: 0.5em;
 
   width: 100%;
   height: 100%;
+}
+
+section > div {
 }
 
 textarea {
@@ -31,4 +34,10 @@ hr {
 
 span {
   user-select: none;
+}
+
+a {
+  text-transform: none;
+  text-decoration: none;
+  color: blue;
 }
