@@ -1,7 +1,7 @@
 import {CLOSE_BUTTON_ID} from './constants';
 import {getChannel} from './get-channel';
 import {getState} from './get-state';
-import {setState} from './set-state';
+import {BLACKLIST, setState} from './set-state';
 
 /**
  * @param {object} params parameters
@@ -29,7 +29,7 @@ export function createCloseButton({parentNode}) {
       return;
     }
 
-    await setState('blacklist', {...blacklist, ...channel});
+    await setState(BLACKLIST, {...blacklist, ...channel});
   };
 
   const thumbnailElement = parentNode.querySelector('#thumbnail');
