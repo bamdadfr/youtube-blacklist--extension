@@ -2,28 +2,32 @@
  * @param {object} renderer either `videoRenderer` or `compactVideoRenderer`
  * @returns {object} mapping {video => channel}
  */
-export function parseRendererVideo (renderer) {
+export function parseRendererVideo(renderer) {
+  const object = {};
 
-    const object = {}
+  if (!renderer) {
+    return;
+  }
 
-    if (!renderer) return
+  const {videoId} = renderer;
 
-    const { videoId } = renderer
+  if (!videoId) {
+    return object;
+  }
 
-    if (!videoId) return object
+  const {'browseId': channelId} = renderer
+    ?.longBylineText
+    ?.runs
+    ?.[0]
+    ?.navigationEndpoint
+    ?.browseEndpoint
+    || {};
 
-    const { 'browseId': channelId } = renderer
-        ?.longBylineText
-        ?.runs
-        ?.[0]
-        ?.navigationEndpoint
-        ?.browseEndpoint
-    || {}
+  if (!channelId) {
+    return object;
+  }
 
-    if (!channelId) return object
+  object[videoId] = channelId;
 
-    object[videoId] = channelId
-
-    return object
-
+  return object;
 }

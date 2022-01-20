@@ -1,32 +1,32 @@
-import { parseRendererVideo } from './parse-renderer-video'
+import {parseRendererVideo} from './parse-renderer-video';
 
 /**
  * @param {object} renderer shelfRenderer
  * @returns {object} mapping {video => channel}
  */
-export function parseRendererShelf (renderer) {
+export function parseRendererShelf(renderer) {
+  let data = {};
 
-    let data = {}
+  const {items} = renderer
+    ?.content
+    ?.verticalListRenderer || {};
 
-    const { items } = renderer
-        ?.content
-        ?.verticalListRenderer || {}
+  if (!items) {
+    return data;
+  }
 
-    if (!items) return data
+  items.forEach((item) => {
+    const {videoRenderer} = item;
 
-    items.forEach ((item) => {
+    if (!videoRenderer) {
+      return;
+    }
 
-        const { videoRenderer } = item
+    data = {
+      ...data,
+      ...parseRendererVideo(videoRenderer),
+    };
+  });
 
-        if (!videoRenderer) return
-
-        data = {
-            ...data,
-            ...parseRendererVideo (videoRenderer),
-        }
-
-    })
-
-    return data
-
+  return data;
 }

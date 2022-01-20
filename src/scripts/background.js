@@ -1,20 +1,13 @@
-import { getBrowser } from '../utils/get-browser'
-import { setState } from '../utils/set-state'
+import {getBrowser} from '../utils/get-browser';
+import {setState} from '../utils/set-state';
 
 (async () => {
+  const browser = await getBrowser();
 
-    const browser = await getBrowser ()
-
-    browser.storage.onChanged.addListener (async (changes) => {
-
-        if (changes.shouldReload?.newValue === true) {
-
-            await setState ('shouldReload', false)
-
-            await browser.tabs.reload ()
-
-        }
-
-    })
-
-}) ()
+  browser.storage.onChanged.addListener(async (changes) => {
+    if (changes.shouldReload?.newValue === true) {
+      await setState('shouldReload', false);
+      await browser.tabs.reload();
+    }
+  });
+})();

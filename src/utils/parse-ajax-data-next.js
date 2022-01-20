@@ -1,111 +1,99 @@
-import { parseRendererVideo } from './parse-renderer-video'
-import { parseRendererEndScreen } from './parse-renderer-end-screen'
+import {parseRendererVideo} from './parse-renderer-video';
+import {parseRendererEndScreen} from './parse-renderer-end-screen';
 
 /**
  * @param {object} ajaxData from API
  * @returns {object} {video => channel}
  */
-export function parseAjaxDataNext (ajaxData) {
+export function parseAjaxDataNext(ajaxData) {
+  let data = {};
 
-    let data = {}
-
-    const { results } = ajaxData
-        ?.contents
-        ?.twoColumnWatchNextResults
-        ?.secondaryResults
-        ?.secondaryResults || {}
+  const {results} = ajaxData
+    ?.contents
+    ?.twoColumnWatchNextResults
+    ?.secondaryResults
+    ?.secondaryResults || {};
     
-    if (results) {
+  if (results) {
+    results.forEach((item) => {
+      const {
+        compactVideoRenderer,
+        itemSectionRenderer,
+      } = item;
 
-        results.forEach ((item) => {
-
-            const {
-                compactVideoRenderer,
-                itemSectionRenderer,
-            } = item
-
-            if (
-                !compactVideoRenderer
+      if (
+        !compactVideoRenderer
                 && !itemSectionRenderer
-            ) return
+      ) {
+        return;
+      }
 
-            if (compactVideoRenderer) {
+      if (compactVideoRenderer) {
+        data = {
+          ...data,
+          ...parseRendererVideo(compactVideoRenderer),
+        };
+      }
 
-                data = {
-                    ...data,
-                    ...parseRendererVideo (compactVideoRenderer),
-                }
-            
-            }
+      if (itemSectionRenderer) {
+        const {contents} = itemSectionRenderer;
 
-            if (itemSectionRenderer) {
+        contents.forEach((item) => {
+          const {compactVideoRenderer} = item;
 
-                const { contents } = itemSectionRenderer
+          if (!compactVideoRenderer) {
+            return;
+          }
 
-                contents.forEach ((item) => {
+          data = {
+            ...data,
+            ...parseRendererVideo(compactVideoRenderer),
+          };
+        });
+      }
+    });
+  }
 
-                    const { compactVideoRenderer } = item
+  const {continuationItems} = ajaxData
+    ?.onResponseReceivedEndpoints
+    ?.[0]
+    ?.appendContinuationItemsAction || {};
 
-                    if (!compactVideoRenderer) return
+  if (continuationItems) {
+    continuationItems.forEach((item) => {
+      const {compactVideoRenderer} = item;
 
-                    data = {
-                        ...data,
-                        ...parseRendererVideo (compactVideoRenderer),
-                    }
-                
-                })
-            
-            }
+      if (!compactVideoRenderer) {
+        return;
+      }
 
-        })
-    
-    }
+      data = {
+        ...data,
+        ...parseRendererVideo(compactVideoRenderer),
+      };
+    });
+  }
 
-    const { continuationItems } = ajaxData
-        ?.onResponseReceivedEndpoints
-        ?.[0]
-        ?.appendContinuationItemsAction || {}
+  const {'results': endScreenVideoRendererResults} = ajaxData
+    ?.playerOverlays
+    ?.playerOverlayRenderer
+    ?.endScreen
+    ?.watchNextEndScreenRenderer || {};
 
-    if (continuationItems) {
+  if (endScreenVideoRendererResults) {
+    endScreenVideoRendererResults.forEach((item) => {
+      const {endScreenVideoRenderer} = item;
 
-        continuationItems.forEach ((item) => {
+      if (!endScreenVideoRenderer) {
+        return;
+      }
 
-            const { compactVideoRenderer } = item
+      data = {
+        ...data,
+        ...parseRendererEndScreen(endScreenVideoRenderer),
+      };
+    });
+  }
 
-            if (!compactVideoRenderer) return
-
-            data = {
-                ...data,
-                ...parseRendererVideo (compactVideoRenderer),
-            }
-        
-        })
-    
-    }
-
-    const { 'results': endScreenVideoRendererResults } = ajaxData
-        ?.playerOverlays
-        ?.playerOverlayRenderer
-        ?.endScreen
-        ?.watchNextEndScreenRenderer || {}
-
-    if (endScreenVideoRendererResults) {
-
-        endScreenVideoRendererResults.forEach ((item) => {
-
-            const { endScreenVideoRenderer } = item
-
-            if (!endScreenVideoRenderer) return
-
-            data = {
-                ...data,
-                ...parseRendererEndScreen (endScreenVideoRenderer),
-            }
-        
-        })
-    
-    }
-
-    return data
-
+  return data;
 }

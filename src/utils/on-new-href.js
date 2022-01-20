@@ -1,8 +1,8 @@
-import { INTERVAL } from './constants'
+import {INTERVAL} from './constants';
 
 const defaultOptions = {
-    'executeOnLoad': true,
-}
+  executeOnLoad: true,
+};
 
 /**
  * @description run a callback on a given interval
@@ -11,27 +11,27 @@ const defaultOptions = {
  * @param {object} [options] optional parameters
  * @param {boolean} [options.executeOnLoad] execute callback on load?
  */
-export function onNewHref (
-    callback,
-    {
-        executeOnLoad,
-    } = defaultOptions,
+export function onNewHref(
+  callback,
+  {
+    executeOnLoad,
+  } = defaultOptions,
 ) {
+  let href = window.location.href;
 
-    let href = window.location.href
+  setInterval(() => {
+    const newHref = window.location.href;
 
-    setInterval (() => {
+    if (href === newHref) {
+      return;
+    }
 
-        const newHref = window.location.href
+    href = newHref;
 
-        if (href === newHref) return
+    callback(href);
+  }, INTERVAL);
 
-        href = newHref
-
-        callback (href)
-
-    }, INTERVAL)
-
-    if (executeOnLoad) callback (href)
-
+  if (executeOnLoad) {
+    callback(href);
+  }
 }

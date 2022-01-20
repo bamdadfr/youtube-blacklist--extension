@@ -1,32 +1,32 @@
-import { parseRendererRichItem } from './parse-renderer-rich-item'
+import {parseRendererRichItem} from './parse-renderer-rich-item';
 
 /**
  * @param {object} renderer richSectionRenderer
  * @returns {object} mapping {video => channel}
  */
-export function parseRendererRichSection (renderer) {
+export function parseRendererRichSection(renderer) {
+  let data = {};
 
-    let data = {}
+  const {contents} = renderer
+    ?.content
+    ?.richShelfRenderer || {};
 
-    const { contents } = renderer
-        ?.content
-        ?.richShelfRenderer || {}
+  if (!contents) {
+    return data;
+  }
 
-    if (!contents) return data
+  contents.forEach((item) => {
+    const {richItemRenderer} = item;
 
-    contents.forEach ((item) => {
+    if (!richItemRenderer) {
+      return;
+    }
 
-        const { richItemRenderer } = item
+    data = {
+      ...data,
+      ...parseRendererRichItem(richItemRenderer),
+    };
+  });
 
-        if (!richItemRenderer) return
-
-        data = {
-            ...data,
-            ...parseRendererRichItem (richItemRenderer),
-        }
-
-    })
-
-    return data
-
+  return data;
 }

@@ -1,14 +1,12 @@
-import { parseRendererVideo } from './parse-renderer-video'
+import {parseRendererVideo} from './parse-renderer-video';
 
 /**
  * @param {object} renderer richItemRenderer
  * @returns {object} parseYoutubeVideoRenderer
  */
-export function parseRendererRichItem (renderer) {
+export function parseRendererRichItem(renderer) {
+  const {videoRenderer} = renderer
+    ?.content || {};
 
-    const { videoRenderer } = renderer
-        ?.content || {}
-
-    return parseRendererVideo (videoRenderer)
-
+  return parseRendererVideo(videoRenderer);
 }

@@ -5,12 +5,10 @@
  * @param {object} params.channelByVideo {videoId => channelId}
  * @returns {boolean} is video id blacklisted?
  */
-export function isBlacklisted ({
-    id,
-    blacklist,
-    channelByVideo,
+export function isBlacklisted({
+  id,
+  blacklist,
+  channelByVideo,
 }) {
-
-    return typeof blacklist[channelByVideo[id]] !== 'undefined'
-
+  return typeof blacklist[channelByVideo[id]] !== 'undefined';
 }

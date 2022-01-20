@@ -1,81 +1,71 @@
-import { parseRendererRichItem } from './parse-renderer-rich-item'
-import { parseRendererRichSection } from './parse-renderer-rich-section'
+import {parseRendererRichItem} from './parse-renderer-rich-item';
+import {parseRendererRichSection} from './parse-renderer-rich-section';
 
 /**
  * @param {object} ajaxData from API
  * @returns {object} {video => channel}
  */
-export function parseAjaxDataBrowse (ajaxData) {
-    
-    let data = {}
+export function parseAjaxDataBrowse(ajaxData) {
+  let data = {};
 
-    const { contents } = ajaxData
-        ?.contents
-        ?.twoColumnBrowseResultsRenderer
-        ?.tabs
-        ?.[0]
-        ?.tabRenderer
-        ?.content
-        ?.richGridRenderer || {}
+  const {contents} = ajaxData
+    ?.contents
+    ?.twoColumnBrowseResultsRenderer
+    ?.tabs
+    ?.[0]
+    ?.tabRenderer
+    ?.content
+    ?.richGridRenderer || {};
 
-    if (contents) {
+  if (contents) {
+    contents.forEach((item) => {
+      const {
+        richItemRenderer,
+        richSectionRenderer,
+      } = item;
 
-        contents.forEach ((item) => {
-
-            const {
-                richItemRenderer,
-                richSectionRenderer,
-            } = item
-
-            if (
-                !richItemRenderer
+      if (
+        !richItemRenderer
                 && !richSectionRenderer
-            ) return
+      ) {
+        return;
+      }
 
-            if (richItemRenderer) {
+      if (richItemRenderer) {
+        data = {
+          ...data,
+          ...parseRendererRichItem(richItemRenderer),
+        };
+      }
 
-                data = {
-                    ...data,
-                    ...parseRendererRichItem (richItemRenderer),
-                }
+      if (richSectionRenderer) {
+        data = {
+          ...data,
+          ...parseRendererRichSection(richSectionRenderer),
+        };
+      }
+    });
+  }
 
-            }
+  const {continuationItems} = ajaxData
+    ?.onResponseReceivedActions
+    ?.[0]
+    ?.appendContinuationItemsAction || {};
 
-            if (richSectionRenderer) {
+  if (continuationItems) {
+    continuationItems.forEach((item) => {
+      const {richItemRenderer} = item;
 
-                data = {
-                    ...data,
-                    ...parseRendererRichSection (richSectionRenderer),
-                }
+      if (!richItemRenderer) {
+        return;
+      }
 
-            }
+      data = {
+        ...data,
+        ...parseRendererRichItem(richItemRenderer),
+      };
+    });
+  }
 
-        })
-    
-    }
-
-    const { continuationItems } = ajaxData
-        ?.onResponseReceivedActions
-        ?.[0]
-        ?.appendContinuationItemsAction || {}
-
-    if (continuationItems) {
-
-        continuationItems.forEach ((item) => {
-
-            const { richItemRenderer } = item
-
-            if (!richItemRenderer) return
-
-            data = {
-                ...data,
-                ...parseRendererRichItem (richItemRenderer),
-            }
-        
-        })
-    
-    }
-
-    return data
-
+  return data;
 }

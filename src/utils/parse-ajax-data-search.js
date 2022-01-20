@@ -1,84 +1,74 @@
-import { parseRendererVideo } from './parse-renderer-video'
-import { parseRendererShelf } from './parse-renderer-shelf'
+import {parseRendererVideo} from './parse-renderer-video';
+import {parseRendererShelf} from './parse-renderer-shelf';
 
 /**
  * @param {object} ajaxData from API
  * @returns {object} {video => channel}
  */
-export function parseAjaxDataSearch (ajaxData) {
+export function parseAjaxDataSearch(ajaxData) {
+  let data = {};
 
-    let data = {}
+  const {contents} = ajaxData
+    ?.contents
+    ?.twoColumnSearchResultsRenderer
+    ?.primaryContents
+    ?.sectionListRenderer
+    ?.contents
+    ?.[0]
+    ?.itemSectionRenderer || {};
 
-    const { contents } = ajaxData
-        ?.contents
-        ?.twoColumnSearchResultsRenderer
-        ?.primaryContents
-        ?.sectionListRenderer
-        ?.contents
-        ?.[0]
-        ?.itemSectionRenderer || {}
+  if (contents) {
+    contents.forEach((item) => {
+      const {
+        videoRenderer,
+        shelfRenderer,
+      } = item;
 
-    if (contents) {
-
-        contents.forEach ((item) => {
-
-            const {
-                videoRenderer,
-                shelfRenderer,
-            } = item
-
-            if (
-                !videoRenderer
+      if (
+        !videoRenderer
             && !shelfRenderer
-            ) return
+      ) {
+        return;
+      }
 
-            if (videoRenderer) {
+      if (videoRenderer) {
+        data = {
+          ...data,
+          ...parseRendererVideo(videoRenderer),
+        };
+      }
 
-                data = {
-                    ...data,
-                    ...parseRendererVideo (videoRenderer),
-                }
+      if (shelfRenderer) {
+        data = {
+          ...data,
+          ...parseRendererShelf(shelfRenderer),
+        };
+      }
+    });
+  }
 
-            }
+  const {'contents': contentsSecond} = ajaxData
+    ?.onResponseReceivedCommands
+    ?.[0]
+    ?.appendContinuationItemsAction
+    ?.continuationItems
+    ?.[0]
+    ?.itemSectionRenderer || {};
 
-            if (shelfRenderer) {
+  if (contentsSecond) {
+    contentsSecond.forEach((item) => {
+      const {videoRenderer} = item;
 
-                data = {
-                    ...data,
-                    ...parseRendererShelf (shelfRenderer),
-                }
+      if (!videoRenderer) {
+        return;
+      }
 
-            }
+      data = {
+        ...data,
+        ...parseRendererVideo(videoRenderer),
+      };
+    });
+  }
 
-        })
-    
-    }
-
-    const { 'contents': contentsSecond } = ajaxData
-        ?.onResponseReceivedCommands
-        ?.[0]
-        ?.appendContinuationItemsAction
-        ?.continuationItems
-        ?.[0]
-        ?.itemSectionRenderer || {}
-
-    if (contentsSecond) {
-
-        contentsSecond.forEach ((item) => {
-
-            const { videoRenderer } = item
-
-            if (!videoRenderer) return
-
-            data = {
-                ...data,
-                ...parseRendererVideo (videoRenderer),
-            }
-
-        })
-    
-    }
-
-    return data
-
+  return data;
 }

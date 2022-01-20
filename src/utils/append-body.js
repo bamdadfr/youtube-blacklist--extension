@@ -1,16 +1,14 @@
-import { createUniqueContainer } from './create-unique-container'
+import {createUniqueContainer} from './create-unique-container';
 
 /**
  * @param {string} id div unique id
  * @param {string|object} payload div innerHTML
  */
-export function appendBody (id, payload) {
+export function appendBody(id, payload) {
+  const body = document.getElementsByTagName('body')[0];
+  const div = createUniqueContainer(id);
 
-    const body = document.getElementsByTagName ('body')[0]
-    const div = createUniqueContainer (id)
+  div.innerHTML = typeof payload === 'object' ? JSON.stringify(payload) : payload;
 
-    div.innerHTML = typeof payload === 'object' ? JSON.stringify (payload) : payload
-
-    body.appendChild (div)
-
+  body.appendChild(div);
 }

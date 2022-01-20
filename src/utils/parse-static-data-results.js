@@ -1,59 +1,55 @@
-import { parseRendererVideo } from './parse-renderer-video'
-import { parseRendererShelf } from './parse-renderer-shelf'
+import {parseRendererVideo} from './parse-renderer-video';
+import {parseRendererShelf} from './parse-renderer-shelf';
 
 /**
  * @description static data for /results
  *      scope: browser
  * @returns {object} mapping {video => channel}
  */
-export function parseStaticDataResults () {
+export function parseStaticDataResults() {
+  let data = {};
 
-    let data = {}
+  const {contents} = window
+    ?.ytInitialData
+    ?.contents
+    ?.twoColumnSearchResultsRenderer
+    ?.primaryContents
+    ?.sectionListRenderer
+    ?.contents
+    ?.[0]
+    ?.itemSectionRenderer || {};
 
-    const { contents } = window
-        ?.ytInitialData
-        ?.contents
-        ?.twoColumnSearchResultsRenderer
-        ?.primaryContents
-        ?.sectionListRenderer
-        ?.contents
-        ?.[0]
-        ?.itemSectionRenderer || {}
+  if (!contents) {
+    return data;
+  }
 
-    if (!contents) return data
+  contents.forEach((item) => {
+    const {
+      videoRenderer,
+      shelfRenderer,
+    } = item;
 
-    contents.forEach ((item) => {
-
-        const {
-            videoRenderer,
-            shelfRenderer,
-        } = item
-
-        if (
-            !videoRenderer
+    if (
+      !videoRenderer
             && !shelfRenderer
-        ) return
+    ) {
+      return;
+    }
 
-        if (videoRenderer) {
+    if (videoRenderer) {
+      data = {
+        ...data,
+        ...parseRendererVideo(videoRenderer),
+      };
+    }
 
-            data = {
-                ...data,
-                ...parseRendererVideo (videoRenderer),
-            }
+    if (shelfRenderer) {
+      data = {
+        ...data,
+        ...parseRendererShelf(shelfRenderer),
+      };
+    }
+  });
 
-        }
-
-        if (shelfRenderer) {
-
-            data = {
-                ...data,
-                ...parseRendererShelf (shelfRenderer),
-            }
-
-        }
-
-    })
-
-    return data
-
+  return data;
 }

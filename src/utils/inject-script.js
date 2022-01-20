@@ -1,24 +1,21 @@
-import { getBrowser } from './get-browser'
+import {getBrowser} from './get-browser';
 
 /**
  * @param {string} file filename
  * @param {string} targetNode html target
  */
-export function injectScript (file, targetNode = 'body') {
+export function injectScript(file, targetNode = 'body') {
+  const doesExist = document.querySelector(`script[src*='${file}']`) !== null;
 
-    const doesExist = document.querySelector (`script[src*='${file}']`) !== null
+  if (doesExist) {
+    return;
+  }
 
-    if (doesExist) return
-
-    const browser = getBrowser ()
-    const path = browser.runtime.getURL (file)
-    const th = document.getElementsByTagName (targetNode)[0]
-    const s = document.createElement ('script')
-
-    s.setAttribute ('type', 'text/javascript')
-
-    s.setAttribute ('src', path)
-
-    th.appendChild (s)
-
+  const browser = getBrowser();
+  const path = browser.runtime.getURL(file);
+  const th = document.getElementsByTagName(targetNode)[0];
+  const s = document.createElement('script');
+  s.setAttribute('type', 'text/javascript');
+  s.setAttribute('src', path);
+  th.appendChild(s);
 }
