@@ -40,9 +40,11 @@ export class Utils {
         .apply(this, arguments)
         .then(async (response: Response) => {
           try {
-            const clonedResponse = response.clone();
-            const data = await clonedResponse.json();
-            callback(clonedResponse.url, data);
+            if (response.status === 200) {
+              const clonedResponse = response.clone();
+              const data = await clonedResponse.json();
+              callback(clonedResponse.url, data);
+            }
           } catch (e) {
             Utils.error(e);
           }
