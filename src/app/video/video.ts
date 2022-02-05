@@ -17,8 +17,8 @@ export class Video {
 
   private readonly regex: RegExp = /[0-9A-Za-z_-]{11}/;
 
-  public constructor(el: HTMLElement) {
-    this.element = el;
+  public constructor(el: Element) {
+    this.element = el as HTMLElement;
 
     try {
       this.id = this.getId();

@@ -1,5 +1,6 @@
 import {State, StateKeys, StateType} from '../utils/state';
 import {ChannelByVideoMap} from '../channel-by-video/channel-by-video-map';
+import {VideoContainer} from '../video/video-container';
 
 type ChannelId = string;
 type ChannelName = string;
@@ -41,5 +42,22 @@ export class Blacklist {
     const channelByVideo = await ChannelByVideoMap.get();
 
     return typeof blacklist[channelByVideo[id]] !== 'undefined';
+  }
+
+  public static traverse(containers: VideoContainer[]): void {
+    for (let i = 0; i < containers.length; i += 1) {
+      const container = containers[i];
+      const videos = container.videos;
+
+      for (let j = 0; j < videos.length; j += 1) {
+        const video = videos[j];
+
+        Blacklist.has(video.id).then((isBlacklisted) => {
+          if (isBlacklisted && !video.hidden) {
+            video.hide();
+          }
+        });
+      }
+    }
   }
 }

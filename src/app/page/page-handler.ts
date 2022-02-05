@@ -10,81 +10,72 @@ export class PageHandler {
   private readonly containersQuery = '#contents, #primary';
 
   public constructor() {
-    this.start();
-  }
-
-  public static load(): void {
     PageUtils.injectScript('injects/all.js', 'body');
+    this.addContainers();
   }
 
   public watch(): void {
-    Blacklist.onNew(() => this.applyBlacklist());
+    // blacklist changes
+    Blacklist.onNew(() => {
+      Blacklist.traverse(this.containers);
+    });
+
+    // location changes
     Location.onNew(() => {
       if (PageUtils.currentPage) {
         Utils.log(`Page: ${PageUtils.currentPage}`);
-        this.start();
+        this.addContainers();
       }
     });
   }
 
-  private start() {
-    this.addVideoContainers();
-    this.applyBlacklist();
+  private addContainers() {
+    this.getNewContainers().then((newContainers) => {
+      this.containers.push(...newContainers);
+      Blacklist.traverse(this.containers);
+    });
   }
 
-  private applyBlacklist() {
-    const containers = Array.from(this.containers);
+  private getNewContainers(): Promise<VideoContainer[]> {
+    return this.fetchAllContainerElements().then((allContainerElements) =>
+      this.filterNewContainers(Array.from(allContainerElements)),
+    );
+  }
 
-    for (let i = 0; i < containers.length; i += 1) {
-      const container = containers[i];
-      const videos = container.videos;
+  private fetchAllContainerElements(): Promise<HTMLCollectionOf<HTMLElement>> {
+    return Utils.promisify((resolve, retry) => {
+      const elements = document.querySelectorAll(this.containersQuery);
 
-      for (let j = 0; j < videos.length; j += 1) {
-        const video = videos[j];
-
-        Blacklist.has(video.id).then((isBlacklisted) => {
-          if (isBlacklisted && !video.hidden) {
-            video.hide();
-          }
-        });
+      if (elements.length === 0) {
+        return retry();
+      } else {
+        resolve(elements);
       }
-    }
+    });
   }
 
-  private addVideoContainers() {
-    this.fetchVideoContainers().then((c) => {
-      const containerElements = Array.from(c);
+  private filterNewContainers(containerElements: Element[]) {
+    const newContainers = [] as VideoContainer[];
 
-      for (let i = 0; i < containerElements.length; i += 1) {
-        const containerElement = containerElements[i];
+    for (let i = 0; i < containerElements.length; i += 1) {
+      const containerElement = containerElements[i];
 
-        if (this.containers.length === 0) {
-          this.containers.push(new VideoContainer(containerElement));
-        } else {
-          const knownContainerElements = this.containers.map((child) => child.element);
+      if (this.containers.length === 0) {
+        newContainers.push(new VideoContainer(containerElement));
+      } else {
+        const knownContainerElements = this.containers.map((child) => child.element);
 
-          if (
-            !knownContainerElements.includes(containerElement)
-            && !knownContainerElements
-              .map((kC) => kC.contains(containerElement))
-              .reduce((_, isChild) => isChild === true)
-          ) {
-            this.containers.push(new VideoContainer(containerElement));
-          }
+        if (
+          !knownContainerElements.includes(containerElement)
+          && !knownContainerElements
+            .map((kC) => kC.contains(containerElement))
+            .reduce((_, isChild) => isChild === true)
+        ) {
+          newContainers.push(new VideoContainer(containerElement));
         }
       }
-    });
-  }
+    }
 
-  private fetchVideoContainers(): Promise<HTMLCollectionOf<HTMLElement>> {
-    return Utils.promisify((resolve, retry) => {
-      const parents = document.querySelectorAll(this.containersQuery);
-
-      if (parents.length === 0) {
-        retry();
-      } else {
-        resolve(parents);
-      }
-    });
+    return newContainers;
   }
 }

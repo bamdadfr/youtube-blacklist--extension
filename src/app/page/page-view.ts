@@ -1,6 +1,6 @@
 import {Pages, PageUtils} from '../utils/page-utils';
 
-export type VideoElementsType = HTMLCollectionOf<HTMLElement>
+export type VideoElementsType = HTMLCollectionOf<Element>
 
 export class PageView {
   public static tagNamesByPage = {
@@ -9,7 +9,7 @@ export class PageView {
     [Pages.watch]: 'ytd-compact-video-renderer',
   };
 
-  public static getVideoElements(node: HTMLElement): VideoElementsType {
-    return node.getElementsByTagName(this.tagNamesByPage[PageUtils.currentPage]) as HTMLCollectionOf<HTMLElement>;
+  public static getVideoElements(node: Element): VideoElementsType {
+    return node.getElementsByTagName(this.tagNamesByPage[PageUtils.currentPage]) as HTMLCollectionOf<Element>;
   }
 }

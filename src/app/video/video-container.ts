@@ -3,13 +3,13 @@ import {Video} from './video';
 import {PageUtils} from '../utils/page-utils';
 
 export class VideoContainer {
-  public readonly element: HTMLElement;
+  public readonly element: Element;
 
   public videos: Video[] = [];
 
   private observer: MutationObserver;
 
-  public constructor(el: HTMLElement) {
+  public constructor(el: Element) {
     this.element = el;
 
     this.load();

@@ -7,7 +7,6 @@ import {State} from './utils/state';
 export async function content(): Promise<void> {
   try {
     await State.initialize();
-    PageHandler.load();
     const pageHandler = new PageHandler();
     pageHandler.watch();
   } catch (e) {
