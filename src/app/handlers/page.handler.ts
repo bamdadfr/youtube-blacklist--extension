@@ -33,6 +33,8 @@ export class PageHandler {
         this.addVideos();
       }
     });
+
+    // todo: observe for new entries in channel-by-video map
   }
 
   private getVideos(): Promise<Video[]> {
