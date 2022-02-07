@@ -1,6 +1,6 @@
-import {StaticParser} from '../app/parser/static-parser';
 import {ChannelByVideoMap} from '../app/channel-by-video/channel-by-video-map';
-import {AjaxParser} from '../app/parser/ajax-parser';
+import {StaticReducer} from '../app/reducers/static-reducer';
+import {DynamicInterceptor} from '../app/interceptors/dynamic-interceptor';
 
 /**
  * Injects all pages
@@ -8,12 +8,12 @@ import {AjaxParser} from '../app/parser/ajax-parser';
 export async function injectAll(): Promise<void> {
   try {
     // static
-    const staticParser = new StaticParser();
-    const staticMap = staticParser.parse();
+    const staticReducer = new StaticReducer();
+    const staticMap = staticReducer.reduce();
     ChannelByVideoMap.insertMany(staticMap);
 
-    // ajax
-    new AjaxParser((ajaxMap) => {
+    // dynamic
+    new DynamicInterceptor((ajaxMap) => {
       ChannelByVideoMap.insertMany(ajaxMap);
     });
   } catch (e) {
