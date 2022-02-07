@@ -1,5 +1,5 @@
 import {State, StateKeys, StateType} from '../utils/state';
-import {ChannelByVideo} from './channel-by-video';
+import {ChannelByVideoMap} from '../maps/channel-by-video.map';
 import {Video} from './video';
 
 type ChannelId = string;
@@ -39,7 +39,7 @@ export class Blacklist {
 
   public static async has(id: string): Promise<boolean> {
     const blacklist = await Blacklist.get();
-    const channelByVideo = await ChannelByVideo.get();
+    const channelByVideo = await ChannelByVideoMap.get();
 
     return typeof blacklist[channelByVideo[id]] !== 'undefined';
   }

@@ -6,9 +6,7 @@ import {
 import {
   TwoColumnWatchNextResultsReducer,
 } from './renderers/two-column-watch-next-results.reducer';
-import {
-  ChannelByVideoInterface,
-} from '../common/channel-by-video';
+import {ChannelByVideoInterface} from '../maps/channel-by-video.map';
 
 export class StaticReducerCreator extends AbstractReducerCreator {
   private readonly dict = {

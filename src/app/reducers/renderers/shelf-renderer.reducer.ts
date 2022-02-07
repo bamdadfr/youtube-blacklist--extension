@@ -1,7 +1,5 @@
 import {VideoRendererReducer} from './video-renderer.reducer';
-import {
-  ChannelByVideoInterface,
-} from '../../common/channel-by-video';
+import {ChannelByVideoInterface} from '../../maps/channel-by-video.map';
 import {ShelfRendererInterface} from '../../types';
 import {AbstractRendererReducer} from './abstract-renderer.reducer';
 

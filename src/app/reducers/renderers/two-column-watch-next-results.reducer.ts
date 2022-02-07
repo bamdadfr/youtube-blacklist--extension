@@ -1,8 +1,6 @@
 import {AbstractRendererReducer} from './abstract-renderer.reducer';
 import {TwoColumnWatchNextResultsInterface} from '../../types';
-import {
-  ChannelByVideoInterface,
-} from '../../common/channel-by-video';
+import {ChannelByVideoInterface} from '../../maps/channel-by-video.map';
 import {VideoRendererReducer} from './video-renderer.reducer';
 import {ItemSectionRendererReducer} from './item-section-renderer.reducer';
 

@@ -1,6 +1,4 @@
-import {
-  ChannelByVideoInterface,
-} from '../../common/channel-by-video';
+import {ChannelByVideoInterface} from '../../maps/channel-by-video.map';
 import {ItemSectionRendererInterface} from '../../types';
 
 export abstract class AbstractRendererReducer {
