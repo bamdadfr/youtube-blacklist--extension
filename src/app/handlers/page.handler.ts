@@ -1,10 +1,11 @@
 import {Pages, PageUtils} from '../utils/page.utils';
 import {Utils} from '../utils/utils';
-import {Location} from '../utils/location';
 import {Blacklist} from '../common/blacklist';
 import {Video} from '../common/video';
+import {LocationSubject} from '../observers/location.subject';
+import {AbstractObserver} from '../observers/abstract.observer';
 
-export class PageHandler {
+export class PageHandler implements AbstractObserver {
   private queries = {
     videos: {
       [Pages.home]: 'ytd-rich-item-renderer',
@@ -27,14 +28,19 @@ export class PageHandler {
     });
 
     // location changes
-    Location.onNew(() => {
-      if (PageUtils.currentPage) {
-        Utils.log(`Page: ${PageUtils.currentPage}`);
-        this.addVideos();
-      }
-    });
+    const location = new LocationSubject();
+    location.attach(this);
 
     // todo: observe for new entries in channel-by-video map
+  }
+
+  public update(): void {
+    if (!PageUtils.currentPage) {
+      return;
+    }
+
+    Utils.log(`Page: ${PageUtils.currentPage}`);
+    this.addVideos();
   }
 
   private getVideos(): Promise<Video[]> {
