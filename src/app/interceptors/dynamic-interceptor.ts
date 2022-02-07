@@ -1,11 +1,8 @@
 import {Utils} from '../utils/utils';
 import {YoutubeResponseData} from '../types';
 import {DynamicReducer} from '../reducers/dynamic-reducer';
-import {
-  ChannelByVideoInterface,
-} from '../channel-by-video/channel-by-video-map';
 
-export type DynamicInterceptorCallbackType = (data: ChannelByVideoInterface) => void;
+export type DynamicInterceptorCallbackType = (r: DynamicReducer) => void;
 
 export class DynamicInterceptor {
   private readonly endpoints = {
@@ -30,8 +27,7 @@ export class DynamicInterceptor {
         const isValid = this.validateEndpoint(endpoint);
 
         if (isValid) {
-          const r = new DynamicReducer(data);
-          return this.callback(r.reduce());
+          return this.callback(new DynamicReducer(data));
         }
       }
     });

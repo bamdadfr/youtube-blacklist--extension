@@ -13,7 +13,8 @@ export async function injectAll(): Promise<void> {
     ChannelByVideoMap.insertMany(staticMap);
 
     // dynamic
-    new DynamicInterceptor((ajaxMap) => {
+    new DynamicInterceptor((dynamicReducer) => {
+      const ajaxMap = dynamicReducer.reduce();
       ChannelByVideoMap.insertMany(ajaxMap);
     });
   } catch (e) {
