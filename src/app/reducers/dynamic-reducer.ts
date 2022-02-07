@@ -1,8 +1,12 @@
-import {ItemSectionRendererInterface, YoutubeResponseData} from '../types';
-import {RichItemRenderer} from '../renderer/rich-item-renderer';
-import {RichSectionRenderer} from '../renderer/rich-section-renderer';
-import {VideoRenderer} from '../renderer/video-renderer';
-import {ShelfRenderer} from '../renderer/shelf-renderer';
+import {YoutubeResponseData} from '../types';
+import {
+  TwoColumnWatchNextResultsReducer,
+} from './renderers/two-column-watch-next-results-reducer';
+import {RichGridRendererReducer} from './renderers/rich-grid-renderer-reducer';
+import {
+  ItemSectionRendererReducer,
+} from './renderers/item-section-renderer-reducer';
+import {ContinuationItemsReducer} from './renderers/continuation-items.reducer';
 
 type videoId = string;
 type channelId = string;
@@ -24,8 +28,7 @@ export class DynamicReducer {
           ?.[0]
           ?.tabRenderer
           ?.content
-          ?.richGridRenderer
-          ?.contents,
+          ?.richGridRenderer,
         continuation: data
           ?.onResponseReceivedActions
           ?.[0]
@@ -40,24 +43,22 @@ export class DynamicReducer {
           ?.sectionListRenderer
           ?.contents
           ?.[0]
-          ?.itemSectionRenderer
-          ?.contents,
+          ?.itemSectionRenderer,
         continuation: data
           ?.onResponseReceivedCommands
           ?.[0]
           ?.appendContinuationItemsAction
           ?.continuationItems
           ?.[0]
-          ?.itemSectionRenderer
-          ?.contents,
+          ?.itemSectionRenderer,
       },
       next: {
         renderer: data
           ?.contents
-          ?.twoColumnWatchNextResults
-          ?.secondaryResults
-          ?.secondaryResults
-          ?.results,
+          ?.twoColumnWatchNextResults,
+        // ?.secondaryResults
+        // ?.secondaryResults
+        // ?.results,
         continuation: data
           ?.onResponseReceivedEndpoints
           ?.[0]
@@ -71,133 +72,35 @@ export class DynamicReducer {
     const map: ReducerMap = {};
 
     if (this.dict.browse.renderer) {
-      Object.assign(map, this.reduceBrowse());
+      const r = new RichGridRendererReducer(this.dict.browse.renderer);
+      Object.assign(map, r.reduce());
     }
 
     if (this.dict.browse.continuation) {
-      Object.assign(map, this.reduceBrowseContinuation());
+      const r = new ContinuationItemsReducer(this.dict.browse.continuation);
+      Object.assign(map, r.reduce());
     }
 
     if (this.dict.search.renderer) {
-      Object.assign(map, this.reduceSearch());
+      const r = new ItemSectionRendererReducer(this.dict.search.renderer);
+      Object.assign(map, r.reduce());
     }
 
     if (this.dict.search.continuation) {
-      Object.assign(map, this.reduceSearchContinuation());
+      const r = new ItemSectionRendererReducer(this.dict.search.continuation);
+      Object.assign(map, r.reduce());
     }
 
     if (this.dict.next.renderer) {
-      Object.assign(map, this.reduceNext());
+      const r = new TwoColumnWatchNextResultsReducer(this.dict.next.renderer);
+      Object.assign(map, r.reduce());
     }
 
     if (this.dict.next.continuation) {
-      Object.assign(map, this.reduceNextContinuation());
+      const r = new ContinuationItemsReducer(this.dict.next.continuation);
+      Object.assign(map, r.reduce());
     }
 
     return map;
-  }
-
-  private reduceBrowse() {
-    return this.dict.browse.renderer.reduce((acc, {
-      richItemRenderer,
-      richSectionRenderer,
-    }) => {
-      if (richItemRenderer) {
-        const r = new RichItemRenderer(richItemRenderer);
-        Object.assign(acc, r.parse());
-      }
-
-      if (richSectionRenderer) {
-        const r = new RichSectionRenderer(richSectionRenderer);
-        Object.assign(acc, r.parse());
-      }
-
-      return acc;
-    }, {});
-  }
-
-  private reduceBrowseContinuation() {
-    return this.dict.browse.continuation.reduce((acc, {
-      richItemRenderer,
-    }) => {
-      if (richItemRenderer) {
-        const r = new RichItemRenderer(richItemRenderer);
-        Object.assign(acc, r.parse());
-      }
-
-      return acc;
-    }, {});
-  }
-
-  private reduceSearch() {
-    return this.dict.search.renderer.reduce((acc, {
-      videoRenderer,
-      shelfRenderer,
-    }) => {
-      if (videoRenderer) {
-        const r = new VideoRenderer(videoRenderer);
-        Object.assign(acc, r.parse());
-      }
-
-      if (shelfRenderer) {
-        const r = new ShelfRenderer(shelfRenderer);
-        Object.assign(acc, r.parse());
-      }
-
-      return acc;
-    }, {});
-  }
-
-  private reduceSearchContinuation() {
-    return this.dict.search.continuation.reduce((acc, {videoRenderer}) => {
-      if (videoRenderer) {
-        const r = new VideoRenderer(videoRenderer);
-        Object.assign(acc, r.parse());
-      }
-
-      return acc;
-    }, {});
-  }
-
-  private reduceNext() {
-    return this.dict.next.renderer.reduce((acc, {
-      compactVideoRenderer,
-      itemSectionRenderer,
-    }) => {
-      if (compactVideoRenderer) {
-        const r = new VideoRenderer(compactVideoRenderer);
-        Object.assign(acc, r.parse());
-      }
-
-      if (itemSectionRenderer) {
-        Object.assign(acc, this.parseItemSectionRenderer(itemSectionRenderer));
-      }
-
-      return acc;
-    }, {});
-  }
-
-  private parseItemSectionRenderer(itemSectionRenderer: ItemSectionRendererInterface) {
-    return itemSectionRenderer.contents.reduce((acc, {compactVideoRenderer}) => {
-      if (compactVideoRenderer) {
-        const r = new VideoRenderer(compactVideoRenderer);
-        Object.assign(acc, r.parse());
-      }
-
-      return acc;
-    }, {});
-  }
-
-  private reduceNextContinuation() {
-    return this.dict.next.continuation.reduce((acc, {
-      compactVideoRenderer,
-    }) => {
-      if (compactVideoRenderer) {
-        const r = new VideoRenderer(compactVideoRenderer);
-        Object.assign(acc, r.parse());
-      }
-
-      return acc;
-    }, {});
   }
 }

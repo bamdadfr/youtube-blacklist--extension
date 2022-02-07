@@ -18,6 +18,12 @@ export interface VideoRendererInterface {
   };
 }
 
+export interface RichItemRendererInterface {
+  content: {
+    videoRenderer: VideoRendererInterface;
+  };
+}
+
 export interface ShelfRendererInterface {
   content: {
     verticalListRenderer: {
@@ -25,12 +31,6 @@ export interface ShelfRendererInterface {
         videoRenderer: VideoRendererInterface;
       }>;
     };
-  };
-}
-
-export interface RichItemRendererInterface {
-  content: {
-    videoRenderer: VideoRendererInterface;
   };
 }
 
@@ -53,16 +53,18 @@ export interface ItemSectionRendererInterface {
   }>;
 }
 
+export interface RichGridRendererInterface {
+  contents: Array<{
+    richItemRenderer: RichItemRendererInterface;
+    richSectionRenderer: RichSectionRendererInterface;
+  }>;
+}
+
 export interface TwoColumnBrowseResultsRendererInterface {
   tabs: Array<{
     tabRenderer: {
       content: {
-        richGridRenderer: {
-          contents: Array<{
-            richItemRenderer: RichItemRendererInterface;
-            richSectionRenderer: RichSectionRendererInterface;
-          }>;
-        };
+        richGridRenderer: RichGridRendererInterface;
       };
     };
   }>;
@@ -103,12 +105,14 @@ export interface YoutubeInitialData {
   };
 }
 
+export interface ContinuationItemsInterface {
+  richItemRenderer: RichItemRendererInterface;
+  itemSectionRenderer: ItemSectionRendererInterface;
+  compactVideoRenderer: VideoRendererInterface;
+}
+
 export interface AppendContinuationItemsAction {
-  continuationItems: Array<{
-    richItemRenderer: RichItemRendererInterface;
-    itemSectionRenderer: ItemSectionRendererInterface;
-    compactVideoRenderer: VideoRendererInterface;
-  }>;
+  continuationItems: ContinuationItemsInterface[];
 }
 
 // Youtube Response Data, contains the data that is returned by the Youtube API

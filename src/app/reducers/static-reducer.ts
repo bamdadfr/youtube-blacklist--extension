@@ -1,7 +1,10 @@
-import {RichItemRenderer} from '../renderer/rich-item-renderer';
-import {RichSectionRenderer} from '../renderer/rich-section-renderer';
-import {VideoRenderer} from '../renderer/video-renderer';
-import {ShelfRenderer} from '../renderer/shelf-renderer';
+import {RichGridRendererReducer} from './renderers/rich-grid-renderer-reducer';
+import {
+  ItemSectionRendererReducer,
+} from './renderers/item-section-renderer-reducer';
+import {
+  TwoColumnWatchNextResultsReducer,
+} from './renderers/two-column-watch-next-results-reducer';
 
 type videoId = string;
 type channelId = string;
@@ -20,8 +23,7 @@ export class StaticReducer {
       ?.[0]
       ?.tabRenderer
       ?.content
-      ?.richGridRenderer
-      ?.contents,
+      ?.richGridRenderer,
     search: window
       ?.ytInitialData
       ?.contents
@@ -30,16 +32,15 @@ export class StaticReducer {
       ?.sectionListRenderer
       ?.contents
       ?.[0]
-      ?.itemSectionRenderer
-      ?.contents,
+      ?.itemSectionRenderer,
     watch: {
       loggedOut: window
         ?.ytInitialData
         ?.contents
-        ?.twoColumnWatchNextResults
-        ?.secondaryResults
-        ?.secondaryResults
-        ?.results,
+        ?.twoColumnWatchNextResults,
+      // ?.secondaryResults
+      // ?.secondaryResults
+      // ?.results,
       loggedIn: window
         ?.ytInitialData
         ?.contents
@@ -48,8 +49,7 @@ export class StaticReducer {
         ?.secondaryResults
         ?.results
         ?.[1]
-        ?.itemSectionRenderer
-        ?.contents,
+        ?.itemSectionRenderer,
     },
   };
 
@@ -57,106 +57,25 @@ export class StaticReducer {
     const map: ReducerMap = {};
 
     if (this.dict.home) {
-      Object.assign(map, this.reduceHome());
+      const r = new RichGridRendererReducer(this.dict.home);
+      Object.assign(map, r.reduce());
     }
 
     if (this.dict.search) {
-      Object.assign(map, this.reduceSearch());
+      const r = new ItemSectionRendererReducer(this.dict.search);
+      Object.assign(map, r.reduce());
     }
 
     if (this.dict.watch.loggedOut) {
-      Object.assign(map, this.reduceWatchLoggedOut());
+      const r = new TwoColumnWatchNextResultsReducer(this.dict.watch.loggedOut);
+      Object.assign(map, r.reduce());
     }
 
     if (this.dict.watch.loggedIn) {
-      Object.assign(map, this.reduceWatchLoggedIn());
+      const r = new ItemSectionRendererReducer(this.dict.watch.loggedIn);
+      Object.assign(map, r.reduce());
     }
 
     return map;
-  }
-
-  private reduceHome(): ReducerMap {
-    return this.dict.home.reduce((acc, {
-      richItemRenderer,
-      richSectionRenderer,
-    }) => {
-      if (richItemRenderer) {
-        const r = new RichItemRenderer(richItemRenderer);
-        Object.assign(acc, r.parse());
-      }
-
-      if (richSectionRenderer) {
-        const r = new RichSectionRenderer(richSectionRenderer);
-        Object.assign(acc, r.parse());
-      }
-
-      return acc;
-    }, {});
-  }
-
-  private reduceSearch(): ReducerMap {
-    return this.dict.search.reduce((acc, {
-      videoRenderer,
-      shelfRenderer,
-      compactVideoRenderer,
-    }) => {
-      if (videoRenderer) {
-        const r = new VideoRenderer(videoRenderer);
-        Object.assign(acc, r.parse());
-      }
-
-      if (shelfRenderer) {
-        const r = new ShelfRenderer(shelfRenderer);
-        Object.assign(acc, r.parse());
-      }
-
-      if (compactVideoRenderer) {
-        throw new Error('Not implemented');
-      }
-
-      return acc;
-    }, {});
-  }
-
-  private reduceWatchLoggedOut(): ReducerMap {
-    return this.dict.watch.loggedOut.reduce((acc, {
-      compactVideoRenderer,
-      itemSectionRenderer,
-    }) => {
-      if (compactVideoRenderer) {
-        const r = new VideoRenderer(compactVideoRenderer);
-        Object.assign(acc, r.parse());
-      }
-
-      if (itemSectionRenderer) {
-        throw new Error('Not implemented');
-      }
-
-      return acc;
-    }, {});
-  }
-
-  private reduceWatchLoggedIn(): ReducerMap {
-    return this.dict.watch.loggedIn.reduce((acc, {
-      videoRenderer,
-      shelfRenderer,
-      compactVideoRenderer,
-    }) => {
-      if (videoRenderer) {
-        const r = new VideoRenderer(videoRenderer);
-        Object.assign(acc, r.parse());
-      }
-
-      if (shelfRenderer) {
-        const r = new ShelfRenderer(shelfRenderer);
-        Object.assign(acc, r.parse());
-      }
-
-      if (compactVideoRenderer) {
-        throw new Error('Not implemented');
-      }
-
-      return acc;
-    }, {});
   }
 }
