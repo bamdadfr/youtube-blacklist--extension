@@ -12,7 +12,7 @@ export class PageHandler implements AbstractObserver {
 
   public constructor() {
     PageUtils.injectScript('injects/all.js', 'body');
-    this.addVideos();
+    this.update();
   }
 
   public watch(): void {
@@ -34,36 +34,38 @@ export class PageHandler implements AbstractObserver {
     }
 
     this.addVideos();
+    Blacklist.traverse(this.videos);
   }
 
-  private getVideos(): Video[] {
-    const videos = document.querySelectorAll(PageHandler.query);
+  private getVideoContainers(): Element[] {
+    const array: Element[] = [];
+    const containers = document.querySelectorAll(PageHandler.query);
 
-    if (videos.length === 0) {
-      return this.videos;
-    }
-
-    const array: Video[] = [];
-
-    Array.from(videos).forEach((video) => {
-      array.push(new Video(video as HTMLElement));
+    Array.from(containers).forEach((container) => {
+      array.push(container);
     });
 
     return array;
   }
 
-  // Add new videos
   private addVideos() {
-    const videos = this.getVideos();
+    const containers = this.getVideoContainers();
+    const payload: Video[] = [];
 
     if (this.videos.length === 0) {
       // init
-      this.videos = videos;
+      containers.forEach((container) => {
+        payload.push(new Video(container as HTMLElement));
+      });
     } else {
       // add only new videos
-      const newVideos = videos.filter((video) => !this.videos.some((oldVideo) => oldVideo.id === video.id));
-      this.videos.push(...newVideos);
+      const newContainers = containers.filter((container) => !this.videos.some((video) => video.container.isSameNode(container)));
+
+      newContainers.forEach((newContainer) => {
+        payload.push(new Video(newContainer as HTMLElement));
+      });
     }
-    Blacklist.traverse(this.videos);
+
+    this.videos.push(...payload);
   }
 }
