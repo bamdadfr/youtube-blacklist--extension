@@ -3,13 +3,12 @@ import {AbstractSubject} from './abstract.subject';
 export class LocationSubject extends AbstractSubject {
   private savedHref: string;
 
-  private observer: MutationObserver;
-
   public constructor() {
     super();
+
     this.savedHref = window.location.href;
 
-    this.observer = new MutationObserver(() => {
+    const o = new MutationObserver(() => {
       if (this.savedHref === window.location.href) {
         return;
       }
@@ -18,7 +17,7 @@ export class LocationSubject extends AbstractSubject {
       this.notify();
     });
 
-    this.observer.observe(document.body, {
+    o.observe(document.body, {
       childList: true,
     });
   }

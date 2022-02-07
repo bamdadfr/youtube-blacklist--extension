@@ -4,9 +4,10 @@ import {Blacklist} from '../common/blacklist';
 import {Video} from '../common/video';
 import {LocationSubject} from '../observers/location.subject';
 import {AbstractObserver} from '../observers/abstract.observer';
+import {VideoCountSubject} from '../observers/video-count.subject';
 
 export class PageHandler implements AbstractObserver {
-  private queries = {
+  public static queries = {
     videos: {
       [Pages.home]: 'ytd-rich-item-renderer',
       [Pages.search]: 'ytd-video-renderer',
@@ -27,11 +28,11 @@ export class PageHandler implements AbstractObserver {
       Blacklist.traverse(this.videos);
     });
 
-    // location changes
     const location = new LocationSubject();
     location.attach(this);
 
-    // todo: observe for new entries in channel-by-video map
+    const videoCount = new VideoCountSubject();
+    videoCount.attach(this);
   }
 
   public update(): void {
@@ -45,7 +46,7 @@ export class PageHandler implements AbstractObserver {
 
   private getVideos(): Promise<Video[]> {
     return Utils.promisify((resolve, retry) => {
-      const videos = document.querySelectorAll(this.queries.videos[PageUtils.currentPage]);
+      const videos = document.querySelectorAll(PageHandler.queries.videos[PageUtils.currentPage]);
 
       if (videos.length === 0) {
         return retry();
