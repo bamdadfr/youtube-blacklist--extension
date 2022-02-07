@@ -2,7 +2,7 @@ import {VideoRendererInterface} from '../../types';
 import {
   ChannelByVideoInterface,
 } from '../../channel-by-video/channel-by-video-map';
-import {AbstractRendererReducer} from './abstract-renderer-reducer';
+import {AbstractRendererReducer} from './abstract-renderer.reducer';
 
 /**
  * Video renderer reducer

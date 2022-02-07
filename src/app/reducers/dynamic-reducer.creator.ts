@@ -1,12 +1,13 @@
 import {YoutubeResponseData} from '../types';
 import {
   TwoColumnWatchNextResultsReducer,
-} from './renderers/two-column-watch-next-results-reducer';
-import {RichGridRendererReducer} from './renderers/rich-grid-renderer-reducer';
+} from './renderers/two-column-watch-next-results.reducer';
+import {RichGridRendererReducer} from './renderers/rich-grid-renderer.reducer';
 import {
   ItemSectionRendererReducer,
-} from './renderers/item-section-renderer-reducer';
+} from './renderers/item-section-renderer.reducer';
 import {ContinuationItemsReducer} from './renderers/continuation-items.reducer';
+import {AbstractReducerCreator} from './abstract-reducer.creator';
 
 type videoId = string;
 type channelId = string;
@@ -15,10 +16,11 @@ interface ReducerMap {
   [key: videoId]: channelId;
 }
 
-export class DynamicReducer {
+export class DynamicReducerCreator extends AbstractReducerCreator {
   private readonly dict;
 
   public constructor(data: YoutubeResponseData) {
+    super();
     this.dict = {
       browse: {
         renderer: data

@@ -1,9 +1,9 @@
-import {RichItemRendererReducer} from './rich-item-renderer-reducer';
+import {RichItemRendererReducer} from './rich-item-renderer.reducer';
 import {
   ChannelByVideoInterface,
 } from '../../channel-by-video/channel-by-video-map';
 import {RichSectionRendererInterface} from '../../types';
-import {AbstractRendererReducer} from './abstract-renderer-reducer';
+import {AbstractRendererReducer} from './abstract-renderer.reducer';
 
 export class RichSectionRendererReducer implements AbstractRendererReducer {
   private readonly renderer: RichSectionRendererInterface['content']['richShelfRenderer'];

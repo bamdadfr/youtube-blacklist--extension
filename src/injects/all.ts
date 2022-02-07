@@ -1,5 +1,5 @@
 import {ChannelByVideoMap} from '../app/channel-by-video/channel-by-video-map';
-import {StaticReducer} from '../app/reducers/static-reducer';
+import {StaticReducerCreator} from '../app/reducers/static-reducer.creator';
 import {DynamicInterceptor} from '../app/interceptors/dynamic-interceptor';
 
 /**
@@ -8,7 +8,7 @@ import {DynamicInterceptor} from '../app/interceptors/dynamic-interceptor';
 export async function injectAll(): Promise<void> {
   try {
     // static
-    const staticReducer = new StaticReducer();
+    const staticReducer = new StaticReducerCreator();
     const staticMap = staticReducer.reduce();
     ChannelByVideoMap.insertMany(staticMap);
 

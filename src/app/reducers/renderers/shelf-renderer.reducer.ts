@@ -1,9 +1,9 @@
-import {VideoRendererReducer} from './video-renderer-reducer';
+import {VideoRendererReducer} from './video-renderer.reducer';
 import {
   ChannelByVideoInterface,
 } from '../../channel-by-video/channel-by-video-map';
 import {ShelfRendererInterface} from '../../types';
-import {AbstractRendererReducer} from './abstract-renderer-reducer';
+import {AbstractRendererReducer} from './abstract-renderer.reducer';
 
 export class ShelfRendererReducer implements AbstractRendererReducer {
   private readonly renderer: ShelfRendererInterface['content']['verticalListRenderer'];

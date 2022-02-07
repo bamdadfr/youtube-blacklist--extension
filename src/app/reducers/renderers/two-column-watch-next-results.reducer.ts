@@ -1,10 +1,10 @@
-import {AbstractRendererReducer} from './abstract-renderer-reducer';
+import {AbstractRendererReducer} from './abstract-renderer.reducer';
 import {TwoColumnWatchNextResultsInterface} from '../../types';
 import {
   ChannelByVideoInterface,
 } from '../../channel-by-video/channel-by-video-map';
-import {VideoRendererReducer} from './video-renderer-reducer';
-import {ItemSectionRendererReducer} from './item-section-renderer-reducer';
+import {VideoRendererReducer} from './video-renderer.reducer';
+import {ItemSectionRendererReducer} from './item-section-renderer.reducer';
 
 export class TwoColumnWatchNextResultsReducer implements AbstractRendererReducer {
   private readonly results: TwoColumnWatchNextResultsInterface['secondaryResults']['secondaryResults']['results'];

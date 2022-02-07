@@ -1,10 +1,10 @@
-import {AbstractRendererReducer} from './abstract-renderer-reducer';
+import {AbstractRendererReducer} from './abstract-renderer.reducer';
 import {ItemSectionRendererInterface} from '../../types';
-import {VideoRendererReducer} from './video-renderer-reducer';
+import {VideoRendererReducer} from './video-renderer.reducer';
 import {
   ChannelByVideoInterface,
 } from '../../channel-by-video/channel-by-video-map';
-import {ShelfRendererReducer} from './shelf-renderer-reducer';
+import {ShelfRendererReducer} from './shelf-renderer.reducer';
 
 export class ItemSectionRendererReducer implements AbstractRendererReducer {
   private readonly renderer: ItemSectionRendererInterface;

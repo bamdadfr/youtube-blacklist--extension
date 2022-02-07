@@ -1,11 +1,11 @@
-import {AbstractRendererReducer} from './abstract-renderer-reducer';
+import {AbstractRendererReducer} from './abstract-renderer.reducer';
 import {ContinuationItemsInterface} from '../../types';
 import {
   ChannelByVideoInterface,
 } from '../../channel-by-video/channel-by-video-map';
-import {VideoRendererReducer} from './video-renderer-reducer';
-import {RichItemRendererReducer} from './rich-item-renderer-reducer';
-import {ItemSectionRendererReducer} from './item-section-renderer-reducer';
+import {VideoRendererReducer} from './video-renderer.reducer';
+import {RichItemRendererReducer} from './rich-item-renderer.reducer';
+import {ItemSectionRendererReducer} from './item-section-renderer.reducer';
 
 export class ContinuationItemsReducer implements AbstractRendererReducer {
   private readonly items: ContinuationItemsInterface[];

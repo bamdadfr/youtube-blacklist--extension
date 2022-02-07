@@ -1,19 +1,16 @@
-import {RichGridRendererReducer} from './renderers/rich-grid-renderer-reducer';
+import {AbstractReducerCreator} from './abstract-reducer.creator';
+import {RichGridRendererReducer} from './renderers/rich-grid-renderer.reducer';
 import {
   ItemSectionRendererReducer,
-} from './renderers/item-section-renderer-reducer';
+} from './renderers/item-section-renderer.reducer';
 import {
   TwoColumnWatchNextResultsReducer,
-} from './renderers/two-column-watch-next-results-reducer';
+} from './renderers/two-column-watch-next-results.reducer';
+import {
+  ChannelByVideoInterface,
+} from '../channel-by-video/channel-by-video-map';
 
-type videoId = string;
-type channelId = string;
-
-interface ReducerMap {
-  [key: videoId]: channelId;
-}
-
-export class StaticReducer {
+export class StaticReducerCreator extends AbstractReducerCreator {
   private readonly dict = {
     home: window
       ?.ytInitialData
@@ -53,8 +50,8 @@ export class StaticReducer {
     },
   };
 
-  public reduce(): ReducerMap {
-    const map: ReducerMap = {};
+  public reduce(): ChannelByVideoInterface {
+    const map: ChannelByVideoInterface = {};
 
     if (this.dict.home) {
       const r = new RichGridRendererReducer(this.dict.home);
