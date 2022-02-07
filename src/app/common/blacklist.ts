@@ -1,6 +1,6 @@
 import {State, StateKeys, StateType} from '../utils/state';
-import {ChannelByVideoMap} from '../channel-by-video/channel-by-video-map';
-import {VideoContainer} from '../video/video-container';
+import {ChannelByVideo} from './channel-by-video';
+import {Video} from './video';
 
 type ChannelId = string;
 type ChannelName = string;
@@ -39,25 +39,20 @@ export class Blacklist {
 
   public static async has(id: string): Promise<boolean> {
     const blacklist = await Blacklist.get();
-    const channelByVideo = await ChannelByVideoMap.get();
+    const channelByVideo = await ChannelByVideo.get();
 
     return typeof blacklist[channelByVideo[id]] !== 'undefined';
   }
 
-  public static traverse(containers: VideoContainer[]): void {
-    for (let i = 0; i < containers.length; i += 1) {
-      const container = containers[i];
-      const videos = container.videos;
+  public static traverse(videos: Video[]): void {
+    for (let i = 0; i < videos.length; i += 1) {
+      const video = videos[i];
 
-      for (let j = 0; j < videos.length; j += 1) {
-        const video = videos[j];
-
-        Blacklist.has(video.id).then((isBlacklisted) => {
-          if (isBlacklisted && !video.hidden) {
-            video.hide();
-          }
-        });
-      }
+      Blacklist.has(video.id).then((isBlacklisted) => {
+        if (isBlacklisted && !video.hidden) {
+          video.hide();
+        }
+      });
     }
   }
 }

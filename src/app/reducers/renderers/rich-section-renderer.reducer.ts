@@ -1,7 +1,7 @@
 import {RichItemRendererReducer} from './rich-item-renderer.reducer';
 import {
   ChannelByVideoInterface,
-} from '../../channel-by-video/channel-by-video-map';
+} from '../../common/channel-by-video';
 import {RichSectionRendererInterface} from '../../types';
 import {AbstractRendererReducer} from './abstract-renderer.reducer';
 

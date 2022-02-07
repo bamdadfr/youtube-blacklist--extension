@@ -1,5 +1,5 @@
 import {CHANNEL_BY_VIDEO_ID} from '../constants';
-import {PageProxy} from '../page/page-proxy';
+import {PageProxy} from '../proxies/page.proxy';
 import {Utils} from '../utils/utils';
 
 type VideoIdType = string;
@@ -9,7 +9,7 @@ export interface ChannelByVideoInterface {
   [key: VideoIdType]: ChannelIdType;
 }
 
-export class ChannelByVideoMap {
+export class ChannelByVideo {
   private static readonly id: string = CHANNEL_BY_VIDEO_ID;
 
   private static proxy: PageProxy = new PageProxy();

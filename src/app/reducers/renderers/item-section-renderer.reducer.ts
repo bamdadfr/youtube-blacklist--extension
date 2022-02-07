@@ -3,7 +3,7 @@ import {ItemSectionRendererInterface} from '../../types';
 import {VideoRendererReducer} from './video-renderer.reducer';
 import {
   ChannelByVideoInterface,
-} from '../../channel-by-video/channel-by-video-map';
+} from '../../common/channel-by-video';
 import {ShelfRendererReducer} from './shelf-renderer.reducer';
 
 export class ItemSectionRendererReducer implements AbstractRendererReducer {

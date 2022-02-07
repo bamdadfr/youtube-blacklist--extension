@@ -1,4 +1,4 @@
-import {BlacklistInterface} from '../blacklist/blacklist';
+import {BlacklistInterface} from '../common/blacklist';
 import {Browser} from './browser';
 import StorageChange = chrome.storage.StorageChange;
 

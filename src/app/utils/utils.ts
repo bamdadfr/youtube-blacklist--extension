@@ -53,4 +53,14 @@ export class Utils {
         });
     };
   }
+
+  public static getDeepestElement(parent: Element): Element {
+    let element = parent;
+
+    while (typeof element.children[0] !== 'undefined') {
+      element = element.children[0];
+    }
+
+    return element;
+  }
 }

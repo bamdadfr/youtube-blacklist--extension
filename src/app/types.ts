@@ -93,7 +93,7 @@ export interface TwoColumnWatchNextResultsInterface {
   };
 }
 
-// Youtube Initial Data, Contains the initial data within the Youtube page
+// Youtube Initial Data, Contains the initial data within the Youtube handlers
 export interface YoutubeInitialData {
   contents: {
     // home

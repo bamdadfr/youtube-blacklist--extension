@@ -4,7 +4,7 @@ import {RichItemRendererReducer} from './rich-item-renderer.reducer';
 import {RichSectionRendererReducer} from './rich-section-renderer.reducer';
 import {
   ChannelByVideoInterface,
-} from '../../channel-by-video/channel-by-video-map';
+} from '../../common/channel-by-video';
 
 export class RichGridRendererReducer implements AbstractRendererReducer {
   private readonly renderer: RichGridRendererInterface;

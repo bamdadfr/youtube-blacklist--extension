@@ -2,7 +2,7 @@ import {RichItemRendererInterface} from '../../types';
 import {VideoRendererReducer} from './video-renderer.reducer';
 import {
   ChannelByVideoInterface,
-} from '../../channel-by-video/channel-by-video-map';
+} from '../../common/channel-by-video';
 import {AbstractRendererReducer} from './abstract-renderer.reducer';
 
 export class RichItemRendererReducer implements AbstractRendererReducer {

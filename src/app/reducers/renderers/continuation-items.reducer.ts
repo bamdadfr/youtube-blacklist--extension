@@ -2,7 +2,7 @@ import {AbstractRendererReducer} from './abstract-renderer.reducer';
 import {ContinuationItemsInterface} from '../../types';
 import {
   ChannelByVideoInterface,
-} from '../../channel-by-video/channel-by-video-map';
+} from '../../common/channel-by-video';
 import {VideoRendererReducer} from './video-renderer.reducer';
 import {RichItemRendererReducer} from './rich-item-renderer.reducer';
 import {ItemSectionRendererReducer} from './item-section-renderer.reducer';

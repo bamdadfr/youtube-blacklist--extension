@@ -1,9 +1,7 @@
 import compare from 'just-compare';
 import {Utils} from '../utils/utils';
-import {PageUtils} from '../utils/page-utils';
-import {
-  ChannelByVideoInterface,
-} from '../channel-by-video/channel-by-video-map';
+import {PageUtils} from '../utils/page.utils';
+import {ChannelByVideoInterface} from '../common/channel-by-video';
 
 interface PostProps {
   id: string;
@@ -16,8 +14,8 @@ interface WriteProps {
 }
 
 /**
- * The page service allows to fetch DOM elements from the original page.
- * It can also write serialized data to the page to allow for cross-context communication between the extension and the page.
+ * The handlers service allows to fetch DOM elements from the original handlers.
+ * It can also write serialized data to the handlers to allow for cross-context communication between the extension and the handlers.
  */
 export class PageProxy {
   private static write({id, payload}: WriteProps) {

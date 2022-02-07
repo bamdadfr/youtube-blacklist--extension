@@ -1,4 +1,4 @@
-import {PageHandler} from './page/page-handler';
+import {PageHandler} from './handlers/page.handler';
 import {State} from './utils/state';
 
 /**

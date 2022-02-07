@@ -8,7 +8,7 @@ import {
 } from './renderers/two-column-watch-next-results.reducer';
 import {
   ChannelByVideoInterface,
-} from '../channel-by-video/channel-by-video-map';
+} from '../common/channel-by-video';
 
 export class StaticReducerCreator extends AbstractReducerCreator {
   private readonly dict = {
