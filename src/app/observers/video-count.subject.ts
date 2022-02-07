@@ -1,6 +1,5 @@
 import {AbstractSubject} from './abstract.subject';
-import {PageHandler as h} from '../handlers/page.handler';
-import {Pages as p} from '../utils/page.utils';
+import {PageHandler} from '../handlers/page.handler';
 
 /**
  * Counting videos present in the DOM.
@@ -8,8 +7,6 @@ import {Pages as p} from '../utils/page.utils';
  */
 export class VideoCountSubject extends AbstractSubject {
   private count = 0;
-
-  private query = `${h.queries.videos[p.home]}, ${h.queries.videos[p.search]}, ${h.queries.videos[p.watch]}`;
 
   public constructor() {
     super();
@@ -34,7 +31,7 @@ export class VideoCountSubject extends AbstractSubject {
   }
 
   public getVideoCount(): number {
-    const videos = document.querySelectorAll(this.query);
+    const videos = document.querySelectorAll(PageHandler.query);
     return videos.length;
   }
 }
