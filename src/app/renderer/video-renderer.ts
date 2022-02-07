@@ -1,21 +1,7 @@
+import {VideoRendererInterface} from '../types';
 import {
   ChannelByVideoInterface,
 } from '../channel-by-video/channel-by-video-map';
-
-export interface VideoRendererInterface {
-  videoId: string;
-  longBylineText: {
-    runs: Array<{
-      text: string;
-      navigationEndpoint: {
-        browseEndpoint: {
-          browseId: string;
-          canonicalBaseUrl: string;
-        };
-      };
-    }>;
-  };
-}
 
 /**
  * Video renderer

@@ -1,13 +1,49 @@
-import {VideoRendererInterface} from './renderer/video-renderer';
-import {ShelfRendererInterface} from './renderer/shelf-renderer';
-import {RichItemRendererInterface} from './renderer/rich-item-renderer';
-import {RichSectionRendererInterface} from './renderer/rich-section-renderer';
-
 /**
  * ------ Youtube ------
  */
 
 // Youtube data common interfaces
+export interface VideoRendererInterface {
+  videoId: string;
+  longBylineText: {
+    runs: Array<{
+      text: string;
+      navigationEndpoint: {
+        browseEndpoint: {
+          browseId: string;
+          canonicalBaseUrl: string;
+        };
+      };
+    }>;
+  };
+}
+
+export interface ShelfRendererInterface {
+  content: {
+    verticalListRenderer: {
+      items: Array<{
+        videoRenderer: VideoRendererInterface;
+      }>;
+    };
+  };
+}
+
+export interface RichItemRendererInterface {
+  content: {
+    videoRenderer: VideoRendererInterface;
+  };
+}
+
+export interface RichSectionRendererInterface {
+  content: {
+    richShelfRenderer: {
+      contents: Array<{
+        richItemRenderer: RichItemRendererInterface;
+      }>;
+    };
+  };
+}
+
 export interface ItemSectionRendererInterface {
   contents: Array<{
     videoRenderer: VideoRendererInterface;

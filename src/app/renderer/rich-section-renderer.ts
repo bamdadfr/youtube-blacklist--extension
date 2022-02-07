@@ -1,20 +1,8 @@
-import {
-  RichItemRenderer,
-  RichItemRendererInterface,
-} from './rich-item-renderer';
+import {RichItemRenderer} from './rich-item-renderer';
 import {
   ChannelByVideoInterface,
 } from '../channel-by-video/channel-by-video-map';
-
-export interface RichSectionRendererInterface {
-  content: {
-    richShelfRenderer: {
-      contents: Array<{
-        richItemRenderer: RichItemRendererInterface;
-      }>;
-    };
-  };
-}
+import {RichSectionRendererInterface} from '../types';
 
 export class RichSectionRenderer {
   private readonly contents: RichSectionRendererInterface['content']['richShelfRenderer']['contents'] = [];

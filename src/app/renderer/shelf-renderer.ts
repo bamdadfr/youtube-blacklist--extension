@@ -1,17 +1,8 @@
-import {VideoRenderer, VideoRendererInterface} from './video-renderer';
+import {VideoRenderer} from './video-renderer';
 import {
   ChannelByVideoInterface,
 } from '../channel-by-video/channel-by-video-map';
-
-export interface ShelfRendererInterface {
-  content: {
-    verticalListRenderer: {
-      items: Array<{
-        videoRenderer: VideoRendererInterface;
-      }>;
-    };
-  };
-}
+import {ShelfRendererInterface} from '../types';
 
 export class ShelfRenderer {
   private readonly items: ShelfRendererInterface['content']['verticalListRenderer']['items'];

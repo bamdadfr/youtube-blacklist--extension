@@ -1,13 +1,8 @@
-import {VideoRenderer, VideoRendererInterface} from './video-renderer';
+import {RichItemRendererInterface} from '../types';
+import {VideoRenderer} from './video-renderer';
 import {
   ChannelByVideoInterface,
 } from '../channel-by-video/channel-by-video-map';
-
-export interface RichItemRendererInterface {
-  content: {
-    videoRenderer: VideoRendererInterface;
-  };
-}
 
 export class RichItemRenderer {
   private props: RichItemRendererInterface;
