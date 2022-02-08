@@ -1,60 +1,22 @@
-<!--suppress HtmlRequiredAltAttribute, HtmlDeprecatedAttribute -->
+![release](https://img.shields.io/github/v/release/bamdadsabbagh/youtube-blacklist--extension)
+![license](https://img.shields.io/github/license/bamdadsabbagh/youtube-blacklist--extension)
+![maintainability](https://img.shields.io/codeclimate/maintainability/bamdadsabbagh/youtube-blacklist--extension)
+![coverage](https://img.shields.io/codeclimate/coverage/bamdadsabbagh/youtube-blacklist--extension)
+![snyk](https://img.shields.io/snyk/vulnerabilities/github/bamdadsabbagh/youtube-blacklist--extension)
 
-<p align="center">
-    <a href="https://github.com/bamdadsabbagh/youtube-blacklist--extension">
-        <img
-            width="150"
-            src="https://raw.githubusercontent.com/bamdadsabbagh/youtube-blacklist--extension/master/assets/icons/youtube-blacklist-icon.svg"
-        >
-    </a>
-</p>
+![chrome version](https://img.shields.io/chrome-web-store/v/okkcgfnnaecenbnggbmdmfhpkibmpilp?label=chrome)
+![chrome users](https://img.shields.io/chrome-web-store/users/okkcgfnnaecenbnggbmdmfhpkibmpilp)
+![chrome rating](https://img.shields.io/chrome-web-store/stars/okkcgfnnaecenbnggbmdmfhpkibmpilp)
 
-<p align="center">
-    YouTube Blacklist
-</p>
+![firefox version](https://img.shields.io/amo/v/youtube-blacklist?label=firefox)
+![firefox users](https://img.shields.io/amo/users/youtube-blacklist)
+![firefox rating](https://img.shields.io/amo/stars/youtube-blacklist?label=rating)
 
-<p align="center">
-    <a href="https://github.com/bamdadsabbagh/youtube-blacklist--extension">
-        <img src="https://img.shields.io/github/stars/bamdadsabbagh/youtube-blacklist--extension?label=git">
-    </a>
-    <img src="https://img.shields.io/github/license/bamdadsabbagh/youtube-blacklist--extension">
-</p>
+<img alt="logo" width="80px" src="https://raw.githubusercontent.com/bamdadsabbagh/youtube-blacklist--extension/master/assets/icons/youtube-blacklist-icon.svg">
 
-<p align="center">
-    <img src="https://img.shields.io/github/languages/count/bamdadsabbagh/youtube-blacklist--extension">
-    <img src="https://img.shields.io/github/languages/top/bamdadsabbagh/youtube-blacklist--extension">
-</p>
-
-<p align="center">
-    <img src="https://img.shields.io/github/v/release/bamdadsabbagh/youtube-blacklist--extension">
-    <img src="https://api.codeclimate.com/v1/badges/16e87c20e9e00562ff52/maintainability">
-</p>
-
-<p align="center">
-    <img src="https://img.shields.io/david/bamdadsabbagh/youtube-blacklist--extension">
-    <img src="https://img.shields.io/david/dev/bamdadsabbagh/youtube-blacklist--extension">
-    <img src="https://img.shields.io/snyk/vulnerabilities/github/bamdadsabbagh/youtube-blacklist--extension">
-</p>
-
-<p align=center>
-  <img src="https://img.shields.io/chrome-web-store/v/okkcgfnnaecenbnggbmdmfhpkibmpilp">
-  <img src="https://img.shields.io/chrome-web-store/stars/okkcgfnnaecenbnggbmdmfhpkibmpilp">
-  <img src="https://img.shields.io/chrome-web-store/users/okkcgfnnaecenbnggbmdmfhpkibmpilp">
-</p>
-
-<p align="center">
-    <img src="https://img.shields.io/amo/v/youtube-blacklist">
-    <img src="https://img.shields.io/amo/stars/youtube-blacklist">
-    <img src="https://img.shields.io/amo/users/youtube-blacklist">
-</p>
-
-<p align="center">
-    <img src="https://img.shields.io/badge/ci-github--actions-yellowgreen">
-</p>
+YouTube Blacklist
 
 ![](https://raw.githubusercontent.com/bamdadsabbagh/youtube-blacklist--extension/master/assets/screenshots/screenshot-01.png)
-
-## 📖 Context
 
 Add YouTube channels to your blacklist.
 
@@ -64,6 +26,30 @@ Import and export with JSON.
 
 ## 🚀 Download
 
-[<img height=30 src="https://icons.iconarchive.com/icons/cornmanthe3rd/plex/256/Internet-chrome-icon.png"> **Chrome**](https://chrome.google.com/webstore/detail/youtube-blacklist/okkcgfnnaecenbnggbmdmfhpkibmpilp)
+[<img height=30 src="https://icons.iconarchive.com/icons/cornmanthe3rd/plex/256/Internet-chrome-icon.png"> **
+Chrome**](https://chrome.google.com/webstore/detail/youtube-blacklist/okkcgfnnaecenbnggbmdmfhpkibmpilp)
 
-[<img height=30 src="https://icons.iconarchive.com/icons/cornmanthe3rd/plex/256/Internet-firefox-icon.png"> **Firefox**](https://addons.mozilla.org/firefox/addon/youtube-blacklist/)
+[<img height=30 src="https://icons.iconarchive.com/icons/cornmanthe3rd/plex/256/Internet-firefox-icon.png"> **
+Firefox**](https://addons.mozilla.org/firefox/addon/youtube-blacklist/)
+
+## 🖊 Contribute
+
+### Development environment
+
+outputs in `dist`
+
+```bash
+# firefox
+yarn dev:firefox
+
+# chrome
+yarn dev:chrome
+```
+
+### Build environment
+
+outputs in `packages`
+
+```bash
+yarn build
+```
