@@ -1,12 +1,12 @@
-import {ChannelByVideoMap} from '../app/maps/channel-by-video.map';
-import {DynamicInterceptor} from '../app/interceptors/dynamic.interceptor';
-import {Parser, ParserCollection} from '../app/common/parser';
-import {Reducer} from '../app/common/reducer';
+import {ChannelByVideoMap} from './maps/channel-by-video.map';
+import {DynamicInterceptor} from './interceptors/dynamic.interceptor';
+import {Parser, ParserCollection} from './common/parser';
+import {Reducer} from './common/reducer';
 
 /**
  * Injects all pages
  */
-export async function injectAll(): Promise<void> {
+export async function inject(): Promise<void> {
   try {
     const keysToMatch = ['videoRenderer', 'compactVideoRenderer'];
 
@@ -32,4 +32,4 @@ export async function injectAll(): Promise<void> {
   }
 }
 
-injectAll().then();
+inject().then();

@@ -15,7 +15,7 @@ module.exports = {
     'scripts/content': './src/app/content.ts',
     'scripts/background': './src/app/background.ts',
     'scripts/popup': './src/app/popup.ts',
-    'injects/all': './src/injects/all.ts',
+    'scripts/inject': './src/app/inject.ts',
   },
   'output': {
     'publicPath': '',
