@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/bamdadsabbagh/youtube-blacklist--extension/compare/v1.2.0...v1.2.1) (2022-02-08)
+
+
+### Bug Fixes
+
+* **Reducers:** Add safety data check before operations ([03f6412](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/03f641220e4b27e197b5895bcab6ba4297f2fc2f))
+
 # [1.2.0](https://github.com/bamdadsabbagh/youtube-blacklist--extension/compare/v1.1.1...v1.2.0) (2022-02-08)
 
 
