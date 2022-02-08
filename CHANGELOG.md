@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/bamdadsabbagh/youtube-blacklist--extension/compare/v1.1.0...v1.1.1) (2022-02-08)
+
+
+### Performance Improvements
+
+* **Blacklist:** Use same code style for imperative operations ([8a70a20](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/8a70a20242d7ae5ebac751f3e6b7ac5c8eedfcb1))
+* **PageHandler:** Improve performance (imperative loops, spread operations) ([dcac8a2](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/dcac8a2e35aff64050da412b782f095027a6d668))
+* **Reducers:** Improve performance of iterations  with imperative loops ([bb184bf](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/bb184bfb6c8db27fc7e90793202203e682fe106b))
+
 # [1.1.0](https://github.com/bamdadsabbagh/youtube-blacklist--extension/compare/v1.0.33...v1.1.0) (2022-02-08)
 
 
