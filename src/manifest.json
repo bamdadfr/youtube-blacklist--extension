@@ -35,7 +35,7 @@
     ]
   },
   "web_accessible_resources": [
-    "injects/all.js"
+    "scripts/inject.js"
   ],
   "permissions": [
     "storage",

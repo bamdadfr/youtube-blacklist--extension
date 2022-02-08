@@ -4,6 +4,7 @@ import {Video} from '../common/video';
 import {LocationSubject} from '../observers/location.subject';
 import {AbstractObserver} from '../observers/abstract.observer';
 import {VideoCountSubject} from '../observers/video-count.subject';
+import {INJECT_BUILD_PATH} from '../constants';
 
 export class PageHandler implements AbstractObserver {
   public static query = 'ytd-rich-item-renderer, ytd-video-renderer, ytd-compact-video-renderer';
@@ -11,7 +12,7 @@ export class PageHandler implements AbstractObserver {
   private videos: Video[] = [];
 
   public constructor() {
-    PageUtils.injectScript('injects/all.js', 'body');
+    PageUtils.injectScript(INJECT_BUILD_PATH, 'body');
     this.update();
   }
 
