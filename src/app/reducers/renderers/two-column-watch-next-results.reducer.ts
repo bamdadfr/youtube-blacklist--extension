@@ -12,10 +12,12 @@ export class TwoColumnWatchNextResultsReducer implements AbstractRendererReducer
   }
 
   public reduce(): ChannelByVideoInterface {
-    return this.results.reduce((acc, {
-      compactVideoRenderer,
-      itemSectionRenderer,
-    }) => {
+    const data = this.results;
+    const acc = {};
+
+    for (let i = 0; i < data.length; ++i) {
+      const {compactVideoRenderer, itemSectionRenderer} = data[i];
+
       if (compactVideoRenderer) {
         const r = new VideoRendererReducer(compactVideoRenderer);
         Object.assign(acc, r.reduce());
@@ -25,8 +27,8 @@ export class TwoColumnWatchNextResultsReducer implements AbstractRendererReducer
         const r = new ItemSectionRendererReducer(itemSectionRenderer);
         Object.assign(acc, r.reduce());
       }
+    }
 
-      return acc;
-    }, {});
+    return acc;
   }
 }

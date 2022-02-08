@@ -12,11 +12,12 @@ export class ItemSectionRendererReducer implements AbstractRendererReducer {
   }
 
   public reduce(): ChannelByVideoInterface {
-    return this.renderer.contents.reduce((acc, {
-      videoRenderer,
-      compactVideoRenderer,
-      shelfRenderer,
-    }) => {
+    const data = this.renderer.contents;
+    const acc = {};
+
+    for (let i = 0; i < data.length; ++i) {
+      const {videoRenderer, compactVideoRenderer, shelfRenderer} = data[i];
+
       if (videoRenderer) {
         const r = new VideoRendererReducer(videoRenderer);
         Object.assign(acc, r.reduce());
@@ -31,8 +32,8 @@ export class ItemSectionRendererReducer implements AbstractRendererReducer {
         const r = new ShelfRendererReducer(shelfRenderer);
         Object.assign(acc, r.reduce());
       }
+    }
 
-      return acc;
-    }, {});
+    return acc;
   }
 }
