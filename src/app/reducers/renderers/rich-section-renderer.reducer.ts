@@ -4,15 +4,19 @@ import {RichSectionRendererInterface} from '../../types';
 import {AbstractRendererReducer} from './abstract-renderer.reducer';
 
 export class RichSectionRendererReducer implements AbstractRendererReducer {
-  private readonly renderer: RichSectionRendererInterface['content']['richShelfRenderer'];
+  private readonly data: RichSectionRendererInterface;
 
   public constructor(data: RichSectionRendererInterface) {
-    this.renderer = data.content.richShelfRenderer;
+    this.data = data;
   }
 
   public reduce(): ChannelByVideoInterface {
-    const data = this.renderer.contents;
     const acc = {};
+    const data = this?.data?.content?.richShelfRenderer?.contents;
+
+    if (!data) {
+      return acc;
+    }
 
     for (let i = 0; i < data.length; ++i) {
       const {richItemRenderer} = data[i];

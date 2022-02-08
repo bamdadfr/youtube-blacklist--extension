@@ -11,8 +11,12 @@ export class ExpandedShelfContentsRendererReducer implements AbstractRendererRed
   }
 
   public reduce(): ChannelByVideoInterface {
-    const data = this.renderer.items;
     const acc = {};
+    const data = this?.renderer?.items;
+
+    if (!data) {
+      return acc;
+    }
 
     for (let i = 0; i < data.length; ++i) {
       const {videoRenderer} = data[i];

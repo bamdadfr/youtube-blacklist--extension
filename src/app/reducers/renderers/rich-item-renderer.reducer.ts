@@ -4,14 +4,20 @@ import {ChannelByVideoInterface} from '../../maps/channel-by-video.map';
 import {AbstractRendererReducer} from './abstract-renderer.reducer';
 
 export class RichItemRendererReducer implements AbstractRendererReducer {
-  private readonly renderer: RichItemRendererInterface['content']['videoRenderer'];
+  private readonly data: RichItemRendererInterface;
 
   public constructor(data: RichItemRendererInterface) {
-    this.renderer = data.content.videoRenderer;
+    this.data = data;
   }
 
   public reduce(): ChannelByVideoInterface {
-    const r = new VideoRendererReducer(this.renderer);
+    const data = this?.data?.content?.videoRenderer;
+
+    if (!data) {
+      return {};
+    }
+
+    const r = new VideoRendererReducer(data);
     return r.reduce();
   }
 }

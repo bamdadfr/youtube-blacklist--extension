@@ -7,19 +7,24 @@ import {
 } from './expanded-shelf-contents-renderer.reducer';
 
 export class ShelfRendererReducer implements AbstractRendererReducer {
-  private readonly renderer: ShelfRendererInterface;
+  private readonly data: ShelfRendererInterface;
 
   public constructor(data: ShelfRendererInterface) {
-    this.renderer = data;
+    this.data = data;
   }
 
   public reduce(): ChannelByVideoInterface {
     const acc = {};
+    const data = this?.data?.content;
+
+    if (!data) {
+      return acc;
+    }
 
     const {
       verticalListRenderer,
       expandedShelfContentsRenderer,
-    } = this.renderer.content;
+    } = data;
 
     if (verticalListRenderer) {
       const r = new VerticalListRendererReducer(verticalListRenderer);
