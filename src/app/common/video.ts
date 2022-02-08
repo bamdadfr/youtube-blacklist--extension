@@ -20,10 +20,6 @@ export class Video {
   }
 
   public hide(): void {
-    if (this.hidden) {
-      return;
-    }
-
     this.container.style.display = 'none';
     this.hidden = true;
 

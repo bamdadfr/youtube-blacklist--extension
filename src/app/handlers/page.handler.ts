@@ -18,7 +18,7 @@ export class PageHandler implements AbstractObserver {
   public watch(): void {
     // blacklist changes
     Blacklist.onNew(() => {
-      Blacklist.traverse(this.videos);
+      this.update();
     });
 
     const location = new LocationSubject();
@@ -34,7 +34,7 @@ export class PageHandler implements AbstractObserver {
     }
 
     this.addVideos();
-    Blacklist.traverse(this.videos);
+    Blacklist.traverse(this.videos).then();
   }
 
   private getVideoContainers(): Element[] {

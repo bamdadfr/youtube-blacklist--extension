@@ -37,22 +37,24 @@ export class Blacklist {
     });
   }
 
-  public static async has(id: string): Promise<boolean> {
-    const blacklist = await Blacklist.get();
+  public static async traverse(videos: Video[]): Promise<void> {
+    const blacklist = await this.get();
     const channelByVideo = await ChannelByVideoMap.get();
 
-    return typeof blacklist[channelByVideo[id]] !== 'undefined';
-  }
-
-  public static traverse(videos: Video[]): void {
     for (let i = 0; i < videos.length; i += 1) {
       const video = videos[i];
 
-      Blacklist.has(video.id).then((isBlacklisted) => {
-        if (isBlacklisted && !video.hidden) {
-          video.hide();
-        }
-      });
+      if (video.hidden) {
+        continue;
+      }
+
+      const isBlacklisted = typeof blacklist[channelByVideo[video.id]] !== 'undefined';
+
+      if (!isBlacklisted) {
+        continue;
+      }
+
+      video.hide();
     }
   }
 }
