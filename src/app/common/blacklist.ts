@@ -41,7 +41,7 @@ export class Blacklist {
     const blacklist = await this.get();
     const channelByVideo = await ChannelByVideoMap.get();
 
-    for (let i = 0; i < videos.length; i += 1) {
+    for (let i = 0; i < videos.length; ++i) {
       const video = videos[i];
 
       if (video.hidden) {

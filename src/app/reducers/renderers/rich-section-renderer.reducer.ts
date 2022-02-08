@@ -11,14 +11,18 @@ export class RichSectionRendererReducer implements AbstractRendererReducer {
   }
 
   public reduce(): ChannelByVideoInterface {
-    if (!this.renderer) {
-      return {};
+    const data = this.renderer.contents;
+    const acc = {};
+
+    for (let i = 0; i < data.length; ++i) {
+      const {richItemRenderer} = data[i];
+
+      if (richItemRenderer) {
+        const r = new RichItemRendererReducer(richItemRenderer);
+        Object.assign(acc, r.reduce());
+      }
     }
 
-    return this.renderer.contents.reduce((acc, {richItemRenderer}) => {
-      const r = new RichItemRendererReducer(richItemRenderer);
-      Object.assign(acc, r.reduce());
-      return acc;
-    }, {});
+    return acc;
   }
 }

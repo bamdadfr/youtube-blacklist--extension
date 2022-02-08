@@ -12,10 +12,12 @@ export class RichGridRendererReducer implements AbstractRendererReducer {
   }
 
   public reduce(): ChannelByVideoInterface {
-    return this.renderer.contents.reduce((acc, {
-      richItemRenderer,
-      richSectionRenderer,
-    }) => {
+    const data = this.renderer.contents;
+    const acc = {};
+
+    for (let i = 0; i < data.length; ++i) {
+      const {richItemRenderer, richSectionRenderer} = data[i];
+
       if (richItemRenderer) {
         const r = new RichItemRendererReducer(richItemRenderer);
         Object.assign(acc, r.reduce());
@@ -25,8 +27,8 @@ export class RichGridRendererReducer implements AbstractRendererReducer {
         const r = new RichSectionRendererReducer(richSectionRenderer);
         Object.assign(acc, r.reduce());
       }
+    }
 
-      return acc;
-    }, {});
+    return acc;
   }
 }

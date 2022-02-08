@@ -11,16 +11,18 @@ export class ShelfRendererReducer implements AbstractRendererReducer {
   }
 
   public reduce(): ChannelByVideoInterface {
-    if (!this.renderer) {
-      return {};
+    const data = this.renderer.items;
+    const acc = {};
+
+    for (let i = 0; i < data.length; ++i) {
+      const {videoRenderer} = data[i];
+
+      if (videoRenderer) {
+        const r = new VideoRendererReducer(videoRenderer);
+        Object.assign(acc, r.reduce());
+      }
     }
 
-    return this.renderer.items.reduce((acc, {
-      videoRenderer,
-    }) => {
-      const r = new VideoRendererReducer(videoRenderer);
-      Object.assign(acc, r.reduce());
-      return acc;
-    }, {});
+    return acc;
   }
 }

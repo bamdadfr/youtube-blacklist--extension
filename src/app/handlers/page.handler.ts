@@ -15,6 +15,11 @@ export class PageHandler implements AbstractObserver {
     this.update();
   }
 
+  private static getVideoContainers(): Element[] {
+    const containers = document.querySelectorAll(PageHandler.query);
+    return Array.from(containers);
+  }
+
   public watch(): void {
     // blacklist changes
     Blacklist.onNew(() => {
@@ -37,35 +42,33 @@ export class PageHandler implements AbstractObserver {
     Blacklist.traverse(this.videos).then();
   }
 
-  private getVideoContainers(): Element[] {
-    const array: Element[] = [];
-    const containers = document.querySelectorAll(PageHandler.query);
-
-    Array.from(containers).forEach((container) => {
-      array.push(container);
-    });
-
-    return array;
-  }
-
   private addVideos() {
-    const containers = this.getVideoContainers();
-    const payload: Video[] = [];
+    const containers = PageHandler.getVideoContainers();
+    let newVideos: Video[] = [];
 
     if (this.videos.length === 0) {
       // init
-      containers.forEach((container) => {
-        payload.push(new Video(container as HTMLElement));
-      });
+      for (let i = 0; i < containers.length; ++i) {
+        newVideos = [
+          ...newVideos,
+          new Video(containers[i] as HTMLElement),
+        ];
+      }
     } else {
       // add only new videos
       const newContainers = containers.filter((container) => !this.videos.some((video) => video.container.isSameNode(container)));
 
-      newContainers.forEach((newContainer) => {
-        payload.push(new Video(newContainer as HTMLElement));
-      });
+      for (let i = 0; i < newContainers.length; ++i) {
+        newVideos = [
+          ...newVideos,
+          new Video(newContainers[i] as HTMLElement),
+        ];
+      }
     }
 
-    this.videos.push(...payload);
+    this.videos = [
+      ...this.videos,
+      ...newVideos,
+    ];
   }
 }

@@ -13,11 +13,16 @@ export class ContinuationItemsReducer implements AbstractRendererReducer {
   }
 
   public reduce(): ChannelByVideoInterface {
-    return this.items.reduce((acc, {
-      richItemRenderer,
-      itemSectionRenderer,
-      compactVideoRenderer,
-    }) => {
+    const data = this.items;
+    const acc = {};
+
+    for (let i = 0; i < data.length; ++i) {
+      const {
+        richItemRenderer,
+        itemSectionRenderer,
+        compactVideoRenderer,
+      } = data[i];
+
       if (richItemRenderer) {
         const r = new RichItemRendererReducer(richItemRenderer);
         Object.assign(acc, r.reduce());
@@ -32,8 +37,8 @@ export class ContinuationItemsReducer implements AbstractRendererReducer {
         const r = new VideoRendererReducer(compactVideoRenderer);
         Object.assign(acc, r.reduce());
       }
+    }
 
-      return acc;
-    }, {});
+    return acc;
   }
 }
