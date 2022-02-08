@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/bamdadsabbagh/youtube-blacklist--extension/compare/v1.1.1...v1.2.0) (2022-02-08)
+
+
+### Features
+
+* Add `/explore` page handling ([19386a1](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/19386a14760a94998aa561b6ad7e7e250c2b04df)), closes [#44](https://github.com/bamdadsabbagh/youtube-blacklist--extension/issues/44)
+
 ## [1.1.1](https://github.com/bamdadsabbagh/youtube-blacklist--extension/compare/v1.1.0...v1.1.1) (2022-02-08)
 
 
