@@ -1,3 +1,33 @@
+# [1.1.0](https://github.com/bamdadsabbagh/youtube-blacklist--extension/compare/v1.0.33...v1.1.0) (2022-02-08)
+
+
+### Bug Fixes
+
+* **DynamicInterceptor:** Return the `DynamicReducer` object ([ef46a34](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/ef46a34c5fd0d1a60cc5b3a4789a08f9347b79ef))
+* **PageHandler:** Create video objects after checks ([16ea3b5](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/16ea3b574d3bb0ba8502d47d1eaa7e5c64e82338))
+* **PageHandler:** Traverse all containers when new containers are added (can be improved) + Rename and extract `.traverse()` method to `Blacklist` class + Fix typings (elements vs nodes) ([8471bfe](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/8471bfe0957876a79c16e79022c6160c6fd137cc))
+* **Utils:** Clone only responses with status code === 200 ([6df0f2c](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/6df0f2c1bfc4bb22cf113f64fba446ef35c04e1e))
+
+
+### Features
+
+* Rewrite in TypeScript + Adopt OOP style + Use strategy design pattern for parsers and renderers (a lot of duplicated code ATM) ([3d48d91](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/3d48d9180a47c065dfbda1c0e83e270222c8c302)), closes [#30](https://github.com/bamdadsabbagh/youtube-blacklist--extension/issues/30)
+* **VideoCountSubject:** Add observable video count to notify for new video objects arrival in the DOM ([0851062](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/085106208d90006fc2349b3b71d072c7d1545671))
+
+
+### Performance Improvements
+
+* **Blacklist:** Improve traversal by taking long queries out of iteration loop + Move conditionals ([b3875aa](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/b3875aad55d2dbacd36616c7f46c23479f23bbbc))
+* **ChannelByVideo:** Move proxy code into map object + Remove unused files and misc ([d8f188c](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/d8f188c458c1ddcf855164180e7f4705bea36036))
+* **Dependencies:** Update to latest ([4eae509](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/4eae5099a867cc8cbc034f11a7f9439f7a2fe52a))
+* **Dependencies:** Upgrade to latest ([74984db](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/74984db5ebaaf1b66a86ddda0ffd2994fc0c870b))
+* **Location:** Instead of passing lambda functions as callbacks, pass the whole object for reference and notification from observer pattern ([5c2f44c](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/5c2f44c8895f39ff893830545d9a33285e92c7b3))
+* **Observers:** Make a parent abstract `AbstractSubject` to extend concrete subjects from ([53a9e8f](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/53a9e8fe1f594a36af0e87e981eb55d7395f7879))
+* **PageHandler:** Remove page specific query as it is not needed anymore ([265a8e5](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/265a8e563b9c72c4c8e6e3dff62d294f70e9b742))
+* **PageHandler:** Remove the `VideoContainer` abstraction + Rewrite `Video` and `Channel` objects + Move files around and rename ([9398bff](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/9398bff4b25be95ce544284be39676eecfec9c2c))
+* **Reducers:** Extract all reducer code to their own file ([7c013de](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/7c013dee13d067ed827cf27f0133dc8f3735dc71))
+* **Reducers:** Reflect factory method pattern in filenames and interfaces ([51a9e99](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/51a9e996071679146f71f20974a93f37fd7cf191))
+
 ## [1.0.33](https://github.com/bamdadsabbagh/youtube-blacklist--extension/compare/v1.0.32...v1.0.33) (2022-02-07)
 
 
