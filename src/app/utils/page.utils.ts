@@ -1,9 +1,10 @@
 import {Browser} from './browser';
 
 export enum Pages {
-  'home' = 'home',
-  'search' = 'search',
-  'watch' = 'watch',
+  home = 'home',
+  search = 'search',
+  watch = 'watch',
+  explore = 'explore'
 }
 
 export class PageUtils {
@@ -19,6 +20,10 @@ export class PageUtils {
     return /youtube(\.com)?\/watch\?v=/.exec(window.location.href) !== null;
   }
 
+  public static get isExplore(): boolean {
+    return /youtube(\.com)?\/feed\/explore/.exec(window.location.href) !== null;
+  }
+
   public static get currentPage(): Pages {
     if (this.isHome) {
       return Pages.home;
@@ -26,6 +31,8 @@ export class PageUtils {
       return Pages.search;
     } else if (this.isWatch) {
       return Pages.watch;
+    } else if (this.isExplore) {
+      return Pages.explore;
     }
   }
 

@@ -1,26 +1,34 @@
-import {VideoRendererReducer} from './video-renderer.reducer';
 import {ChannelByVideoInterface} from '../../maps/channel-by-video.map';
 import {ShelfRendererInterface} from '../../types';
 import {AbstractRendererReducer} from './abstract-renderer.reducer';
+import {VerticalListRendererReducer} from './vertical-list-renderer.reducer';
+import {
+  ExpandedShelfContentsRendererReducer,
+} from './expanded-shelf-contents-renderer.reducer';
 
 export class ShelfRendererReducer implements AbstractRendererReducer {
-  private readonly renderer: ShelfRendererInterface['content']['verticalListRenderer'];
+  private readonly renderer: ShelfRendererInterface;
 
   public constructor(data: ShelfRendererInterface) {
-    this.renderer = data.content.verticalListRenderer;
+    this.renderer = data;
   }
 
   public reduce(): ChannelByVideoInterface {
-    const data = this.renderer.items;
     const acc = {};
 
-    for (let i = 0; i < data.length; ++i) {
-      const {videoRenderer} = data[i];
+    const {
+      verticalListRenderer,
+      expandedShelfContentsRenderer,
+    } = this.renderer.content;
 
-      if (videoRenderer) {
-        const r = new VideoRendererReducer(videoRenderer);
-        Object.assign(acc, r.reduce());
-      }
+    if (verticalListRenderer) {
+      const r = new VerticalListRendererReducer(verticalListRenderer);
+      Object.assign(acc, r.reduce());
+    }
+
+    if (expandedShelfContentsRenderer) {
+      const r = new ExpandedShelfContentsRendererReducer(expandedShelfContentsRenderer);
+      Object.assign(acc, r.reduce());
     }
 
     return acc;

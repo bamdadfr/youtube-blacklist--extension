@@ -7,6 +7,7 @@ import {
   TwoColumnWatchNextResultsReducer,
 } from './renderers/two-column-watch-next-results.reducer';
 import {ChannelByVideoInterface} from '../maps/channel-by-video.map';
+import {ShelfRendererReducer} from './renderers/shelf-renderer.reducer';
 
 export class StaticReducerCreator extends AbstractReducerCreator {
   private readonly dict = {
@@ -33,9 +34,6 @@ export class StaticReducerCreator extends AbstractReducerCreator {
         ?.ytInitialData
         ?.contents
         ?.twoColumnWatchNextResults,
-      // ?.secondaryResults
-      // ?.secondaryResults
-      // ?.results,
       loggedIn: window
         ?.ytInitialData
         ?.contents
@@ -46,6 +44,21 @@ export class StaticReducerCreator extends AbstractReducerCreator {
         ?.[1]
         ?.itemSectionRenderer,
     },
+    explore: window
+      ?.ytInitialData
+      ?.contents
+      ?.twoColumnBrowseResultsRenderer
+      ?.tabs
+      ?.[0]
+      ?.tabRenderer
+      ?.content
+      ?.sectionListRenderer
+      ?.contents
+      ?.[1]
+      ?.itemSectionRenderer
+      ?.contents
+      ?.[0]
+      ?.shelfRenderer,
   };
 
   public reduce(): ChannelByVideoInterface {
@@ -68,6 +81,11 @@ export class StaticReducerCreator extends AbstractReducerCreator {
 
     if (this.dict.watch.loggedIn) {
       const r = new ItemSectionRendererReducer(this.dict.watch.loggedIn);
+      Object.assign(map, r.reduce());
+    }
+
+    if (this.dict.explore) {
+      const r = new ShelfRendererReducer(this.dict.explore);
       Object.assign(map, r.reduce());
     }
 

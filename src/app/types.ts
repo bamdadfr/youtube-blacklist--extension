@@ -24,13 +24,22 @@ export interface RichItemRendererInterface {
   };
 }
 
+export interface VerticalListRenderInterface {
+  items: Array<{
+    videoRenderer: VideoRendererInterface;
+  }>;
+}
+
+export interface ExpandedShelfContentsRendererInterface {
+  items: Array<{
+    videoRenderer: VideoRendererInterface;
+  }>;
+}
+
 export interface ShelfRendererInterface {
   content: {
-    verticalListRenderer: {
-      items: Array<{
-        videoRenderer: VideoRendererInterface;
-      }>;
-    };
+    verticalListRenderer: VerticalListRenderInterface;
+    expandedShelfContentsRenderer: ExpandedShelfContentsRendererInterface;
   };
 }
 
@@ -60,11 +69,18 @@ export interface RichGridRendererInterface {
   }>;
 }
 
+export interface SectionListRendererInterface {
+  contents: Array<{
+    itemSectionRenderer: ItemSectionRendererInterface;
+  }>;
+}
+
 export interface TwoColumnBrowseResultsRendererInterface {
   tabs: Array<{
     tabRenderer: {
       content: {
         richGridRenderer: RichGridRendererInterface;
+        sectionListRenderer: SectionListRendererInterface;
       };
     };
   }>;
@@ -72,11 +88,7 @@ export interface TwoColumnBrowseResultsRendererInterface {
 
 interface TwoColumnSearchResultsRendererInterface {
   primaryContents: {
-    sectionListRenderer: {
-      contents: Array<{
-        itemSectionRenderer: ItemSectionRendererInterface;
-      }>;
-    };
+    sectionListRenderer: SectionListRendererInterface;
   };
 }
 
