@@ -26,11 +26,9 @@ Import and export with JSON.
 
 ## 🚀 Download
 
-[<img height=30 src="https://icons.iconarchive.com/icons/cornmanthe3rd/plex/256/Internet-chrome-icon.png"> **
-Chrome**](https://chrome.google.com/webstore/detail/youtube-blacklist/okkcgfnnaecenbnggbmdmfhpkibmpilp)
+[<img height=30 src="https://icons.iconarchive.com/icons/cornmanthe3rd/plex/256/Internet-chrome-icon.png"> **Chrome**](https://chrome.google.com/webstore/detail/youtube-blacklist/okkcgfnnaecenbnggbmdmfhpkibmpilp)
 
-[<img height=30 src="https://icons.iconarchive.com/icons/cornmanthe3rd/plex/256/Internet-firefox-icon.png"> **
-Firefox**](https://addons.mozilla.org/firefox/addon/youtube-blacklist/)
+[<img height=30 src="https://icons.iconarchive.com/icons/cornmanthe3rd/plex/256/Internet-firefox-icon.png"> **Firefox**](https://addons.mozilla.org/firefox/addon/youtube-blacklist/)
 
 ## 🖊 Contribute
 
