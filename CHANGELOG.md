@@ -1,3 +1,11 @@
+## [1.2.2](https://github.com/bamdadsabbagh/youtube-blacklist--extension/compare/v1.2.1...v1.2.2) (2022-02-08)
+
+
+### Performance Improvements
+
+* **Inject:** Relocate file in `app/` ([835762e](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/835762efc5b8f193019e5ed68adefe95163c334c))
+* **Reducer:** Loop through the data objects given by YouTube and iterate through, parsing the `videoRenderer` and `compactVideoRenderer` components + Create a global reducer for those components + Delete **absolute** reducers ([abfd1a5](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/abfd1a5b34e61b5a1e7838d80876291602ccad37))
+
 ## [1.2.1](https://github.com/bamdadsabbagh/youtube-blacklist--extension/compare/v1.2.0...v1.2.1) (2022-02-08)
 
 
