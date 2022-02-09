@@ -11,21 +11,21 @@ export async function inject(): Promise<void> {
     const keysToMatch = ['videoRenderer', 'compactVideoRenderer'];
 
     // static
-    const parser = new Parser(window.ytInitialData.contents as ParserCollection, keysToMatch);
-    const results = parser.parse();
-    const reducer = new Reducer(results);
-    const map = reducer.reduce();
+    const staticParser = new Parser(window.ytInitialData.contents as ParserCollection, keysToMatch);
+    const staticResults = staticParser.parse();
+    const staticReducer = new Reducer(staticResults);
+    const staticMap = staticReducer.reduce();
 
-    ChannelByVideoMap.insertMany(map);
+    ChannelByVideoMap.insertMany(staticMap);
 
     // dynamic
     new DynamicInterceptor((data) => {
-      const parser = new Parser(data as ParserCollection, keysToMatch);
-      const results = parser.parse();
-      const reducer = new Reducer(results);
-      const map = reducer.reduce();
+      const dynamicParser = new Parser(data as ParserCollection, keysToMatch);
+      const dynamicResults = dynamicParser.parse();
+      const dynamicReducer = new Reducer(dynamicResults);
+      const dynamicMap = dynamicReducer.reduce();
 
-      ChannelByVideoMap.insertMany(map);
+      ChannelByVideoMap.insertMany(dynamicMap);
     });
   } catch (e) {
     throw new Error(e);

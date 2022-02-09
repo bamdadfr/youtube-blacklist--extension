@@ -19,8 +19,8 @@ export class Reducer {
       return acc;
     }
 
-    for (let i = 0; i < this.data.length; ++i) {
-      const {videoRenderer, compactVideoRenderer} = this.data[i];
+    for (const item of this.data) {
+      const {videoRenderer, compactVideoRenderer} = item;
 
       let video;
       if (videoRenderer) {

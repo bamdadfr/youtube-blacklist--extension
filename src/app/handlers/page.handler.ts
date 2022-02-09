@@ -49,20 +49,20 @@ export class PageHandler implements AbstractObserver {
 
     if (this.videos.length === 0) {
       // init
-      for (let i = 0; i < containers.length; ++i) {
+      for (const container of containers) {
         newVideos = [
           ...newVideos,
-          new Video(containers[i] as HTMLElement),
+          new Video(container as HTMLElement),
         ];
       }
     } else {
       // add only new videos
       const newContainers = containers.filter((container) => !this.videos.some((video) => video.container.isSameNode(container)));
 
-      for (let i = 0; i < newContainers.length; ++i) {
+      for (const newContainer of newContainers) {
         newVideos = [
           ...newVideos,
-          new Video(newContainers[i] as HTMLElement),
+          new Video(newContainer as HTMLElement),
         ];
       }
     }

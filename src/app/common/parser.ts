@@ -23,8 +23,7 @@ export class Parser {
     if (obj.constructor.name === 'Object') {
       const keys = Object.keys(obj);
 
-      for (let i = 0; i < keys.length; ++i) {
-        const key = keys[i];
+      for (const key of keys) {
         const value = (<ParserCollection>obj)[key];
 
         if (this.keysToMatch.includes(key)) {
@@ -32,26 +31,27 @@ export class Parser {
             ...this.results,
             obj as unknown as VideoEntity,
           ];
-          
+
           continue;
         }
 
-        if (value.constructor.name === 'Object') {
-          this.iterate(value);
-        } else if (value.constructor.name === 'Array') {
-          this.iterate(value);
-        }
+        this.continue(value);
       }
     } else if (obj.constructor.name === 'Array') {
       for (let i = 0; i < obj.length; ++i) {
         const value = (<ParserCollection>obj)[i];
-
-        if (value.constructor.name === 'Object') {
-          this.iterate(value);
-        } else if (value.constructor.name === 'Array') {
-          this.iterate(value);
-        }
+        
+        this.continue(value);
       }
+    }
+  }
+
+  private continue(value: ParserCollection) {
+    if (
+      value.constructor.name === 'Object'
+      || value.constructor.name === 'Array'
+    ) {
+      this.iterate(value);
     }
   }
 }
