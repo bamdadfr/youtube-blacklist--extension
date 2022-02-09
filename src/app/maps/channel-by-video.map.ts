@@ -21,7 +21,7 @@ export class ChannelByVideoMap {
   }
 
   public static async get(): Promise<ChannelByVideoInterface> {
-    return await this.readDom(this.id);
+    return this.readDom(this.id);
   }
 
   public static async find(videoId: VideoIdType): Promise<ChannelIdType> {
