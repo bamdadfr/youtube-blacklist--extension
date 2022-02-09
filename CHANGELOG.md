@@ -1,3 +1,15 @@
+## [1.2.3](https://github.com/bamdadsabbagh/youtube-blacklist--extension/compare/v1.2.2...v1.2.3) (2022-02-09)
+
+
+### Bug Fixes
+
+* **Blacklist:** Improve loop readability ([52851d6](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/52851d6e822ee32592f5f3a31abb73a39615cfc0))
+* **ChannelByVideoMap:** Remove redundant `await` ([e6fd9d6](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/e6fd9d6be2a8562fb043c16f5f497c13916dabb6))
+* **Inject:** Avoid overriding variable names in lower scope ([aa279b9](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/aa279b91e8b424a1723c9b8d6796158b7fdd6858))
+* **PageHandler:** Improve for loop readability by using for...of ([bb305a8](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/bb305a854919e2f1110f408c77ae1d0d44f5e65f))
+* **Parser:** Improve readability and reduce complexity by splitting methods ([abd70af](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/abd70af5742b2f197acfd17ba046a038f10414dc))
+* **Reducer:** Improve for loop readability by using for...of ([98326e1](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/98326e1103490c9fbda3f53b4002fecdafb04937))
+
 ## [1.2.2](https://github.com/bamdadsabbagh/youtube-blacklist--extension/compare/v1.2.1...v1.2.2) (2022-02-08)
 
 
