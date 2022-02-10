@@ -10,13 +10,15 @@ export class Video {
 
   public hidden = false;
 
+  private button: ButtonComponent;
+
   private channel: Channel;
 
   public constructor(el: HTMLElement) {
     this.container = el;
     this.id = this.getId();
     this.channel = new Channel(this);
-    new ButtonComponent(this, this.onClickListener.bind(this));
+    this.button = new ButtonComponent(this, this.onClickListener.bind(this));
   }
 
   public hide(): void {
