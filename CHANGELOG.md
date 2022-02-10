@@ -1,3 +1,10 @@
+## [1.2.5](https://github.com/bamdadsabbagh/youtube-blacklist--extension/compare/v1.2.4...v1.2.5) (2022-02-10)
+
+
+### Bug Fixes
+
+* **Video:** Retry if `#thumbnail` can't be fetched + Retry if ChannelByVideo `find` returns undefined ([538f812](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/538f8127811914febb64b81183258cbd3756ce1f))
+
 ## [1.2.4](https://github.com/bamdadsabbagh/youtube-blacklist--extension/compare/v1.2.3...v1.2.4) (2022-02-10)
 
 
