@@ -1,3 +1,10 @@
+## [1.2.4](https://github.com/bamdadsabbagh/youtube-blacklist--extension/compare/v1.2.3...v1.2.4) (2022-02-10)
+
+
+### Bug Fixes
+
+* **Video:** Assign button to object ([9eafc66](https://github.com/bamdadsabbagh/youtube-blacklist--extension/commit/9eafc6613ceebd537901086367228c68c9379a81))
+
 ## [1.2.3](https://github.com/bamdadsabbagh/youtube-blacklist--extension/compare/v1.2.2...v1.2.3) (2022-02-09)
 
 
