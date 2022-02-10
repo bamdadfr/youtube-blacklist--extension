@@ -18,6 +18,8 @@ YouTube Blacklist
 
 ![](https://raw.githubusercontent.com/bamdadsabbagh/youtube-blacklist--extension/master/assets/screenshots/screenshot-01.png)
 
+## 📖 Description
+
 Add YouTube channels to your blacklist.
 
 Purge your YouTube of unwanted content.
