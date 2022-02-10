@@ -9,6 +9,7 @@ export class Channel {
 
   public constructor(video: Video) {
     const el = video.container.getElementsByTagName('ytd-channel-name')[0];
+
     ChannelByVideoMap.find(video.id).then((id) => {
       const name = Utils.getDeepestElement(el).textContent;
 

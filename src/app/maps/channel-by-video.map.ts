@@ -25,8 +25,16 @@ export class ChannelByVideoMap {
   }
 
   public static async find(videoId: VideoIdType): Promise<ChannelIdType> {
-    const map = await this.get();
-    return map[videoId];
+    return Utils.promisify(async (resolve, retry) => {
+      const map = await this.get();
+      const channel = map[videoId];
+
+      if (!channel) {
+        retry();
+      }
+
+      resolve(channel);
+    });
   }
 
   private static async readDom(id: string): Promise<ChannelByVideoInterface> {

@@ -4,7 +4,7 @@ import {Blacklist} from './blacklist';
 import {Utils} from '../utils/utils';
 
 export class Video {
-  public readonly id: string;
+  public id: string;
 
   public container: HTMLElement;
 
@@ -16,9 +16,12 @@ export class Video {
 
   public constructor(el: HTMLElement) {
     this.container = el;
-    this.id = this.getId();
-    this.channel = new Channel(this);
-    this.button = new ButtonComponent(this, this.onClickListener.bind(this));
+
+    this.getId().then((id) => {
+      this.id = id;
+      this.channel = new Channel(this);
+      this.button = new ButtonComponent(this, this.onClickListener.bind(this));
+    });
   }
 
   public hide(): void {
@@ -28,18 +31,31 @@ export class Video {
     Utils.log(`Remove ${this.id} (${this.channel.name})`);
   }
 
+  private async getThumbnail() {
+    return Utils.promisify((resolve, retry) => {
+      const thumbnail = this.container.querySelector('#thumbnail');
+
+      if (!thumbnail) {
+        return retry();
+      }
+
+      resolve(thumbnail);
+    });
+  }
+
   private getId() {
-    const thumbnail = this.container.querySelector('#thumbnail');
-    const uri = thumbnail.getAttribute('href');
+    return this.getThumbnail().then((thumbnail) => {
+      const uri = thumbnail.getAttribute('href');
 
-    const regex = /[0-9A-Za-z_-]{11}/;
-    const matches = regex.exec(uri);
+      const regex = /[0-9A-Za-z_-]{11}/;
+      const matches = regex.exec(uri);
 
-    if (matches === null) {
-      throw new Error(`No matches found for ${uri}`);
-    }
+      if (matches === null) {
+        throw new Error(`No matches found for ${uri}`);
+      }
 
-    return matches[0].replace('v=', '');
+      return matches[0].replace('v=', '');
+    });
   }
 
   private async onClickListener(e: MouseEvent): Promise<void> {
