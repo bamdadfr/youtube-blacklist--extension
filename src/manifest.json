@@ -2,7 +2,7 @@
   "name": "YouTube Blacklist",
   "short_name": "youtube-blacklist",
   "description": "Blacklist channels on YouTube",
-  "version": "1.2.9",
+  "version": "1.2.10",
   "manifest_version": 2,
   "icons": {
     "512": "assets/youtube-blacklist-icon-512.png"
