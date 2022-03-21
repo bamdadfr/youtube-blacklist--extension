@@ -4209,10 +4209,10 @@ jszip@^3.2.2:
     readable-stream "~2.3.6"
     set-immediate-shim "~1.0.1"
 
-just-compare@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/just-compare/-/just-compare-2.0.1.tgz#adc6d75dd9747fa12a8e545e9280b05dd9bcfdd0"
-  integrity sha512-BWxD24tXN+NGf4S8klbSBZNp/xc/IoLeBAyorOPaiI2uYjLNMfR5flDV54MYoub3J2H8c2oxn8Vhoi7orMoLtQ==
+just-compare@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/just-compare/-/just-compare-2.1.0.tgz#76823462fde930fc2271aa8719908b3c7b4d81d8"
+  integrity sha512-3khZL/G9XsMuwFfaZ2Avkzjiasty9B0MOk7JdVjdMM6SSfY6gaTk1T28bVSzuyr38hdaOp6I7HuulkWJkbyHPw==
 
 jwa@^1.4.1:
   version "1.4.1"
